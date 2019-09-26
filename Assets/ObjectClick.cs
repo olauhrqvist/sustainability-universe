@@ -16,7 +16,7 @@ public class ObjectClick : MonoBehaviour
         {
           if(hit.transform)
           {
-            print(hit.transform.gameObject);
+            print(hit.transform.gameObject.name);
           }
         }
       }
