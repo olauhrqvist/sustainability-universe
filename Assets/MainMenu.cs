@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
   
     public void NewGame()
     {
-        SceneManager.LoadScene((int)SceneNr.Game);
+        SceneManager.LoadScene((int)SceneNr.Test1);
         //set all variables
         //call function gameInit(); which will initialize a new game.
         //begin the game. call function gameMode().

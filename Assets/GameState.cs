@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum SceneNr { Menu, Game, Pause}
+public enum SceneNr { Menu, Test1, Pause}
 
 public class GameState : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class GameState : MonoBehaviour
     public void ResumeGame()
     {
 
-        SceneManager.LoadScene((int)SceneNr.Game);
+        SceneManager.LoadScene((int)SceneNr.Test1);
         //we want to resume the "global" clock which we paused in PauseGame();
 
     }
