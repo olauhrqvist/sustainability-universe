@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Pause_Button : GameState
 {
-  public void NextScene(){
+  public void PauseGame(){
     SceneManager.LoadScene((int)SceneNr.Pause);
   }
 }
