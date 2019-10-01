@@ -120,6 +120,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &106772535
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2059097712}
+    m_Modifications:
+    - target: {fileID: 4910690470429680547, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_Name
+      value: GameObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 876.3304
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 180.8441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3720.348
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910690470429680545, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb98f7fb142851546b6c75f2182fda0a, type: 3}
 --- !u!1 &128749524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1842,7 @@ PrefabInstance:
     - target: {fileID: 1469128566783822943, guid: 5de0c34ad30521d4ab2c45961c2e0ff4,
         type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Shop Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 1469128566783822883, guid: 5de0c34ad30521d4ab2c45961c2e0ff4,
         type: 3}
@@ -1884,16 +1953,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4910690470429680544, guid: fb98f7fb142851546b6c75f2182fda0a,
+        type: 3}
     - target: {fileID: 1469128566669679443, guid: 5de0c34ad30521d4ab2c45961c2e0ff4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: NextScene
       objectReference: {fileID: 0}
     - target: {fileID: 1469128566669679443, guid: 5de0c34ad30521d4ab2c45961c2e0ff4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1469128566669679443, guid: 5de0c34ad30521d4ab2c45961c2e0ff4,
         type: 3}
@@ -4613,6 +4683,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!224 &2059097712 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1469128566783822883, guid: 5de0c34ad30521d4ab2c45961c2e0ff4,
+    type: 3}
+  m_PrefabInstance: {fileID: 550758386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2143165403
 GameObject:
   m_ObjectHideFlags: 0
