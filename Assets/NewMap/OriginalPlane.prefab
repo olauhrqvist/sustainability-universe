@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startColor: {r: 1, g: 1, b: 1, a: 0}
-  mouseOverColor: {r: 0, g: 1, b: 0.19647932, a: 0}
+  mouseOverColor: {r: 0.54509807, g: 0.72156864, b: 0.043137245, a: 0}
 --- !u!54 &3139588347628066752
 Rigidbody:
   m_ObjectHideFlags: 0

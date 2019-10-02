@@ -37,17 +37,18 @@ public class OnTop : MonoBehaviour
             float cubeX = cubePos.x;
             float cubeZ = cubePos.z;
 
-            Debug.Log("Cube is in position " + cubeX + ", " + cubeZ);
-            Debug.Log("Tile " + i + ": x: " + x + " - " + (x+10f) + " z: " + z + " - " + (z+10f));
+            //Debug.Log("Cube is in position " + cubeX + ", " + cubeZ);
+            //Debug.Log("Tile " + i + ": x: " + x + " - " + (x+10f) + " z: " + z + " - " + (z+10f));
             mapList[i].GetComponent<Renderer>().material.SetColor("_Color", startColor);
+          
 
             if (x < cubeX && cubeX < (x + 10f))
             {
 
                 if (z < cubeZ && cubeZ < (z + 10f))
                 {
-                    Debug.Log("Cube is inside tile: " + i);
-                    Debug.Log("Tile " + x + ", " + z);
+                   // Debug.Log("Cube is inside tile: " + i);
+                   // Debug.Log("Tile " + x + ", " + z);
                     mapList[i].GetComponent<Renderer>().material.SetColor("_Color", mouseOverColor);
 
                 }

@@ -23,7 +23,7 @@ public class SpawnMap : MonoBehaviour
                 //Instantiate(planeTile, new Vector3(x, 0,  z), transform.rotation);
                 //tileMap.Add(planeTile);
                 tileMap.Add(Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation));
-                Debug.Log("Spawned tile at: " + x + ", " + z);
+                //Debug.Log("Spawned tile at: " + x + ", " + z);
                 z = z + 10;   
             }
 
