@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2582038444901206827}
   - component: {fileID: 2582038444901206829}
-  - component: {fileID: 2582038444901206826}
   m_Layer: 5
   m_Name: TemplateCamera
   m_TagString: Untagged
@@ -80,14 +79,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2582038444901206826
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2582038444901206824}
-  m_Enabled: 1
 --- !u!1 &2582038445598509725
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +288,7 @@ GameObject:
   - component: {fileID: 2582038446135306215}
   - component: {fileID: 2582038446135306201}
   - component: {fileID: 2582038446135306214}
+  - component: {fileID: 4608177432924579301}
   m_Layer: 5
   m_Name: TemplateImage
   m_TagString: Untagged
@@ -356,6 +348,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &4608177432924579301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582038446135306212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ac0f70a13f1ad458ae6181f4010425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2582038446140542276
 GameObject:
   m_ObjectHideFlags: 0
