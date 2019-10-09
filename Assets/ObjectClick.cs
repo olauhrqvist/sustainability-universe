@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectClick : MonoBehaviour
 {
-    public Color clickColor;
+    public Color clickColor ;
     private GameObject selectTile;
     private GameObject prevTile = null;
     private bool stay=false;
@@ -13,18 +13,22 @@ public class ObjectClick : MonoBehaviour
     {
         if (stay && selectTile!=null)
         {
-         selectTile.GetComponent<Renderer>().material.SetColor("_Color", clickColor);
+            
+            selectTile.GetComponent<Renderer>().material.color = clickColor;
+           // selectTile.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            //Debug.Log(selectTile.GetComponent<Renderer>().material.GetColor("_Color"));
         }
     }
     void OnGUI()
     {
       if (Input.GetMouseButtonDown(0))
       {
-        Debug.Log("Pressed primary button.");
+        
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit))
-        {     
+        {
+                
                 if (hit.collider.gameObject.name== "OriginalPlane(Clone)")
                 {
                     
