@@ -29,9 +29,9 @@ public class ObjectClick : MonoBehaviour
         if(Physics.Raycast(ray, out hit))
         {
                 
-                if (hit.collider.gameObject.name== "OriginalPlane(Clone)")
+                if (hit.collider.gameObject.tag== "tile")
                 {
-                    
+                    //tr.Substring(0,i)
                     selectTile = hit.collider.gameObject;
                     stay = true;
                     if (prevTile!=null && prevTile == selectTile)

@@ -10,6 +10,7 @@ public class SpawnMap : MonoBehaviour
 
     private float x = -15;
     private float z = -15;
+    private GameObject tile;
 
 
     // Start is called before the first frame update
@@ -22,7 +23,11 @@ public class SpawnMap : MonoBehaviour
 
                 //Instantiate(planeTile, new Vector3(x, 0,  z), transform.rotation);
                 //tileMap.Add(planeTile);
-                tileMap.Add(Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation));
+                tile = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
+                tile.name = "Tile" + tile.transform.position;
+                tile.tag = "tile";
+                tileMap.Add(tile);
+                
                 //Debug.Log("Spawned tile at: " + x + ", " + z);
                 z = z + 10;   
             }
