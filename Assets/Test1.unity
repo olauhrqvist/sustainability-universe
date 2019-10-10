@@ -5032,6 +5032,7 @@ MonoBehaviour:
   planeTile: {fileID: 8635195563372586001, guid: 73d7f447887361b40860204067d482f9,
     type: 3}
   tileMap: []
+  tileNumberNxN: 5
 --- !u!1 &2143165403
 GameObject:
   m_ObjectHideFlags: 0
