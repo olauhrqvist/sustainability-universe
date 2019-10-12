@@ -7,31 +7,82 @@ public enum SceneNr { Menu, Test1, Pause}
 
 public class GameState : MonoBehaviour
 {
-
-   // private bool escPressed = false;
-   // private int inc = 0;
+    GameObject[] pauseObjects;
+    //bool pause = false;
+    // private bool escPressed = false;
+    // private int inc = 0;
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+        pauseObjects = GameObject.FindGameObjectsWithTag("PauseMenu");
+        hidePauseMenu();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*  if (!escPressed)
+          {*/
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+         
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                showPauseMenu();
+
+            }
+            else if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                hidePauseMenu();
+            }
+
+        }
 
     }
 
-    public void ResumeGame()
+
+    public void showPauseMenu()
+    {
+        //we want to paus the "global" clock that runs the game.
+        // SceneManager.LoadScene((int)SceneNr.Pause);
+        foreach (GameObject g in pauseObjects)
+        {
+            g.SetActive(true);
+        }
+    }
+
+
+    public void hidePauseMenu()
     {
 
-        SceneManager.LoadScene((int)SceneNr.Test1);
+        // SceneManager.LoadScene((int)SceneNr.Test1);
         //we want to resume the "global" clock which we paused in PauseGame();
+        foreach (GameObject g in pauseObjects)
+        {
+            //Debug.Log(g);
+            g.SetActive(false);
+
+        }
+
 
     }
     public void EndGame()
     {
         SceneManager.LoadScene((int)SceneNr.Menu);
     }
-    public void PauseGame()
+
+
+
+    public void resumeButtonPressed()
     {
-        //we want to paus the "global" clock that runs the game.
-        SceneManager.LoadScene((int)SceneNr.Pause);
+        Time.timeScale = 1;
+        hidePauseMenu();
     }
+
+
 
     /* Idea Section for save game
      
@@ -59,16 +110,5 @@ public class GameState : MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
-    {
-      /*  if (!escPressed)
-        {*/
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                PauseGame();   
 
-            }
-         
-    }
 }

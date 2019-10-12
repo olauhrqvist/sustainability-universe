@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - tile
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

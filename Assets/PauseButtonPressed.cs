@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Pause_Button : GameState
+public class PauseButtonPressed : GameState
 {
-  public void PauseGame(){
+  
+    public void pauseButtonPressed()
+    {
         Time.timeScale = 0;
         showPauseMenu();
-  }
+    }
+
+
 }
