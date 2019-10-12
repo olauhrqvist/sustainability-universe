@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2301617561158192881}
   - component: {fileID: 2301617561158192880}
+  - component: {fileID: 1579846757099427029}
   m_Layer: 0
   m_Name: Map Parent
   m_TagString: Untagged
@@ -46,6 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startColor: {r: 0, g: 0, b: 0, a: 0}
   mouseOverColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1579846757099427029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2301617561158192883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed997896f65d9040a65e49830c64f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickColor: {r: 0.99215686, g: 0.13333334, b: 0, a: 0}
 --- !u!1 &2301617562215352439
 GameObject:
   m_ObjectHideFlags: 0
