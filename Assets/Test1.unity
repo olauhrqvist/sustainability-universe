@@ -4269,6 +4269,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
+        type: 3}
+      propertyPath: tileMap.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
 --- !u!1 &1877690355
@@ -4578,11 +4583,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5771041456480165741, guid: a4c221be721e85c46aa60d87496f5e82,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -31.00003
-      objectReference: {fileID: 0}
     - target: {fileID: 6149432143510770700, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: m_Name
@@ -4592,6 +4592,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771041456480165741, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31.00003
       objectReference: {fileID: 0}
     - target: {fileID: 6149432143510770800, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}

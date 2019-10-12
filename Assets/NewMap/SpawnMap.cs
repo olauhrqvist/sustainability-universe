@@ -15,9 +15,9 @@ public class SpawnMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = -4; i < 4; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = -4 ; j < 4 ; j++)
             {
 
                 //Instantiate(planeTile, new Vector3(x, 0,  z), transform.rotation);
