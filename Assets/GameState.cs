@@ -7,7 +7,7 @@ public enum SceneNr { Menu, Test1, Pause}
 
 public class GameState : MonoBehaviour
 {
-    GameObject[] pauseObjects;
+    public GameObject[] pauseObjects;
     //bool pause = false;
     // private bool escPressed = false;
     // private int inc = 0;
@@ -22,13 +22,13 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*  if (!escPressed)
-          {*/
+       
         if (Input.GetKeyDown(KeyCode.Escape))
         {
          
             if (Time.timeScale == 1)
             {
+                Debug.Log("In update, Esc pressed");
                 Time.timeScale = 0;
                 showPauseMenu();
 
@@ -48,10 +48,13 @@ public class GameState : MonoBehaviour
     {
         //we want to paus the "global" clock that runs the game.
         // SceneManager.LoadScene((int)SceneNr.Pause);
+        Debug.Log("Before foreach loop in showPauseMenu()");
         foreach (GameObject g in pauseObjects)
         {
+            Debug.Log("In foreach loop in showPauseMenu()");
             g.SetActive(true);
         }
+        Debug.Log("After foreach loop in showPauseMenu()");
     }
 
 
@@ -62,8 +65,10 @@ public class GameState : MonoBehaviour
         //we want to resume the "global" clock which we paused in PauseGame();
         foreach (GameObject g in pauseObjects)
         {
-            //Debug.Log(g);
-            g.SetActive(false);
+            Debug.Log(g.ToString());
+            Debug.Log("doing something2");
+            if(g.name != "PauseButton")
+                 g.SetActive(false);
 
         }
 
@@ -76,12 +81,18 @@ public class GameState : MonoBehaviour
 
 
 
-    public void resumeButtonPressed()
+    public void resumeButtonPressed2()
     {
         Time.timeScale = 1;
         hidePauseMenu();
     }
 
+    public void pauseButtonPressed2()
+    {
+        Debug.Log("Debug pauseButtonPressed2()");
+        Time.timeScale = 0;
+        showPauseMenu();
+    }
 
 
     /* Idea Section for save game

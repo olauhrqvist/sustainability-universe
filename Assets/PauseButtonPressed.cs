@@ -7,8 +7,14 @@ public class PauseButtonPressed : GameState
   
     public void pauseButtonPressed()
     {
-        Time.timeScale = 0;
-        showPauseMenu();
+        if (Time.timeScale == 1)
+        {
+            Debug.Log("In pauseButtonPressed()");
+            Time.timeScale = 0;
+            Debug.Log("Before showPauseMenu()");
+            showPauseMenu();
+            Debug.Log("After showPauseMenu()");
+        }
     }
 
 
