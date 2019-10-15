@@ -13,7 +13,7 @@ abstract class Tile : MonoBehaviour
     protected int nutrition;
     protected int freeSpace;
     protected Tile groundType;
-    private Pair<bool, base_playable> tileHashType;
+    //private Pair<bool, base_playable> tileHashType;
 
 
     protected Tile()
@@ -24,7 +24,7 @@ abstract class Tile : MonoBehaviour
     }
     public abstract void setMoisture(int new_moisture);
 
-    public int getMoisture() { return }
+    public int getMoisture() { return moisture; }
 }
 
 public class Pair<T, U>

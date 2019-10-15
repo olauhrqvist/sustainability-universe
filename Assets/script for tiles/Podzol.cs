@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Podzol : Tile
+class Podzol : Tile
 {
     //good for pine forrest
     //https://www.skogen.se/glossary/podsol
