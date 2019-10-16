@@ -2918,6 +2918,29 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &1176310376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2301617562215352439, guid: b1b5b473c20bf32409d2cc680114fdfc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1540669572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1176310379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176310376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c6f0a32342fa647b67d442e7621e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Object1: {fileID: 6980496011732593323, guid: ff432fdbe11cea94e9b4f97f9c6a01c0, type: 3}
+  Object2: {fileID: 0}
+  Object3: {fileID: 0}
+  Object4: {fileID: 0}
+  Object5: {fileID: 0}
 --- !u!1 &1239003829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3685,27 +3708,32 @@ PrefabInstance:
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: planeColor.r
-      value: 0
+      value: 0.21662469
       objectReference: {fileID: 0}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: planeColor.g
-      value: 0.6792453
+      value: 0.8396226
       objectReference: {fileID: 0}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: planeColor.b
-      value: 0.16738199
+      value: 0.14653791
       objectReference: {fileID: 0}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: treeDensity
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: N
-      value: 40
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
+        type: 3}
+      propertyPath: natureDensity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2301617561158192880, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
