@@ -4,46 +4,77 @@ using UnityEngine;
 
 public class SpawnMap : MonoBehaviour
 {
-    public GameObject planeTile;
 
-    public List<GameObject> tileMap;
 
-    private float x = -15;
-    private float z = -15;
+    private float x;
+    private float z;
     private GameObject tile;
-    public int tileNumberNxN = 8;
+    private GameObject tree;
 
-    
+    private float tileSize = 10;
+    public int N = 8;
+    public Color planeColor;
 
+
+    public GameObject planeTile;
+    public GameObject treeObject;
+    public int natureDensity;
+    public List<GameObject> tileMap;
 
     // Start is called before the first frame update
     void Start()
     {
-/*<<<<<<< HEAD
-        for (int i = -4; i < 4; i++)
-        {
-            for (int j = -4 ; j < 4 ; j++)
-=======
-        */
-        for (int i = 0; i < tileNumberNxN; i++)
-        {
-            for (int j = 0; j < tileNumberNxN; j++)
-/*>>>>>>> 29b2f0e6514542af870d4daad0dea15980a60206*/
-            {
+        x = (-(tileSize/2) * ((float)N-1));
+        z = (-(tileSize/2) * ((float)N-1));
+        int u = 0;
 
-                //Instantiate(planeTile, new Vector3(x, 0,  z), transform.rotation);
-                //tileMap.Add(planeTile);
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
                 tile = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
+                //planeColor = new Color(107f, 141f, 75f);
+                tile.GetComponent<Renderer> ().material.color = planeColor;
+
+
+                float stepSize = (tileSize/(natureDensity * 2));
+                float xTree = x - stepSize * (natureDensity - 1);
+                float zTree = z - stepSize * (natureDensity - 1);
+                Debug.Log("Spawned tile at: " + "0 > " + x + ", 0 > " + z);
+                Debug.Log("Stepsize: " + stepSize);
+
+                for (int k = 0; k < natureDensity; k++)
+                {
+                    
+                    for (int l = 0; l < natureDensity; l++)
+                    {
+                       
+                        Debug.Log("Spawning  " + u + " at: " + xTree + ", " + zTree);
+                        tree = Instantiate(treeObject, new Vector3(xTree, 0,  zTree), transform.rotation);
+                        tree.transform.parent = tile.transform;
+                        tree.name = "Bush " + u;
+                        u++;
+
+                        xTree += stepSize * 2;
+                    }
+
+                    xTree = x - stepSize * (natureDensity - 1);
+                    zTree += stepSize * 2;
+                }    
+
+               
+
+
+
                 tile.name = "Tile" + tile.transform.position;
                 tile.tag = "tile";
                 tileMap.Add(tile);
                 
-                //Debug.Log("Spawned tile at: " + x + ", " + z);
-                z = z + 10;   
+                z += tileSize;
             }
 
-            x = x + 10;
-            z = -15;
+            x += tileSize;
+            z = (-(tileSize/2) * ((float)N-1));  
             
         }
 

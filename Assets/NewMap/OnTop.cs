@@ -7,8 +7,8 @@ public class OnTop : MonoBehaviour
     private GameObject cube;
     private List<GameObject> mapList;
 
-    public Color startColor;
-    public Color mouseOverColor;
+    //public Color startColor;
+    public Color mouseOverColor = Color.white;
 
     void Start()
     {
@@ -39,7 +39,9 @@ public class OnTop : MonoBehaviour
 
             //Debug.Log("Cube is in position " + cubeX + ", " + cubeZ);
             //Debug.Log("Tile " + i + ": x: " + x + " - " + (x+10f) + " z: " + z + " - " + (z+10f));
-            mapList[i].GetComponent<Renderer>().material.SetColor("_Color", startColor);
+            Color planeColor = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().planeColor;
+
+            mapList[i].GetComponent<Renderer>().material.SetColor("_Color", planeColor);
           
 
             if (x < cubeX && cubeX < (x + 10f))
