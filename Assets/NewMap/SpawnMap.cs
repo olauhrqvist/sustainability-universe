@@ -57,6 +57,7 @@ public class SpawnMap : MonoBehaviour
 
                         tree.transform.parent = tile.transform;
                         tree.name = "Bush " + u;
+                        tree.tag = "Plant";
                         u++;
 
                         xTree += stepSize * 2;

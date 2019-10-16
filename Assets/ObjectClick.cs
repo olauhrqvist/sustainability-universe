@@ -11,8 +11,9 @@ public class ObjectClick : MonoBehaviour
     private bool newSelectedTile = false;
     List<GameObject> foundObj = new List<GameObject>();
     List<GameObject> tileObjList = new List<GameObject>();
+    private Color planeColor;
 
-    void Update()
+    /*void Update()
     {
         if (stay && selectTile!=null)
         {
@@ -30,13 +31,13 @@ public class ObjectClick : MonoBehaviour
             tileObjList.Clear();
             newSelectedTile = false;
         }
-    }
+    }*/
 
     void findObj()
     {
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
         {
-            if (gameObj.name == "TemplateModel(Clone)") // I want all animal/plant obj have tag "dispalyerbal" or other
+            if (gameObj.name == "TemplateModel(Clone)" || gameObj.tag == "Animal" || gameObj.tag=="Plant") 
             {
                 foundObj.Add(gameObj);
 
@@ -67,23 +68,36 @@ public class ObjectClick : MonoBehaviour
                 if (hit.collider.gameObject.tag== "tile")
                 {
                     //tr.Substring(0,i)
-                    
+                    planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
                     selectTile = hit.collider.gameObject;
                     stay = true;
                     
                     if (prevTile!=null && prevTile != selectTile)
                     {
                         newSelectedTile = true;
+                        selectTile.GetComponent<Renderer>().material.color = clickColor;
+                        prevTile.GetComponent<Renderer>().material.color = planeColor;
                         //print("prevTile != selectTile: " + newSelectedTile);
+                    }else if(prevTile != null && prevTile == selectTile)
+                    {
+                        selectTile.GetComponent<Renderer>().material.color = planeColor;
                     }
                     
 
                     prevTile = selectTile;
-                    
+                    findObj();
+                    printFoundList();
+                    foundObj.Clear();
+                    tileObjList.Clear();
                 }
                 else
                 {
-                stay = false;
+                    print("click on other thing than tile"); // funkar inte med andra obj :( 
+                    if (prevTile!=null)
+                    {
+                        prevTile.GetComponent<Renderer>().material.color = planeColor;
+                    }
+                //stay = false;
                 }
             }
       }
