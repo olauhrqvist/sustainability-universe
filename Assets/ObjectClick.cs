@@ -5,13 +5,15 @@ using UnityEngine;
 public class ObjectClick : MonoBehaviour
 {
     public Color clickColor ;
-    private GameObject selectTile;
+    private GameObject selectTile = null;
     private GameObject prevTile = null;
     private bool stay=false;
     private bool newSelectedTile = false;
     List<GameObject> foundObj = new List<GameObject>();
     List<GameObject> tileObjList = new List<GameObject>();
     private Color planeColor;
+    private Color orginColor;
+    private int i = 1;
 
     /*void Update()
     {
@@ -57,32 +59,37 @@ public class ObjectClick : MonoBehaviour
     }
     void OnGUI()
     {
-      if (Input.GetMouseButtonDown(0))
-      {
+        
+       if (Input.GetMouseButtonDown(0))
+       {
         
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(ray, out hit, 100))
         {
                 
                 if (hit.collider.gameObject.tag== "tile")
                 {
                     //tr.Substring(0,i)
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+                    if (i == 1)
+                    {
+                        orginColor = planeColor;
+                        i = 0;
+                    }
+                    
                     selectTile = hit.collider.gameObject;
                     stay = true;
                     
-                    if (prevTile!=null && prevTile != selectTile)
+                    if (prevTile !=null && prevTile != selectTile)
                     {
+                     
                         newSelectedTile = true;
                         selectTile.GetComponent<Renderer>().material.color = clickColor;
-                        prevTile.GetComponent<Renderer>().material.color = planeColor;
-                        //print("prevTile != selectTile: " + newSelectedTile);
-                    }else if(prevTile != null && prevTile == selectTile)
-                    {
-                        selectTile.GetComponent<Renderer>().material.color = planeColor;
+                        prevTile.GetComponent<Renderer>().material.color = orginColor;
+
                     }
-                    
+         
 
                     prevTile = selectTile;
                     findObj();
@@ -90,16 +97,16 @@ public class ObjectClick : MonoBehaviour
                     foundObj.Clear();
                     tileObjList.Clear();
                 }
+                else if (hit.collider.gameObject.tag == "Plant")
+                {
+                    print("hit trees");
+                }
                 else
                 {
-                    print("click on other thing than tile"); // funkar inte med andra obj :( 
-                    if (prevTile!=null)
-                    {
-                        prevTile.GetComponent<Renderer>().material.color = planeColor;
-                    }
-                //stay = false;
+                    print("hit other things");
                 }
-            }
+                
+        }
       }
     }
 

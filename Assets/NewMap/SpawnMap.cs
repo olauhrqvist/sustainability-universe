@@ -44,32 +44,10 @@ public class SpawnMap : MonoBehaviour
                 float zTree = z - stepSize * (natureDensity - 1);
                 //Debug.Log("Spawned tile at: " + "0 > " + x + ", 0 > " + z);
                 //Debug.Log("Stepsize: " + stepSize);
-
-                for (int k = 0; k < natureDensity; k++)
+                if (i < N / 2 && j < N/2)
                 {
-                    
-                    for (int l = 0; l < natureDensity; l++)
-                    {
-                       
-                        //Debug.Log("Spawning  " + u + " at: " + xTree + ", " + zTree);
-                        tree = Instantiate(treeObject, new Vector3(xTree, 0,  zTree), transform.rotation);
-                        smallLocation.Add(new Vector3(xTree, 0, zTree));
-
-                        tree.transform.parent = tile.transform;
-                        tree.name = "Bush " + u;
-                        tree.tag = "Plant";
-                        u++;
-
-                        xTree += stepSize * 2;
-                    }
-
-                    xTree = x - stepSize * (natureDensity - 1);
-                    zTree += stepSize * 2;
-                }    
-
-               
-
-
+                    addTrees(xTree, zTree, stepSize,u);
+                }
 
                 tile.name = "Tile" + tile.transform.position;
                 tile.tag = "tile";
@@ -86,7 +64,30 @@ public class SpawnMap : MonoBehaviour
             
         
 }
+    void addTrees(float xTree, float zTree, float stepSize, int u)
+    {
+        for (int k = 0; k < natureDensity; k++)
+        {
 
+            for (int l = 0; l < natureDensity; l++)
+            {
+
+                //Debug.Log("Spawning  " + u + " at: " + xTree + ", " + zTree);
+                tree = Instantiate(treeObject, new Vector3(xTree, 0, zTree), transform.rotation);
+                smallLocation.Add(new Vector3(xTree, 0, zTree));
+
+                tree.transform.parent = tile.transform;
+                tree.name = "Bush " + u;
+                tree.tag = "Plant";
+                u++;
+
+                xTree += stepSize * 2;
+            }
+
+            xTree = x - stepSize * (natureDensity - 1);
+            zTree += stepSize * 2;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
