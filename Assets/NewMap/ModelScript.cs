@@ -113,7 +113,7 @@ public class ModelScript : MonoBehaviour
         {
             Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
             location.y = 20;
-            cloud1.transform.localScale = new Vector3(0.3f, 1f,0.3f);
+            cloud1.transform.localScale = new Vector3(0.3f, 0.3f,0.3f);
             Instantiate(cloud1, location, transform.rotation);
         }
 
