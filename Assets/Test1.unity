@@ -3839,6 +3839,24 @@ PrefabInstance:
       propertyPath: natureDensity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
+        type: 3}
+      propertyPath: mountain
+      value: 
+      objectReference: {fileID: 1855710351377478, guid: 5c9211eb71cff4f4996a21d92317f601,
+        type: 3}
+    - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
+        type: 3}
+      propertyPath: mountain1
+      value: 
+      objectReference: {fileID: 1855710351377478, guid: 5c9211eb71cff4f4996a21d92317f601,
+        type: 3}
+    - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
+        type: 3}
+      propertyPath: mountain2
+      value: 
+      objectReference: {fileID: 1185380165875998, guid: 9d200fbd47e9c7f45ad54450ebd25b94,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 2301617561158192880, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}

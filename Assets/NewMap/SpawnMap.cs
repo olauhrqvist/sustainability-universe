@@ -10,6 +10,8 @@ public class SpawnMap : MonoBehaviour
     private float z;
     private GameObject tile;
     private GameObject tree;
+    public GameObject mountain1;
+    public GameObject mountain2;
 
     private float tileSize = 10;
     public int N = 8;
@@ -30,10 +32,31 @@ public class SpawnMap : MonoBehaviour
         z = (-(tileSize/2) * ((float)N-1));
         int u = 0;
 
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N; i++) // x
         {
-            for (int j = 0; j < N; j++)
+            for (int j = 0; j < N; j++) //y 
             {
+                if (i == N / 2 && j == 0)
+                {
+                    mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    Instantiate(mountain1, new Vector3(x, 0, z-(tileSize*2)), transform.rotation);
+                }
+                if (i == 0 && j == N /2)
+                {
+                    mountain2.transform.localScale = new Vector3(0.4f, 0.45f, 0.4f);
+                    Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z), transform.rotation);
+                }
+                if (i == 0 && j == 0)
+                {
+                    mountain2.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
+                    Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z-tileSize), transform.rotation);
+                }
+                if (i == 0 && j == N-1)
+                {
+                    mountain2.transform.localScale = new Vector3(0.45f, 0.5f, 0.45f);
+                    Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z), transform.rotation);
+                }
+
                 tile = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
                 //planeColor = new Color(107f, 141f, 75f);
                 tile.GetComponent<Renderer> ().material.color = planeColor;
