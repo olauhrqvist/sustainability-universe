@@ -44,6 +44,12 @@ public class SpawnMap : MonoBehaviour
                 float zTree = z - stepSize * (natureDensity - 1);
                 //Debug.Log("Spawned tile at: " + "0 > " + x + ", 0 > " + z);
                 //Debug.Log("Stepsize: " + stepSize);
+                // small Location with fixed density, should have enough positions 
+                float stepS = (tileSize / (4 * 2));
+                float xSmall = x - stepSize * (4 - 1);
+                float zSmall = z - stepSize * (4 - 1);
+                findSmallLocations(xSmall, zSmall, stepS, u);
+
                 if (i < N / 2 && j < N/2)
                 {
                     addTrees(xTree, zTree, stepSize,u);
@@ -64,6 +70,26 @@ public class SpawnMap : MonoBehaviour
             
         
 }
+
+    void findSmallLocations(float xSmall, float zSmall, float stepS, int u)
+    {
+        for (int k = 0; k < 4; k++)
+        {
+
+            for (int l = 0; l < 4; l++)
+            {
+                smallLocation.Add(new Vector3(xSmall, 0, zSmall));
+                u++;
+
+                xSmall += stepS * 2;
+            }
+
+            xSmall = x - stepS * (4 - 1);
+            zSmall += stepS * 2;
+        }
+
+
+    }
     void addTrees(float xTree, float zTree, float stepSize, int u)
     {
         for (int k = 0; k < natureDensity; k++)
@@ -74,7 +100,7 @@ public class SpawnMap : MonoBehaviour
 
                 //Debug.Log("Spawning  " + u + " at: " + xTree + ", " + zTree);
                 tree = Instantiate(treeObject, new Vector3(xTree, 0, zTree), transform.rotation);
-                smallLocation.Add(new Vector3(xTree, 0, zTree));
+                //smallLocation.Add(new Vector3(xTree, 0, zTree));
 
                 tree.transform.parent = tile.transform;
                 tree.name = "Bush " + u;

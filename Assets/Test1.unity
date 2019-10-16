@@ -3035,16 +3035,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176310376}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36c6f0a32342fa647b67d442e7621e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Object1: {fileID: 6980496011732593323, guid: ff432fdbe11cea94e9b4f97f9c6a01c0, type: 3}
-  Object2: {fileID: 0}
-  Object3: {fileID: 0}
-  Object4: {fileID: 0}
-  Object5: {fileID: 0}
+  cloud1: {fileID: 1199571229238484, guid: f661498175107c749a33d97304c423eb, type: 3}
+  grass1: {fileID: 1733909988577898, guid: e88b7bb02ae149940a5a0cddf34fe370, type: 3}
+  grass2: {fileID: 1435283653269720, guid: 00e2e59cbc04eab4a982218df54ce70b, type: 3}
+  rock: {fileID: 1689892608009186, guid: 6fc2010b5899cfd488a0ddf205679e2b, type: 3}
+  flower: {fileID: 1143931805411576, guid: f71e980e020ab924ebed9a227a648ec8, type: 3}
 --- !u!1 &1239003829
 GameObject:
   m_ObjectHideFlags: 0
