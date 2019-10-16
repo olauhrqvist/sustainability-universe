@@ -2,38 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectClick : MonoBehaviour
+public class mapClick : MonoBehaviour
 {
     public Color clickColor ;
     private GameObject selectTile = null;
     private GameObject prevTile = null;
-    private bool stay=false;
-    private bool newSelectedTile = false;
     List<GameObject> foundObj = new List<GameObject>();
     List<GameObject> tileObjList = new List<GameObject>();
     private Color planeColor;
     private Color orginColor;
     private int i = 1;
 
-    /*void Update()
-    {
-        if (stay && selectTile!=null)
-        {
-            findObj();
-            selectTile.GetComponent<Renderer>().material.color = clickColor;
-
-            //print(selectTile.GetComponent<Collider>().bounds.Contains(GameObject.Find("Cube").transform.position));
-            // selectTile.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            //Debug.Log(selectTile.GetComponent<Renderer>().material.GetColor("_Color"));
-            if (newSelectedTile == true)
-            {
-                printFoundList();
-            }
-            foundObj.Clear();
-            tileObjList.Clear();
-            newSelectedTile = false;
-        }
-    }*/
 
     void findObj()
     {
@@ -79,17 +58,13 @@ public class ObjectClick : MonoBehaviour
                     }
                     
                     selectTile = hit.collider.gameObject;
-                    stay = true;
                     
                     if (prevTile !=null && prevTile != selectTile)
                     {
                      
-                        newSelectedTile = true;
                         selectTile.GetComponent<Renderer>().material.color = clickColor;
                         prevTile.GetComponent<Renderer>().material.color = orginColor;
-
                     }
-         
 
                     prevTile = selectTile;
                     findObj();
