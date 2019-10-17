@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2582038444901206827}
   - component: {fileID: 2582038444901206829}
   m_Layer: 5
-  m_Name: TemplateCamera
+  m_Name: UNUSED_TemplateCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2582038444901206827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -388,12 +388,12 @@ GameObject:
   - component: {fileID: 2582038446140542137}
   - component: {fileID: 2582038446140542278}
   m_Layer: 8
-  m_Name: UNUSED_TemplateModel
+  m_Name: TemplateModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2582038446140542279
 RectTransform:
   m_ObjectHideFlags: 0
