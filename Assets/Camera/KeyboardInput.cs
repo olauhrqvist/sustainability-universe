@@ -47,10 +47,12 @@ public class KeyboardInput : InputValue
 // Zooms in and out 
         if (Input.GetKey(KeyCode.Z))
         {
+
             OnZoomInput?.Invoke(-1f);
         }
         if (Input.GetKey(KeyCode.X))
         {
+            
             OnZoomInput?.Invoke(1f);
         }
 
