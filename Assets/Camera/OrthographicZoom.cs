@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrthographicZoom : Zoom
+public class OrthographicZoom : ZoomS
 {
     public OrthographicZoom(Camera Cam, float StartingZoom)
     {

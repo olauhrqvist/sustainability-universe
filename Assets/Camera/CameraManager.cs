@@ -21,9 +21,9 @@ public class CameraManager : MonoBehaviour
     public float zoomspeed = 4f;
     public float nearZoomLimit = 2f;
     public float outZoomLimit = 16f;
-    public float startingZoom = 5f;
+    public float StartingZoom = 5f;
 
-    Zoom ZoomStrategy;
+    ZoomS ZoomStrategy;
     Vector3 frameMove;
     float frameRotate;
     float frameZoom;
@@ -35,7 +35,7 @@ public class CameraManager : MonoBehaviour
     {
         cam = GetComponentInChildren<Camera>();
         cam.transform.localPosition = new Vector3(0f, Mathf.Abs(CameraOffset.y), -Mathf.Abs(CameraOffset.x));
-        ZoomStrategy = new OrthographicZoom(cam, startingZoom);
+        ZoomStrategy = new OrthographicZoom(cam, StartingZoom);
         cam.transform.LookAt(transform.position + Vector3.up * LookAtOffset);
     }
 
@@ -85,11 +85,13 @@ public class CameraManager : MonoBehaviour
 
         if ( frameZoom < 0f)
         {
+            Debug.Log("ZOOM OUT");
             ZoomStrategy.ZoomIn(cam, Time.deltaTime * Mathf.Abs(frameZoom) * zoomspeed, nearZoomLimit);
             frameZoom = 0f;
         }
         else if ( frameZoom > 0f)
         {
+            Debug.Log("ZOOM OUT");
             ZoomStrategy.ZoomOut(cam, Time.deltaTime * frameZoom * zoomspeed, outZoomLimit);
             frameZoom = 0f;
         }

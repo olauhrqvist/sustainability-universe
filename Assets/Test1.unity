@@ -150,22 +150,22 @@ PrefabInstance:
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.21039376
+      value: -0.24492691
       objectReference: {fileID: 0}
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7452032
+      value: -0.6633331
       objectReference: {fileID: 0}
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.56981915
+      value: 0.6633331
       objectReference: {fileID: 0}
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.27515966
+      value: -0.24492691
       objectReference: {fileID: 0}
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
@@ -175,17 +175,17 @@ PrefabInstance:
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: -220.534
       objectReference: {fileID: 0}
     - target: {fileID: 7523076575452973301, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -0.002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb56527ad2c1224e82f29c0ca5d98c7, type: 3}
@@ -2254,9 +2254,9 @@ MonoBehaviour:
   minBounds: {x: -400, y: -400}
   maxBounds: {x: 400, y: 400}
   zoomspeed: 4
-  nearZoomLimit: 2
-  outZoomLimit: 16
-  startingZoom: 5
+  nearZoomLimit: -100
+  outZoomLimit: 1000
+  StartingZoom: 5
 --- !u!4 &753123913
 Transform:
   m_ObjectHideFlags: 0
