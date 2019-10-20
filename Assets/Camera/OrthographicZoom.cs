@@ -14,12 +14,15 @@ public class OrthographicZoom : ZoomS
     {
         if (cam.orthographicSize == nearZoomLimit) return;
         cam.orthographicSize = Mathf.Max(cam.orthographicSize - delta, nearZoomLimit);
+        Debug.Log(cam.orthographicSize);
     }
 
     public void ZoomOut(Camera cam, float delta, float outZoomLimit)
     {
+     
         if (cam.orthographicSize == outZoomLimit) return;
         cam.orthographicSize = Mathf.Min(cam.orthographicSize + delta, outZoomLimit);
+        Debug.Log(cam.orthographicSize);
     }
 
 

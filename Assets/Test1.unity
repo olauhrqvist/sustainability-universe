@@ -2406,15 +2406,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraOffset: {x: 100, y: 50}
   LookAtOffset: 2
-  inOutSpeed: 5
-  lateralSpeed: 5
+  inOutSpeed: 10
+  lateralSpeed: 10
   rotateSpeed: 45
   minBounds: {x: -400, y: -400}
   maxBounds: {x: 400, y: 400}
-  zoomspeed: 4
+  zoomspeed: 40
   nearZoomLimit: -100
   outZoomLimit: 1000
-  StartingZoom: 5
+  StartingZoom: 100
 --- !u!4 &753123913
 Transform:
   m_ObjectHideFlags: 0

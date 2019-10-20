@@ -23,12 +23,12 @@ public class CameraManager : MonoBehaviour
     public float outZoomLimit = 16f;
     public float StartingZoom = 5f;
 
-    ZoomS ZoomStrategy;
     Vector3 frameMove;
     float frameRotate;
     float frameZoom;
 
     Camera cam;
+    ZoomS ZoomStrategy;
 
 
     private void Awake()
@@ -85,13 +85,11 @@ public class CameraManager : MonoBehaviour
 
         if ( frameZoom < 0f)
         {
-            Debug.Log("ZOOM OUT");
             ZoomStrategy.ZoomIn(cam, Time.deltaTime * Mathf.Abs(frameZoom) * zoomspeed, nearZoomLimit);
             frameZoom = 0f;
         }
         else if ( frameZoom > 0f)
         {
-            Debug.Log("ZOOM OUT");
             ZoomStrategy.ZoomOut(cam, Time.deltaTime * frameZoom * zoomspeed, outZoomLimit);
             frameZoom = 0f;
         }
@@ -102,5 +100,5 @@ public class CameraManager : MonoBehaviour
     {
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minBounds.x, maxBounds.x), transform.position.y, 
                                                         Mathf.Clamp(transform.position.z, minBounds.y, maxBounds.y));
-            }
+    }
 }
