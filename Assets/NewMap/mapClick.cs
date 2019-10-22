@@ -75,10 +75,12 @@ public class mapClick : MonoBehaviour
                 else if (hit.collider.gameObject.tag == "Plant")
                 {
                     print("hit trees");
+                    selectTile.GetComponent<Renderer>().material.color = orginColor;
                 }
                 else
                 {
                     print("hit other things");
+                    selectTile.GetComponent<Renderer>().material.color = orginColor;
                 }
                 
         }
