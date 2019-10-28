@@ -3418,6 +3418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c6f0a32342fa647b67d442e7621e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mountain1: {fileID: 1855710351377478, guid: 5c9211eb71cff4f4996a21d92317f601, type: 3}
+  mountain2: {fileID: 1185380165875998, guid: 9d200fbd47e9c7f45ad54450ebd25b94, type: 3}
   cloud1: {fileID: 1199571229238484, guid: f661498175107c749a33d97304c423eb, type: 3}
   grass1: {fileID: 1733909988577898, guid: e88b7bb02ae149940a5a0cddf34fe370, type: 3}
   grass2: {fileID: 1435283653269720, guid: 00e2e59cbc04eab4a982218df54ce70b, type: 3}

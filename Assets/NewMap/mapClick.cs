@@ -80,7 +80,8 @@ public class mapClick : MonoBehaviour
                 else
                 {
                     print("hit other things");
-                    selectTile.GetComponent<Renderer>().material.color = orginColor;
+                    if(selectTile!=null)
+                        selectTile.GetComponent<Renderer>().material.color = orginColor;
                 }
                 
         }
