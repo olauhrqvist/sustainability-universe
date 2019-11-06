@@ -53,11 +53,11 @@ public class mapClick : MonoBehaviour
         if (windowWidth + windowX > Screen.width)
             windowX = windowX - windowWidth;
         GUI.Label(new Rect(10, 20, windowWidth, windowHight - offset), tileInfo);
-       /* if (GUI.Button(new Rect(windowWidth / 2 - windowWidth / 4, windowHight - 30, windowWidth / 2, 20), "Close"))
+        if (GUI.Button(new Rect(windowWidth / 2 - windowWidth / 4, windowHight - 30, windowWidth / 2, 20), "Close"))
         {
             print("Close Tile Info");
             WindowShow = false;
-        }*/
+        }
     }
     void OnGUI()
     {
@@ -74,8 +74,8 @@ public class mapClick : MonoBehaviour
                 {
                     //tr.Substring(0,i)
                     WindowShow = true;
-                    windowX = Input.mousePosition.x;
-                    windowY = Screen.height - Input.mousePosition.y;
+                    //windowX = Input.mousePosition.x;
+                    //windowY = Screen.height - Input.mousePosition.y;
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
                     if (i == 1)
                     {
