@@ -39,7 +39,7 @@ public class mapClick : MonoBehaviour
     void OnGUI()
     {
         
-       if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
        {
         
         RaycastHit hit;
@@ -75,7 +75,8 @@ public class mapClick : MonoBehaviour
                 else if (hit.collider.gameObject.tag == "Plant")
                 {
                     print("hit trees");
-                    selectTile.GetComponent<Renderer>().material.color = orginColor;
+                    if (selectTile != null)
+                        selectTile.GetComponent<Renderer>().material.color = orginColor;
                 }
                 else
                 {

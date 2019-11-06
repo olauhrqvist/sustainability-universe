@@ -20,7 +20,7 @@ public class ModelScript : MonoBehaviour
     private float tileSize = 10;// also in "SpawnMap.cs"
     private Object[] objects;
     //private List<GameObject> objects;
-
+   
     void Start()
     {
         mapSizeN = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().N;
