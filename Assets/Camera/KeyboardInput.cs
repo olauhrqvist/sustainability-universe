@@ -16,19 +16,19 @@ public class KeyboardInput : InputValue
     void Update()
     {
 // Uses the ASDW keys to move the camera
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.D))
         {
             OnMoveInput?.Invoke(Vector3.forward);
         }    
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.A))
         {
             OnMoveInput?.Invoke(-Vector3.forward);
         }    
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W))
         {
             OnMoveInput?.Invoke(-Vector3.right);
         }      
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.S))
         {
             OnMoveInput?.Invoke(Vector3.right);
         }
