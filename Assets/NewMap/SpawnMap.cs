@@ -203,7 +203,7 @@ public class SpawnMap : MonoBehaviour
         for (int i = 0; i < cloudNum; i++)
         {
             Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
-            location.y = 20;
+            location.y = Random.Range(30, 50);
             cloud1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             Instantiate(cloud1, location, transform.rotation);
         }
@@ -225,7 +225,7 @@ public class SpawnMap : MonoBehaviour
                 if (i == N / 2 && j == 0)
                 {
                     mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 2)), transform.rotation);
+                    Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 3)), transform.rotation);
                 }
 
                 if (i == 0 && j == N / 2)
@@ -238,12 +238,12 @@ public class SpawnMap : MonoBehaviour
                     if (i == N - 1 && j == 0)
                     {
                         mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                        Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 2)), transform.rotation);
+                        Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 3)), transform.rotation);
                     }
                     if (i == 0 && j == 0)
                     {
                         mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                        Instantiate(mountain1, new Vector3(x + (tileSize * 2), 0, z - (tileSize * 2)), transform.rotation);
+                        Instantiate(mountain1, new Vector3(x + (tileSize * 2), 0, z - (tileSize * 3)), transform.rotation);
 
                         mountain2.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
                         Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z - tileSize), transform.rotation);
