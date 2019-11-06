@@ -72,11 +72,11 @@ public class MouseInput : InputValue
 
         if (Input.mouseScrollDelta.y > 0)
         {
-            OnZoomInput?.Invoke(-3f);
+            OnZoomInput?.Invoke(-9f);
         }
         else if (Input.mouseScrollDelta.y < 0)
         {
-            OnZoomInput?.Invoke(3f);
+            OnZoomInput?.Invoke(9f);
         }
     }
 

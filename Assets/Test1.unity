@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 7523076575452973298, guid: abb56527ad2c1224e82f29c0ca5d98c7,
         type: 3}
       propertyPath: orthographic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb56527ad2c1224e82f29c0ca5d98c7, type: 3}
@@ -2427,10 +2427,10 @@ MonoBehaviour:
   inOutSpeed: 10
   lateralSpeed: 10
   rotateSpeed: 45
-  minBounds: {x: -400, y: -400}
+  minBounds: {x: -400, y: 0}
   maxBounds: {x: 400, y: 400}
   zoomspeed: 40
-  nearZoomLimit: -100
+  nearZoomLimit: 75
   outZoomLimit: 1000
   StartingZoom: 100
 --- !u!4 &753123913
