@@ -2,6 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class TileClass
+{
+    // Variables
+
+    // Tile ID
+
+    // Coordinate
+
+    // Density
+    public int natureDensity;
+    // GameObject
+    public GameObject tileGameObject;
+    // Neighbours
+    private List<string> neighbours;
+    // Available positions
+    private List<Vector3> tilePositions;
+
+
+
+
+    // Methods
+
+    // Constructor
+    public TileClass()
+    {
+
+        tilePositions = new List<Vector3>();
+
+    }
+
+// Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
+    public void calculatePositions()
+    {
+        //Vector3 pos;
+        float stepSize = (10 / (natureDensity * 2));
+        float x = tileGameObject.transform.position.x - stepSize * (natureDensity - 1);
+        float z = tileGameObject.transform.position.z - stepSize * (natureDensity - 1);
+
+
+        for (int i = 0; i < natureDensity; i++)
+        {
+            for (int j = 0; j < natureDensity; j++)
+            {
+                Vector3 pos = new Vector3((int)x, 0, (int)z);
+                tilePositions.Add(pos);
+                x += stepSize * 2;
+
+            }
+
+            x = x - stepSize * (natureDensity - 1);
+            z += stepSize * 2;
+        }
+    }
+
+    public void calculateNeighbours()
+    {
+
+    }
+
+}
+
+
+
 public class SpawnMap : MonoBehaviour
 {
     private float x;
@@ -18,7 +82,7 @@ public class SpawnMap : MonoBehaviour
     public int natureDensity;
     public List<GameObject> tileMap;
     public List<Vector3> smallLocation;
-    public List<GameObject> tileMap;
+    //public List<GameObject> tileMap;
 
     public bool finished = false;
 
@@ -26,7 +90,9 @@ public class SpawnMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (N > 50)
+        drawMap();
+
+        /*if (N > 50)
         {
             N = 50;
         }
@@ -67,10 +133,36 @@ public class SpawnMap : MonoBehaviour
             x += tileSize;
             z = (-(tileSize/2) * ((float)N-1));  
     }
-        finished = true;
+        finished = true;*/
 }
+    void drawMap()
+    {
+        x = (-(tileSize / 2) * ((float)N - 1));
+        z = (-(tileSize / 2) * ((float)N - 1));
 
-    void findSmallLocations(float xSmall, float zSmall, float stepS)
+        for (int i = 0; i < N; i++) // x
+        {
+            for (int j = 0; j < N; j++) //y 
+            {
+                TileClass tile = new TileClass();
+                tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
+                tile.tileGameObject.name = i.ToString() + j.ToString();
+                tile.tileGameObject.tag = "tile";
+                tile.tileGameObject.GetComponent<Renderer>().material.color = planeColor;
+                tile.natureDensity = natureDensity;
+
+                tile.calculatePositions();
+                tile.calculateNeighbours();
+
+                z += tileSize;
+            }
+
+            x += tileSize;
+            z = (-(tileSize / 2) * ((float)N - 1));
+        }
+    }
+
+    /*void findSmallLocations(float xSmall, float zSmall, float stepS)
     {
         for (int k = 0; k < 5; k++)
         {
@@ -105,7 +197,7 @@ public class SpawnMap : MonoBehaviour
             xTree = x - stepSize * (natureDensity - 1);
             zTree += stepSize * 2;
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

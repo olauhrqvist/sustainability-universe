@@ -14,8 +14,8 @@ public class treeExpansion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
-        tileMap = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tileMap;
+        //treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
+        //tileMap = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tileMap;
 
 
         
@@ -35,9 +35,9 @@ public class treeExpansion : MonoBehaviour
     void treeGrowth()
     {
         // At start, place single tree with 50% scale
-        tile = GameObject.Find("d3");
-        treeObject.transform.localscale -= new Vector3(0.5, 0.5, 0.5);
-        tree = Instantiate(treeObject, tile.transform.position, transform.rotation);
+        //tile = GameObject.Find("d3");
+        //treeObject.transform.localscale -= new Vector3(0.5, 0.5, 0.5);
+        //tree = Instantiate(treeObject, tile.transform.position, transform.rotation);
 
 
 
