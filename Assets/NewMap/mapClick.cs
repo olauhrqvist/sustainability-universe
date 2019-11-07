@@ -19,6 +19,10 @@ public class mapClick : MonoBehaviour
     private float windowY = 0;
     private float windowWidth = 150;
     private float windowHight = 150;
+    private Dictionary<string, int> objDic = new Dictionary<string, int>();
+    private int plantCount = 0;
+    private int animalCount = 0;
+
 
     void findObj()
     {
@@ -35,13 +39,36 @@ public class mapClick : MonoBehaviour
 
     void printFoundList()
     {
+        string dicInfo = "";
         foreach (var obj in foundObj)
         {
             if (selectTile.GetComponent<Collider>().bounds.Contains(obj.transform.position))
                 tileObjList.Add(obj);
         }
         //print("In this tile, there are: " + tileObjList.Count + " objects.");
-        tileInfo = "In this tile, there are: " + tileObjList.Count + " objects.";
+        foreach (var obj in tileObjList)
+        {
+            if (obj.tag == "Plant")
+                plantCount++;
+            if (obj.tag == "Animal")
+                animalCount++;
+            if (!objDic.ContainsKey(obj.name))
+            {
+                objDic.Add(obj.name, 1);
+            }
+            else
+            {
+                objDic[obj.name]++;
+            }
+        }
+
+        foreach (KeyValuePair<string, int> kvp in objDic)
+        {
+
+            dicInfo += kvp.Key + " " + kvp.Value + "\r\n";
+        }
+
+        tileInfo = "Total obj " + tileObjList.Count + "\r\n" + "Plant: " + plantCount + "  " + "Animal: " + animalCount + "\r\n" + dicInfo;
 
     }
 
@@ -61,6 +88,7 @@ public class mapClick : MonoBehaviour
     }
     void OnGUI()
     {
+        
       
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -74,8 +102,8 @@ public class mapClick : MonoBehaviour
                 {
                     //tr.Substring(0,i)
                     WindowShow = true;
-                    //windowX = Input.mousePosition.x;
-                    //windowY = Screen.height - Input.mousePosition.y;
+                    windowX = Input.mousePosition.x;
+                    windowY = Screen.height - Input.mousePosition.y;
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
                     if (i == 1)
                     {
@@ -97,6 +125,9 @@ public class mapClick : MonoBehaviour
                     printFoundList();
                     foundObj.Clear();
                     tileObjList.Clear();
+                    objDic.Clear();
+                    animalCount = 0;
+                    plantCount = 0;
                 }
                 else if (hit.collider.gameObject.tag == "Plant")
                 {
