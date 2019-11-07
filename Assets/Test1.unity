@@ -2424,10 +2424,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraOffset: {x: 100, y: 50, z: 10}
   LookAtOffset: 2
-  inOutSpeed: 10
-  lateralSpeed: 10
+  inOutSpeed: 50
+  lateralSpeed: 50
   rotateSpeed: 45
-  minBounds: {x: -400, y: 0}
+  minBounds: {x: -400, y: -100}
   maxBounds: {x: 400, y: 400}
   zoomspeed: 40
   nearZoomLimit: 75
