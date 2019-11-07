@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     [Header("Camera Position")]
-    public Vector2 CameraOffset = new Vector2(10f, 14f);
+    public Vector3 CameraOffset = new Vector3(10f, 14f, 10f);
     public float LookAtOffset = 2f;
 
     [Header("Movement Controls")]
@@ -31,31 +31,45 @@ public class CameraManager : MonoBehaviour
     ZoomS ZoomStrategy;
 
 
+
     private void Awake()
     {
         cam = GetComponentInChildren<Camera>();
-        cam.transform.localPosition = new Vector3(0f, Mathf.Abs(CameraOffset.y), -Mathf.Abs(CameraOffset.x));
-        ZoomStrategy = new OrthographicZoom(cam, StartingZoom);
+        cam.transform.localPosition = new Vector3(Mathf.Abs(CameraOffset.x), Mathf.Abs(CameraOffset.y), Mathf.Abs(CameraOffset.z));
+      //  ZoomStrategy = new OrthographicZoom(cam, StartingZoom);
+        
+        ZoomStrategy = cam.orthographic ? (ZoomS)new OrthographicZoom(cam, StartingZoom) : new PerspectiveZoom(cam, CameraOffset, StartingZoom);
+        //Is the camera set in orthographic or perspetive view
+
+
         cam.transform.LookAt(transform.position + Vector3.up * LookAtOffset);
     }
 
     private void OnEnable()
     {
-        KeyboardInput.OnMoveInput += UppdateFrameMove;
+        KeyboardInput.OnMoveInput += UpdateFrameMove;
         KeyboardInput.OnRotateInput += UpdateFrameRotate;
         KeyboardInput.OnZoomInput += UpdateFrameZoom;
+
+        MouseInput.OnMoveInput += UpdateFrameMove;
+        MouseInput.OnRotateInput += UpdateFrameRotate;
+        MouseInput.OnZoomInput += UpdateFrameZoom;
 
     }
 
     private void OnDisable()
     {
-        KeyboardInput.OnMoveInput -= UppdateFrameMove;
+        KeyboardInput.OnMoveInput -= UpdateFrameMove;
         KeyboardInput.OnRotateInput -= UpdateFrameRotate;
         KeyboardInput.OnZoomInput -= UpdateFrameZoom;
+
+        MouseInput.OnMoveInput -= UpdateFrameMove;
+        MouseInput.OnRotateInput -= UpdateFrameRotate;
+        MouseInput.OnZoomInput -= UpdateFrameZoom;
     }
 
 
-    private void UppdateFrameMove(Vector3 MoveV)
+    private void UpdateFrameMove(Vector3 MoveV)
     {
         frameMove += MoveV;
     }
@@ -67,6 +81,7 @@ public class CameraManager : MonoBehaviour
     {
         frameZoom += Zoom;
     }
+
 
     private void LateUpdate()
     {
