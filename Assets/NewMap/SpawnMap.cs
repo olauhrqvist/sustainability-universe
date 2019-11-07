@@ -73,12 +73,19 @@ public class SpawnMap : MonoBehaviour
     private GameObject tile;
     private GameObject tree;
     
-    private float tileSize = 10; // also in "ModelScript.cs"
+    private float tileSize = 10;
     public int N = 8;
     public Color planeColor;
 
     public GameObject planeTile;
     public GameObject treeObject;
+    public GameObject mountain1;
+    public GameObject mountain2;
+    public GameObject cloud1;
+    public GameObject grass1;
+    public GameObject grass2;
+    public GameObject rock;
+    public GameObject flower;
     public int natureDensity;
     public List<GameObject> tileMap;
     public List<Vector3> smallLocation;
@@ -91,6 +98,7 @@ public class SpawnMap : MonoBehaviour
     void Start()
     {
         drawMap();
+        drawGraphic();
 
         /*if (N > 50)
         {
@@ -154,6 +162,12 @@ public class SpawnMap : MonoBehaviour
                 tile.calculatePositions();
                 tile.calculateNeighbours();
 
+                // Added find small location functions, so the smallLocation vector has data inside
+                float stepS = (tileSize / (5 * 2));
+                float xSmall = x - stepS * (5 - 1);
+                float zSmall = z - stepS * (5 - 1);
+                findSmallLocations(xSmall, zSmall, stepS);
+
                 z += tileSize;
             }
 
@@ -162,7 +176,124 @@ public class SpawnMap : MonoBehaviour
         }
     }
 
-    /*void findSmallLocations(float xSmall, float zSmall, float stepS)
+    void drawGraphic()
+    {
+        //all the postions of graphic model below are random position in smallLocation vector
+        //Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
+        spawnRocks();
+        spawnGrass();
+        spawnFlower();
+        spawnCloud();
+        spawnCloud();
+        spwanMountain();
+    }
+
+
+    public void spawnRocks()
+    {
+        int Num = (N / 10) * 10;
+        for (int i = 0; i < Num; i++)
+        {
+            Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
+            Instantiate(rock, location, transform.rotation);
+        }
+
+    }
+
+    public void spawnGrass()
+    {
+        int Num = (N / 10) * 10;
+        for (int i = 0; i < Num; i++)
+        {
+            Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
+            Instantiate(grass1, location, transform.rotation);
+        }
+        for (int i = 0; i < Num; i++)
+        {
+            Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
+            Instantiate(grass2, location, transform.rotation);
+        }
+    }
+
+    public void spawnFlower()
+    {
+        int Num = (N / 10) * 10;
+        for (int i = 0; i < Num; i++)
+        {
+            Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
+            Instantiate(flower, location, transform.rotation);
+        }
+
+    }
+
+    public void spawnCloud()
+    {
+        int cloudNum = N / 3;
+        for (int i = 0; i < cloudNum; i++)
+        {
+            Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
+            location.y = Random.Range(30, 50);
+            cloud1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            Instantiate(cloud1, location, transform.rotation);
+        }
+
+    }
+
+    public void spwanMountain()
+    {
+        if (N < 4)
+            return;
+
+        x = (-(tileSize / 2) * ((float)N - 1));
+        z = (-(tileSize / 2) * ((float)N - 1));
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                if (i == N / 2 && j == 0)
+                {
+                    mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 3)), transform.rotation);
+                }
+
+                if (i == 0 && j == N / 2)
+                {
+                    mountain2.transform.localScale = new Vector3(0.4f, 0.45f, 0.4f);
+                    Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z), transform.rotation);
+                }
+                if (N > 9)
+                {
+                    if (i == N - 1 && j == 0)
+                    {
+                        mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                        Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 3)), transform.rotation);
+                    }
+                    if (i == 0 && j == 0)
+                    {
+                        mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                        Instantiate(mountain1, new Vector3(x + (tileSize * 2), 0, z - (tileSize * 3)), transform.rotation);
+
+                        mountain2.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
+                        Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z - tileSize), transform.rotation);
+                    }
+                    if (i == 0 && j == N - 1)
+                    {
+                        mountain2.transform.localScale = new Vector3(0.45f, 0.5f, 0.45f);
+                        Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z), transform.rotation);
+                    }
+                }
+
+                z += tileSize;
+            }
+            x += tileSize;
+            z = (-(tileSize / 2) * ((float)N - 1));
+        }
+
+    }
+
+
+    void findSmallLocations(float xSmall, float zSmall, float stepS)
     {
         for (int k = 0; k < 5; k++)
         {
@@ -176,7 +307,7 @@ public class SpawnMap : MonoBehaviour
         }
     }
 
-    void addTrees(float xTree, float zTree, float stepSize)
+    /*void addTrees(float xTree, float zTree, float stepSize)
     {
         int u = 0;
         for (int k = 0; k < natureDensity; k++)
