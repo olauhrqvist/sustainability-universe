@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 enum TileTypes { podzol, dirt }
+
 public abstract class Base_Playable : MonoBehaviour
 {
     int ID;
-    Mesh Mesh;
-    string Type;
+    GameObject Mesh;
+    public string Type;
     int Range;
     double OverallHealth = 100;
     int SpaceCost;
@@ -19,7 +20,7 @@ public abstract class Base_Playable : MonoBehaviour
     protected Base_Playable(
                             string type,
                             int ID,
-                            Mesh mesh,
+                            GameObject mesh,
                             int range,
                             int space,
                             Dictionary<string, double> enviroment,
@@ -36,4 +37,23 @@ public abstract class Base_Playable : MonoBehaviour
             ForestID = forestid;
             GrowthTime = growthtime;
         }
+    public void setModel(GameObject mesh) 
+    {
+        Mesh = mesh;
+    }
+    public GameObject getModel()
+    { 
+        return Mesh; 
+    }
+
+    public string getSpecies()
+    {
+        return Species;
+    }
+
+    public string getType()
+    {
+        return Type;
+    }
+    
 }

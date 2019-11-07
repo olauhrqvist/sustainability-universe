@@ -17,7 +17,7 @@ public class Animal_Script : Base_Playable
                             int hierarchy,
                             int pop,
                             int ID,
-                            Mesh mesh,
+                            GameObject mesh,
                             int range,
                             int space,
                             Dictionary<string, double> enviroment,

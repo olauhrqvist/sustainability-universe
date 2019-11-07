@@ -3158,6 +3158,57 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Name
+      value: Spruce
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335118344385885, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: sampleObject
+      value: 
+      objectReference: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: tagname
+      value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335117015187766, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Text
+      value: Spruce
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335117101118158, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+    - target: {fileID: 3252335117101118159, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 5953083448713167430, guid: f74aa287331092e43977ef399ed64227,
+        type: 3}
+    - target: {fileID: 3252335117104257424, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 1451529609bdc4e4883669d01d413e57, type: 2}
+    - target: {fileID: 3252335118344385886, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335118344385883, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca15dcb4a3841e46aef1b62913a203c, type: 3}
 --- !u!1 &863530847
@@ -4456,6 +4507,26 @@ Transform:
   m_Father: {fileID: 1242713634}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1496792038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+    type: 3}
+  m_PrefabInstance: {fileID: 861301070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1496792041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496792038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a205c9d5024e3fa4f93e32c582d5a9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: Spruce
+  inputMesh: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
 --- !u!1001 &1540669572
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 public class DropHandler : MonoBehaviour, IDropHandler
 {
     public SpawnObject SpawnScript;
     public GameObject sampleObject;
+    public String tagname;
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform invPanel = transform as RectTransform;
@@ -13,7 +15,10 @@ public class DropHandler : MonoBehaviour, IDropHandler
         if(!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition)){
             Debug.Log("drop");
 
-            SpawnScript.AddObject(sampleObject);
+            var newobj = SpawnScript.AddObject(sampleObject);
+            string name = SpawnScript.name;
+            newobj.AddComponent(Type.GetType(name));
+            newobj.tag = tagname;
         }
 
     }

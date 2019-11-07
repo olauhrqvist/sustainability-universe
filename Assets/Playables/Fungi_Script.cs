@@ -7,7 +7,7 @@ public class Fungi_Script : Vegetation
     public Fungi_Script(
                                 int hierarchy,
                                 int ID,
-                                Mesh mesh,
+                                GameObject mesh,
                                 int range,
                                 int space,
                                 Dictionary<string, double> enviroment,

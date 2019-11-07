@@ -9,7 +9,7 @@ public class Carnivore_Script : Animal_Script
                             int hierarchy,
                             int pop,
                             int ID,
-                            Mesh mesh,
+                            GameObject mesh,
                             int range,
                             int space,
                             Dictionary<string, double> enviroment,
