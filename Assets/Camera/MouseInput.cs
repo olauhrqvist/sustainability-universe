@@ -7,6 +7,11 @@ public class MouseInput : InputValue
 
     Vector2Int screen;
     float MousePosRotate;
+    public GameObject shoppen;
+    public GameObject Tree;
+    public GameObject plants;
+    public GameObject Carnivores;
+    public GameObject Herbivores;
 
     // Events
     public static event MoveInputHandler OnMoveInput;
@@ -68,16 +73,33 @@ public class MouseInput : InputValue
 
         }
 
-        // Zoom
 
-        if (Input.mouseScrollDelta.y > 0)
+
+        // Zoom
+        if(!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf))
         {
-            OnZoomInput?.Invoke(-9f);
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                OnZoomInput?.Invoke(-9f);
+            }
+            else if (Input.mouseScrollDelta.y < 0)
+            {
+                OnZoomInput?.Invoke(9f);
+            }
         }
-        else if (Input.mouseScrollDelta.y < 0)
+        else if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf) && (mousepos.x < (screen.x * 0.87f)))
         {
-            OnZoomInput?.Invoke(9f);
+            
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                OnZoomInput?.Invoke(-9f);
+            }
+            else if (Input.mouseScrollDelta.y < 0)
+            {
+                OnZoomInput?.Invoke(9f);
+            }
         }
+
     }
 
 
