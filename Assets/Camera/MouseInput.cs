@@ -40,7 +40,10 @@ public class MouseInput : InputValue
         }
         else if (mousepos.x > screen.x * 0.95f) // very right
         {
-            OnMoveInput?.Invoke(Vector3.forward);
+            if (!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf))
+            {
+                OnMoveInput?.Invoke(Vector3.forward);
+            }
         }
 
 
