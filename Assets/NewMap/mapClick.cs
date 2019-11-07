@@ -103,8 +103,8 @@ public class mapClick : MonoBehaviour
                 {
                     //tr.Substring(0,i)
                     WindowShow = true;
-                    windowX = Input.mousePosition.x;
-                    windowY = Screen.height - Input.mousePosition.y;
+                    //windowX = Input.mousePosition.x;
+                    //windowY = Screen.height - Input.mousePosition.y;
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
                     if (i == 1)
                     {
