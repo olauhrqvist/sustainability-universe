@@ -6,7 +6,7 @@ public class SpawnObject : MonoBehaviour
 {
     //public GameObject sampleObject;
 
-    public void AddObject(GameObject sampleObject)
+    public GameObject AddObject(GameObject sampleObject)
     {
 
         transform.rotation = Quaternion.identity;
@@ -16,9 +16,8 @@ public class SpawnObject : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 1000))
         {
-            Instantiate(sampleObject, hit.point, Quaternion.identity);
+            return Instantiate(sampleObject, hit.point, Quaternion.identity);
         }
-        //Instantiate(sampleObject, hit.point, Quaternion.identity);
-        
+        return null;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vegetation : Base_Playable
+public abstract class Vegetation : Base_Playable
 {
     int GrowthHierarchy;
     int SunlightCost;
@@ -12,7 +12,7 @@ public class Vegetation : Base_Playable
                            string type,
                            int hierarchy,
                            int ID,
-                           Mesh mesh,
+                           GameObject mesh,
                            int range,
                            int space,
                            Dictionary<string, double> enviroment,
