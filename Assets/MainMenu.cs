@@ -7,9 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  
+    public void Start()
+    {
+        Application.targetFrameRate = 30;
+        QualitySettings.vSyncCount = 3;
+    }
+
     public void NewGame()
     {
+        
         SceneManager.LoadScene((int)SceneNr.Test1);
         //set all variables
         //call function gameInit(); which will initialize a new game.
