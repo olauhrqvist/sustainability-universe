@@ -199,6 +199,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb56527ad2c1224e82f29c0ca5d98c7, type: 3}
+--- !u!1 &21342678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6149432143271473187, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &74851726
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a499088068dbb145bd00777d7ff0ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoppen: {fileID: 1752448557}
+  Tree: {fileID: 1041624064}
+  plants: {fileID: 136075809}
+  Carnivores: {fileID: 21342678}
+  Herbivores: {fileID: 2142559019}
 --- !u!1 &128749524
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +341,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &136075809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6149432144319702966, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &190853697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,12 +2566,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraOffset: {x: 100, y: 50, z: 10}
   LookAtOffset: 2
-  inOutSpeed: 10
-  lateralSpeed: 10
-  rotateSpeed: 45
-  minBounds: {x: -400, y: 0}
+  inOutSpeed: 150
+  lateralSpeed: 150
+  rotateSpeed: 90
+  minBounds: {x: -400, y: -100}
   maxBounds: {x: 400, y: 400}
-  zoomspeed: 40
+  zoomspeed: 200
   nearZoomLimit: 75
   outZoomLimit: 1000
   StartingZoom: 100
@@ -3593,6 +3610,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &1041624064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6149432143775697244, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1099272730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5197,6 +5220,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &1752448557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6149432144403737852, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1802119698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5754,6 +5783,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseObjects: []
   game_paused: 0
+--- !u!1 &2142559019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6149432143740325906, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2143165403
 GameObject:
   m_ObjectHideFlags: 0

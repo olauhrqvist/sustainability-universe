@@ -5,52 +5,77 @@ using UnityEngine;
 public class treeExpansion : MonoBehaviour
 {
     private GameObject treeObject;
-    private GameObject tree;
-    private List<GameObject> tileMap;
+    //private List<GameObject> tileMap;
     private GameObject tile;
     private Vector3 treePosition;
     private bool finished = false;
+    public int maxDensity = 3;
+    public int currentDensity = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        //treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
-        //tileMap = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tileMap;
-
-
+        treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
         
+        // Calls function treeGrowth once every 3 seconds, starting at 0 seconds.
+        //InvokeRepeating("Test", 0, 3f);
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        finished = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().finished;
+        /*finished = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().finished;
         if (finished)
-            treeGrowth();
-
+        {
+            GameObject tile = GameObject.Find("23");
+            Instantiate(treeObject, tile.transform.position, transform.rotation);
+        }*/
 
     }
 
-
-    void treeGrowth()
+    void Test()
     {
-        // At start, place single tree with 50% scale
-        //tile = GameObject.Find("d3");
-        //treeObject.transform.localscale -= new Vector3(0.5, 0.5, 0.5);
-        //tree = Instantiate(treeObject, tile.transform.position, transform.rotation);
+        Debug.Log("Testing...");
+    }
+
+    void treeGrowth(GameObject tile)
+    {
+        /*
+        
+        // 
+
+        // Set tree scale to 50% at first
+
+        // Calculate the positions available, start with 1 and increase until maxDensity is reached.
+        for (int i = 0; i < maxDensity; i++)
+        {
+            tile.destroyTrees();
+            tile.calculatePositions(i);
+            tile.placeTrees();
+            currentDensity = i;
+        }
+
+        // If maxDensity is reached, start to increase scale 10% at each run.
+        if (currentDensity == maxDensity)
+        {
+            // Increase scale of every tree
+        }
+
+        // When maxDensity is reached, start treeGrowth on surrounding tiles and start expanding the size. One at each run.
+        foreach (var neighbour in tile.neighbours)
+        {
+            GameObject neighbour = GameObject.Find(neighbour.ToString());
+            treeGrowth(neighbour);
+        }
+        */
+        
 
 
 
-        // For every second, expand the tree
 
-
-        // if currentDensity < maxDensity
-        // increase density
-
-        // else if currentDensity == maxDensity && currentScale < 100
-        // increase scale each second
-
-        // else
-        // populate surrounding tiles
     }
 }
+

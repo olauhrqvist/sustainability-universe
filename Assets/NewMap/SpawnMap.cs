@@ -10,16 +10,19 @@ public class TileClass
     // Tile ID
 
     // Coordinate
+    public int x;
+    public int y;
 
     // Density
     public int natureDensity;
     // GameObject
     public GameObject tileGameObject;
     // Neighbours
-    private List<string> neighbours;
+    public List<string> neighbours;
     // Available positions
     private List<Vector3> tilePositions;
-
+    // Trees on tile
+    public GameObject[] tileTrees;
 
 
 
@@ -28,13 +31,14 @@ public class TileClass
     // Constructor
     public TileClass()
     {
-
         tilePositions = new List<Vector3>();
+        neighbours = new List<string>();
+
 
     }
 
-// Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
-    public void calculatePositions()
+    // Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
+    public void calculatePositions(int natureDensity)
     {
         //Vector3 pos;
         float stepSize = (10 / (natureDensity * 2));
@@ -55,10 +59,46 @@ public class TileClass
             x = x - stepSize * (natureDensity - 1);
             z += stepSize * 2;
         }
+
+        void placeTrees(List<Vector3> tilePositions)
+        {
+            foreach (var position in tilePositions)
+            {
+                //GameObject tree = Instantiate(treeObject, position, transform.rotation);
+                //tileTrees.add(tree);
+            }
+
+        }
+
+        void destroyTrees()
+        {
+            foreach (var tree in tileTrees)
+            {
+                //Destroy(tree);
+            }
+        }
+
+        void increaseScale()
+        {
+            foreach (var tree in tileTrees)
+            {
+                
+            }
+        }
     }
 
     public void calculateNeighbours()
     {
+        neighbours.Add((x - 1).ToString() + (y - 1).ToString());
+        neighbours.Add((x - 1).ToString() + (y).ToString());
+        neighbours.Add((x - 1).ToString() + (y + 1).ToString());
+
+        neighbours.Add((x).ToString() + (y - 1).ToString());
+        neighbours.Add((x).ToString() + (y + 1).ToString());
+
+        neighbours.Add((x + 1).ToString() + (y - 1).ToString());
+        neighbours.Add((x + 1).ToString() + (y).ToString());
+        neighbours.Add((x + 1).ToString() + (y + 1).ToString());
 
     }
 
@@ -99,50 +139,11 @@ public class SpawnMap : MonoBehaviour
     {
         drawMap();
         drawGraphic();
+        finished = true;
+        GameObject tile = GameObject.Find("23");
+        Instantiate(treeObject, tile.transform.position, transform.rotation);
 
-        /*if (N > 50)
-        {
-            N = 50;
-        }
-            
-        x = (-(tileSize/2) * ((float)N-1));
-        z = (-(tileSize/2) * ((float)N-1));
-        char[] alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-        for (int i = 0; i < N; i++) // x
-        {
-            for (int j = 0; j < N; j++) //y 
-            {
-                tile = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
-                //planeColor = new Color(107f, 141f, 75f);
-                tile.GetComponent<Renderer> ().material.color = planeColor;
-                float stepSize = (tileSize/(natureDensity * 2));
-                float xTree = x - stepSize * (natureDensity - 1);
-                float zTree = z - stepSize * (natureDensity - 1);
-                //Debug.Log("Spawned tile at: " + "0 > " + x + ", 0 > " + z);
-                //Debug.Log("Stepsize: " + stepSize);
-
-                //small location with density 5 , 1 for each step
-                float stepS = (tileSize / (5 * 2));
-                float xSmall = x - stepS * (5 - 1);
-                float zSmall = z - stepS * (5 - 1);
-                findSmallLocations(xSmall, zSmall, stepS);
-
-                //add trees
-                //if (i < N / 2 && j < N/2)
-                //{
-                //    addTrees(xTree, zTree, stepSize);
-                //}
-
-                tile.name = alpha[i] + j.ToString();
-                tile.tag = "tile";
-                tileMap.Add(tile);    
-                z += tileSize;
-            }
-            x += tileSize;
-            z = (-(tileSize/2) * ((float)N-1));  
     }
-        finished = true;*/
-}
     void drawMap()
     {
         x = (-(tileSize / 2) * ((float)N - 1));
@@ -155,11 +156,14 @@ public class SpawnMap : MonoBehaviour
                 TileClass tile = new TileClass();
                 tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
                 tile.tileGameObject.name = i.ToString() + j.ToString();
+                tile.x = i;
+                tile.y = j;
+
                 tile.tileGameObject.tag = "tile";
                 tile.tileGameObject.GetComponent<Renderer>().material.color = planeColor;
                 tile.natureDensity = natureDensity;
 
-                tile.calculatePositions();
+                tile.calculatePositions(natureDensity);
                 tile.calculateNeighbours();
 
                 // Added find small location functions, so the smallLocation vector has data inside
