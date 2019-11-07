@@ -17,7 +17,7 @@ public class mapClick : MonoBehaviour
     private bool WindowShow = false;
     private float windowX = 0;
     private float windowY = 0;
-    private float windowWidth = 150;
+    private float windowWidth = 180;
     private float windowHight = 150;
     private Dictionary<string, int> objDic = new Dictionary<string, int>();
     private int plantCount = 0;
@@ -28,7 +28,7 @@ public class mapClick : MonoBehaviour
     {
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
         {
-            if (gameObj.name == "TemplateModel(Clone)" || gameObj.tag == "Animal" || gameObj.tag == "Plant")
+            if (gameObj.name == "TemplateModel(Clone)" || gameObj.tag == "Animal" || gameObj.tag == "Plant" || gameObj.name == "rpgpp_lt_tree_pine_01(Clone)")
             {
                 foundObj.Add(gameObj);
 
@@ -79,17 +79,18 @@ public class mapClick : MonoBehaviour
             windowY = windowY - windowHight;
         if (windowWidth + windowX > Screen.width)
             windowX = windowX - windowWidth;
-        GUI.Label(new Rect(10, 20, windowWidth, windowHight - offset), tileInfo);
+      
+        GUI.Label(new Rect(10, 20, windowWidth-10, windowHight - offset), tileInfo);
         if (GUI.Button(new Rect(windowWidth / 2 - windowWidth / 4, windowHight - 30, windowWidth / 2, 20), "Close"))
         {
             print("Close Tile Info");
             WindowShow = false;
         }
+        
     }
     void OnGUI()
     {
-        
-      
+
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
 
@@ -147,6 +148,9 @@ public class mapClick : MonoBehaviour
             }
         }
         if (WindowShow)
+        {
             GUI.Window(0, new Rect(windowX, windowY, windowWidth, windowHight), MyWindow, "   ");
+        }
+            
     }
 }
