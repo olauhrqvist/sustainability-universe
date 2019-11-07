@@ -18,7 +18,10 @@ public class SpawnMap : MonoBehaviour
     public int natureDensity;
     public List<GameObject> tileMap;
     public List<Vector3> smallLocation;
-    
+    public List<GameObject> tileMap;
+
+    public bool finished = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +54,10 @@ public class SpawnMap : MonoBehaviour
                 findSmallLocations(xSmall, zSmall, stepS);
 
                 //add trees
-                if (i < N / 2 && j < N/2)
-                {
-                    addTrees(xTree, zTree, stepSize);
-                }
+                //if (i < N / 2 && j < N/2)
+                //{
+                //    addTrees(xTree, zTree, stepSize);
+                //}
 
                 tile.name = alpha[i] + j.ToString();
                 tile.tag = "tile";
@@ -64,7 +67,7 @@ public class SpawnMap : MonoBehaviour
             x += tileSize;
             z = (-(tileSize/2) * ((float)N-1));  
     }
-   
+        finished = true;
 }
 
     void findSmallLocations(float xSmall, float zSmall, float stepS)
