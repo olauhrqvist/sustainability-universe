@@ -58,10 +58,8 @@ public class mapClick : MonoBehaviour
             }
             else
             {
-                objDic[name]++;
+                objDic[obj.name]++;
             }
-
-
         }
 
         foreach (KeyValuePair<string, int> kvp in objDic)
