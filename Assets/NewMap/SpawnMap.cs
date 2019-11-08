@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +8,14 @@ public class TileClass
     // Variables
 
     // Tile ID
-
+    public string name;
     // Coordinate
     public int x;
     public int y;
-
+    public bool grow;
     // Density
     public int natureDensity;
+    public int currentDensity;
     // GameObject
     public GameObject tileGameObject;
     // Neighbours
@@ -22,9 +23,10 @@ public class TileClass
     // Available positions
     private List<Vector3> tilePositions;
     // Trees on tile
-    public GameObject[] tileTrees;
+    public List<GameObject> tileTrees;
 
-
+    // Pine tree GameObject
+    public GameObject pineGameObject;
 
     // Methods
 
@@ -33,59 +35,94 @@ public class TileClass
     {
         tilePositions = new List<Vector3>();
         neighbours = new List<string>();
-
+        tileTrees = new List<GameObject>();
+        grow = false;
+        currentDensity = 2;
+        natureDensity = 3;
 
     }
 
     // Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
-    public void calculatePositions(int natureDensity)
+    public void calculatePositions(int currentDensity)
     {
+        tilePositions.Clear();
         //Vector3 pos;
-        float stepSize = (10 / (natureDensity * 2));
-        float x = tileGameObject.transform.position.x - stepSize * (natureDensity - 1);
-        float z = tileGameObject.transform.position.z - stepSize * (natureDensity - 1);
+        float stepSize = (10 / (currentDensity * 2));
+        float x = tileGameObject.transform.position.x - stepSize * (currentDensity - 1);
+        float z = tileGameObject.transform.position.z - stepSize * (currentDensity - 1);
 
 
-        for (int i = 0; i < natureDensity; i++)
+        for (int i = 0; i < currentDensity; i++)
         {
-            for (int j = 0; j < natureDensity; j++)
+            for (int j = 0; j < currentDensity; j++)
             {
-                Vector3 pos = new Vector3((int)x, 0, (int)z);
+                Vector3 pos = new Vector3(x, 0, z);
                 tilePositions.Add(pos);
                 x += stepSize * 2;
 
             }
-
-            x = x - stepSize * (natureDensity - 1);
+            x = tileGameObject.transform.position.x - stepSize * (currentDensity - 1);
+            //x = x - stepSize * (natureDensity - 1);
             z += stepSize * 2;
         }
 
-        void placeTrees(List<Vector3> tilePositions)
+        Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
+      }
+
+        public void startGrowthPine()
         {
-            foreach (var position in tilePositions)
-            {
-                //GameObject tree = Instantiate(treeObject, position, transform.rotation);
-                //tileTrees.add(tree);
-            }
+          // Grows a pine tree in the middle of the tile, starting the expansion process.
+          GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
+
+          // Find middle of tile
+          float x = tileGameObject.transform.position.x;
+          float z = tileGameObject.transform.position.z;
+          //Debug.Log("Tile starts at: " + (x-5f) + ", " + (z-5f) + "\n");
+          //Debug.Log("Placing tree at: " + x + "," + z + "\n");
+          treeObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+          pineGameObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
+
+          tileTrees.Add(pineGameObject);
+          grow = true;
 
         }
 
-        void destroyTrees()
+        public void destroyTrees()
         {
             foreach (var tree in tileTrees)
             {
-                //Destroy(tree);
+              //Destroy(tree);
+            //  Debug.Log("Destroying trees on tile.");
+              UnityEngine.Object.Destroy(tree);
             }
+
+
+            tileTrees.Clear();
+            //if (tileTrees.Count == 0)
+            //  Debug.Log("No trees left in array.");
         }
 
         void increaseScale()
         {
             foreach (var tree in tileTrees)
             {
-                
+              tree.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             }
         }
-    }
+
+        public void placeTrees()
+        {
+          foreach (var pos in tilePositions)
+          {
+
+            GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
+            pineGameObject = GameObject.Instantiate(treeObject, pos, Quaternion.identity) as GameObject;
+            tileTrees.Add(pineGameObject);
+            //Debug.Log("Adding tree at " + pos.x + ", 0, " + pos.z);
+
+          }
+        }
+
 
     public void calculateNeighbours()
     {
@@ -102,6 +139,32 @@ public class TileClass
 
     }
 
+    public void treeGrowth()
+    {
+      //Debug.Log("treeGrowth() called." + natureDensity);
+      // If the current density is lower than cap, increase it each time function is called.
+      if (currentDensity <= natureDensity)
+      {
+        Debug.Log("currentDensity = " + currentDensity);
+
+          destroyTrees();
+          calculatePositions(currentDensity);
+          placeTrees();
+          currentDensity++;
+      }
+
+      // When density cap is reached
+      else
+      {
+        // Increase scale
+        Debug.Log("Increasing scale. Trees:" + tileTrees.Count);
+        increaseScale();
+        // when max scale is reached, spread
+      }
+
+
+    }
+
 }
 
 
@@ -112,7 +175,7 @@ public class SpawnMap : MonoBehaviour
     private float z;
     private GameObject tile;
     private GameObject tree;
-    
+
     private float tileSize = 10;
     public int N = 8;
     public Color planeColor;
@@ -132,18 +195,45 @@ public class SpawnMap : MonoBehaviour
     //public List<GameObject> tileMap;
 
     public bool finished = false;
+    public List<TileClass> tiles = new List<TileClass>();
 
 
     // Start is called before the first frame update
     void Start()
     {
+        natureDensity = 5;
         drawMap();
         drawGraphic();
-        finished = true;
-        GameObject tile = GameObject.Find("23");
-        Instantiate(treeObject, tile.transform.position, transform.rotation);
+        //finished = true;
+
+        // Test code for starting growth at tile 23
+        TileClass tile = tiles.Find(x => x.name == "23");
+        tile.startGrowthPine();
 
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+      //tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      TileClass tile = tiles.Find(x => x.name == "23");
+
+      if (tile.grow == true)
+      {
+        Debug.Log("Starting growth() for tile " + tile.name);
+        InvokeRepeating("growth", 1.0f, 1.0f);
+        tile.grow = false;
+      }
+
+
+    }
+
+    void growth()
+    {
+      TileClass tile = tiles.Find(x => x.name == "23");
+      tile.treeGrowth();
+    }
+
     void drawMap()
     {
         x = (-(tileSize / 2) * ((float)N - 1));
@@ -151,11 +241,12 @@ public class SpawnMap : MonoBehaviour
 
         for (int i = 0; i < N; i++) // x
         {
-            for (int j = 0; j < N; j++) //y 
+            for (int j = 0; j < N; j++) //y
             {
                 TileClass tile = new TileClass();
                 tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
                 tile.tileGameObject.name = i.ToString() + j.ToString();
+                tile.name = i.ToString() + j.ToString();
                 tile.x = i;
                 tile.y = j;
 
@@ -165,6 +256,7 @@ public class SpawnMap : MonoBehaviour
 
                 tile.calculatePositions(natureDensity);
                 tile.calculateNeighbours();
+                tiles.Add(tile);
 
                 // Added find small location functions, so the smallLocation vector has data inside
                 float stepS = (tileSize / (5 * 2));
@@ -319,8 +411,8 @@ public class SpawnMap : MonoBehaviour
 
             for (int l = 0; l < natureDensity; l++)
             {
-  
-                tree = Instantiate(treeObject, new Vector3(xTree, 0, zTree), transform.rotation);        
+
+                tree = Instantiate(treeObject, new Vector3(xTree, 0, zTree), transform.rotation);
                 tree.transform.parent = tile.transform;
                 tree.name = "Bush " + u;
                 tree.tag = "Plant";
@@ -334,11 +426,7 @@ public class SpawnMap : MonoBehaviour
         }
     }*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
 
 }
