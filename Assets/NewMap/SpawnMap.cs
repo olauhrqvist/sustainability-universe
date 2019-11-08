@@ -285,7 +285,9 @@ public class SpawnMap : MonoBehaviour
             x += tileSize;
             z = (-(tileSize / 2) * ((float)N - 1));
         }
-
+        mountain1.transform.localScale = new Vector3(1f, 1f, 1f);
+        mountain2.transform.localScale = new Vector3(1f, 1f, 1f);
+        mountain3.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
 
