@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class mapClick : MonoBehaviour
 {
@@ -22,7 +23,17 @@ public class mapClick : MonoBehaviour
     private Dictionary<string, int> objDic = new Dictionary<string, int>();
     private int plantCount = 0;
     private int animalCount = 0;
+    private GameObject closeButton;
 
+
+    private void Awake()
+    {
+        // ui button
+        closeButton = GameObject.Find("TileInfoClose");
+        closeButton.GetComponent<Image>().color = Color.clear;
+        closeButton.GetComponentInChildren<Text>().text = "";
+        closeButton.SetActive(false);
+    }
 
     void findObj()
     {
@@ -81,39 +92,51 @@ public class mapClick : MonoBehaviour
             windowX = windowX - windowWidth;
       
         GUI.Label(new Rect(10, 20, windowWidth-10, windowHight - offset), tileInfo);
+
+        ////// Invisible(tranparent) ui button behind the gui button so the ray light can not go through the gui close button. 
+        closeButton.SetActive(true);
+        Vector3 pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        closeButton.GetComponent<RectTransform>().sizeDelta = new Vector2(windowWidth / 3, 20);
+        closeButton.transform.position = pos;
+        //////
+        ///
         if (GUI.Button(new Rect(windowWidth / 2 - windowWidth / 4, windowHight - 30, windowWidth / 2, 20), "Close"))
         {
+            
             print("Close Tile Info");
             WindowShow = false;
+            closeButton.SetActive(false);
+            if (selectTile != null)
+                selectTile.GetComponent<Renderer>().material.color = orginColor;
         }
         
     }
     void OnGUI()
     {
-
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-
-
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 200f))
             {
                 if (hit.collider.gameObject.tag == "tile")
                 {
-                    //tr.Substring(0,i)
+                    //tile info window position
                     WindowShow = true;
-                    //windowX = Input.mousePosition.x;
-                    //windowY = Screen.height - Input.mousePosition.y;
+                    windowX = Input.mousePosition.x;
+                    windowY = Screen.height - Input.mousePosition.y;
+                    //
+
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+                    selectTile = hit.collider.gameObject;
                     if (i == 1)
                     {
                         orginColor = planeColor;
                         i = 0;
+                        selectTile.GetComponent<Renderer>().material.color = clickColor;
                     }
 
-                    selectTile = hit.collider.gameObject;
-
+                    
                     if (prevTile != null && prevTile != selectTile)
                     {
 
