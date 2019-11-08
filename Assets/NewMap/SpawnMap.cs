@@ -66,7 +66,7 @@ public class TileClass
             z += stepSize * 2;
         }
 
-        Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
+        //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
       }
 
         public void startGrowthPine()
@@ -145,7 +145,7 @@ public class TileClass
       // If the current density is lower than cap, increase it each time function is called.
       if (currentDensity <= natureDensity)
       {
-        Debug.Log("currentDensity = " + currentDensity);
+        //Debug.Log("currentDensity = " + currentDensity);
 
           destroyTrees();
           calculatePositions(currentDensity);
@@ -157,7 +157,7 @@ public class TileClass
       else
       {
         // Increase scale
-        Debug.Log("Increasing scale. Trees:" + tileTrees.Count);
+        //Debug.Log("Increasing scale. Trees:" + tileTrees.Count);
         increaseScale();
         // when max scale is reached, spread
       }
@@ -221,7 +221,7 @@ public class SpawnMap : MonoBehaviour
 
       if (tile.grow == true)
       {
-        Debug.Log("Starting growth() for tile " + tile.name);
+        //Debug.Log("Starting growth() for tile " + tile.name);
         InvokeRepeating("growth", 1.0f, 1.0f);
         tile.grow = false;
       }
@@ -335,7 +335,7 @@ public class SpawnMap : MonoBehaviour
         }
 
     }
- 
+
     public void spwanBorder()
     {
         if (N < 4)
