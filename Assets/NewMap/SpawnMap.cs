@@ -184,6 +184,7 @@ public class SpawnMap : MonoBehaviour
     public GameObject treeObject;
     public GameObject mountain1;
     public GameObject mountain2;
+    public GameObject mountain3;
     public GameObject cloud1;
     public GameObject grass1;
     public GameObject grass2;
@@ -281,7 +282,7 @@ public class SpawnMap : MonoBehaviour
         spawnFlower();
         spawnCloud();
         spawnCloud();
-        spwanMountain();
+        spwanBorder();
     }
 
 
@@ -324,18 +325,18 @@ public class SpawnMap : MonoBehaviour
 
     public void spawnCloud()
     {
-        int cloudNum = N / 3;
+        int cloudNum = N / 5;
         for (int i = 0; i < cloudNum; i++)
         {
             Vector3 location = smallLocation[Random.Range(0, (smallLocation.Count) - 1)];
             location.y = Random.Range(30, 50);
-            cloud1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            cloud1.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             Instantiate(cloud1, location, transform.rotation);
         }
 
     }
-
-    public void spwanMountain()
+ 
+    public void spwanBorder()
     {
         if (N < 4)
             return;
@@ -347,45 +348,38 @@ public class SpawnMap : MonoBehaviour
         {
             for (int j = 0; j < N; j++)
             {
-                if (i == N / 2 && j == 0)
+
+
+                if (i%5==0 && j == 0)
                 {
-                    mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 3)), transform.rotation);
+                    float n = Random.Range(50,80);
+                    float s = n / 100f;
+                    mountain1.transform.localScale = new Vector3(s, s, s);
+                    Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 4)), transform.rotation);
                 }
 
-                if (i == 0 && j == N / 2)
+                if (i == 0 && j%4==0)
                 {
-                    mountain2.transform.localScale = new Vector3(0.4f, 0.45f, 0.4f);
+                    float n = Random.Range(30, 60);
+                    float s = n / 100f;
+                    mountain2.transform.localScale = new Vector3(s, s, s);
                     Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z), transform.rotation);
                 }
-                if (N > 9)
+                if (i % 5 == 0 && j == N-1)
                 {
-                    if (i == N - 1 && j == 0)
-                    {
-                        mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                        Instantiate(mountain1, new Vector3(x, 0, z - (tileSize * 3)), transform.rotation);
-                    }
-                    if (i == 0 && j == 0)
-                    {
-                        mountain1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                        Instantiate(mountain1, new Vector3(x + (tileSize * 2), 0, z - (tileSize * 3)), transform.rotation);
-
-                        mountain2.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
-                        Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z - tileSize), transform.rotation);
-                    }
-                    if (i == 0 && j == N - 1)
-                    {
-                        mountain2.transform.localScale = new Vector3(0.45f, 0.5f, 0.45f);
-                        Instantiate(mountain2, new Vector3(x - (tileSize * 4), 0, z), transform.rotation);
-                    }
+                    float n = Random.Range(70, 100);
+                    float s = n / 100f;
+                    mountain3.transform.localScale = new Vector3(s, s, s);
+                    Instantiate(mountain3, new Vector3(x, 0, z + (tileSize * 4)), transform.rotation);
                 }
-
                 z += tileSize;
             }
             x += tileSize;
             z = (-(tileSize / 2) * ((float)N - 1));
         }
-
+        mountain1.transform.localScale = new Vector3(1, 1, 1);
+        mountain2.transform.localScale = new Vector3(1, 1, 1);
+        mountain3.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
