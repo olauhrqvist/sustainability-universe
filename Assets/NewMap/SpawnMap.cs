@@ -87,10 +87,11 @@ public class TileClass
 
 
 
-          treeObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.4f);
+          treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
           pineGameObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
           pineGameObject.transform.parent = tileGameObject.transform;
           tileTrees.Add(pineGameObject);
+          pineGameObject.name = "pineTreeObject " + (tileTrees.Count).ToString();
           grow = true;
 
         }
@@ -113,14 +114,14 @@ public class TileClass
 
         public void placeTrees()
         {
-
+          // Places treeObjets on each available slot on the tile
           GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
 
           foreach (var pos in tilePositions)
           {
             System.Random random = new System.Random();
             float y = Random.Range(0.5f, 1.0f);
-            treeObject.transform.localScale = new Vector3(0.3f, y, 0.4f);
+            treeObject.transform.localScale = new Vector3(0.2f, y, 0.2f);
 
             pineGameObject = GameObject.Instantiate(treeObject, pos, Quaternion.identity) as GameObject;
             pineGameObject.transform.parent = tileGameObject.transform;
@@ -151,11 +152,10 @@ public class TileClass
         neighbours.Add((x + 1).ToString() + (y).ToString());
         neighbours.Add((x + 1).ToString() + (y + 1).ToString());
 
-        // Check if all the neighbours are valid tiles
+        // Check that all the neighbours are valid tiles
         List<string> tmp = new List<string>();
         List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
         string s = "";
-        //Debug.Log("tiles.Count = " + tiles.Count);
         foreach (var n in neighbours)
         {
                     GameObject g = GameObject.Find(n);
@@ -167,8 +167,6 @@ public class TileClass
         }
 
         neighbours = tmp;
-        //Debug.Log("Tile " + name + " has neighbours: " + s);
-
 
 
     }
@@ -176,7 +174,6 @@ public class TileClass
     public void treeGrowth()
     {
       grow = true;
-      //Debug.Log("treeGrowth() called." + natureDensity);
       // If the current density is lower than cap, increase it each time function is called.
       if (currentDensity <= natureDensity && expand == true)
       {
@@ -195,18 +192,13 @@ public class TileClass
         if (growthDone == false)
         foreach (var tree in tileTrees)
         {
-
-
-
-
-
-
           //Debug.Log("Increasing scale by 10%");
           if(tree.transform.localScale.y < 1.5f)
           tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
 
           else
             {
+              //grow = false;
               growthDone = true;
               spread = true;
             }
@@ -231,7 +223,8 @@ public class TileClass
       List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
       TileClass tile = tiles.Find(x => x.name == neighbours[index]);
       //neighbours.Remove(neighbours[index]);
-      tile.startGrowthPine();
+      if (tile.grow == false)
+        tile.startGrowthPine();
 
 
     }
@@ -281,8 +274,9 @@ public class SpawnMap : MonoBehaviour
         //finished = true;
 
         // Test code for starting growth at tile 23
-        TileClass tile = tiles.Find(x => x.name == "20");
+        TileClass tile = tiles.Find(x => x.name == "14");
         tile.startGrowthPine();
+
         InvokeRepeating("growth", 1.0f, 0.1f);
         InvokeRepeating("expand", 2.0f, 2.0f);
 
