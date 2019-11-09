@@ -13,6 +13,9 @@ public class TileClass
     public int x;
     public int y;
     public bool grow;
+    public bool growthDone;
+    public bool spread;
+    public bool expand;
     // Density
     public int natureDensity;
     public int currentDensity;
@@ -39,7 +42,9 @@ public class TileClass
         grow = false;
         currentDensity = 2;
         natureDensity = 3;
-
+        growthDone = false;
+        spread = false;
+        expand = false;
     }
 
     // Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
@@ -79,9 +84,12 @@ public class TileClass
           float z = tileGameObject.transform.position.z;
           //Debug.Log("Tile starts at: " + (x-5f) + ", " + (z-5f) + "\n");
           //Debug.Log("Placing tree at: " + x + "," + z + "\n");
-          treeObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-          pineGameObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
 
+
+
+          treeObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.4f);
+          pineGameObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
+          pineGameObject.transform.parent = tileGameObject.transform;
           tileTrees.Add(pineGameObject);
           grow = true;
 
@@ -102,22 +110,27 @@ public class TileClass
             //  Debug.Log("No trees left in array.");
         }
 
-        void increaseScale()
-        {
-            foreach (var tree in tileTrees)
-            {
-              tree.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-            }
-        }
 
         public void placeTrees()
         {
+
+          GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
+
           foreach (var pos in tilePositions)
           {
+            System.Random random = new System.Random();
+            float y = Random.Range(0.5f, 1.0f);
+            treeObject.transform.localScale = new Vector3(0.3f, y, 0.4f);
 
-            GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
             pineGameObject = GameObject.Instantiate(treeObject, pos, Quaternion.identity) as GameObject;
+            pineGameObject.transform.parent = tileGameObject.transform;
             tileTrees.Add(pineGameObject);
+            pineGameObject.name = "pineTreeObject " + (tileTrees.Count).ToString();
+            /*Color treeColor = new Color(
+     Random.Range(0f, 0f),
+     Random.Range(0f, 1f),
+     Random.Range(0f, 0f));
+            pineGameObject.GetComponent<Renderer>().material.color = treeColor;*/
             //Debug.Log("Adding tree at " + pos.x + ", 0, " + pos.z);
 
           }
@@ -126,6 +139,7 @@ public class TileClass
 
     public void calculateNeighbours()
     {
+        // Add all surrounding tiles to neighbour list
         neighbours.Add((x - 1).ToString() + (y - 1).ToString());
         neighbours.Add((x - 1).ToString() + (y).ToString());
         neighbours.Add((x - 1).ToString() + (y + 1).ToString());
@@ -137,33 +151,92 @@ public class TileClass
         neighbours.Add((x + 1).ToString() + (y).ToString());
         neighbours.Add((x + 1).ToString() + (y + 1).ToString());
 
+        // Check if all the neighbours are valid tiles
+        List<string> tmp = new List<string>();
+        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+        string s = "";
+        //Debug.Log("tiles.Count = " + tiles.Count);
+        foreach (var n in neighbours)
+        {
+                    GameObject g = GameObject.Find(n);
+                    if (g != null)
+                    {
+                      tmp.Add(n);
+                      s += n + ", ";
+                    }
+        }
+
+        neighbours = tmp;
+        //Debug.Log("Tile " + name + " has neighbours: " + s);
+
+
+
     }
 
     public void treeGrowth()
     {
+      grow = true;
       //Debug.Log("treeGrowth() called." + natureDensity);
       // If the current density is lower than cap, increase it each time function is called.
-      if (currentDensity <= natureDensity)
+      if (currentDensity <= natureDensity && expand == true)
       {
         //Debug.Log("currentDensity = " + currentDensity);
 
           destroyTrees();
           calculatePositions(currentDensity);
           placeTrees();
-          currentDensity++;
+          expand = false;
+          //currentDensity++;
       }
 
       // When density cap is reached
-      else
-      {
+
         // Increase scale
-        //Debug.Log("Increasing scale. Trees:" + tileTrees.Count);
-        increaseScale();
+        if (growthDone == false)
+        foreach (var tree in tileTrees)
+        {
+
+
+
+
+
+
+          //Debug.Log("Increasing scale by 10%");
+          if(tree.transform.localScale.y < 1.5f)
+          tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+
+          else
+            {
+              growthDone = true;
+              spread = true;
+            }
+        }
+
         // when max scale is reached, spread
-      }
+
+
+      if(spread == true)
+        {
+          spreadTrees();
+          //spread = false;
+        }
+    }
+
+    private void spreadTrees()
+    {
+      // Randomize a neighbour and start growing there
+      System.Random random = new System.Random();
+      int index = random.Next(0, neighbours.Count);
+      //Debug.Log("neighbour chosen: " + neighbours[index]);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      TileClass tile = tiles.Find(x => x.name == neighbours[index]);
+      //neighbours.Remove(neighbours[index]);
+      tile.startGrowthPine();
 
 
     }
+
+
 
 }
 
@@ -208,31 +281,38 @@ public class SpawnMap : MonoBehaviour
         //finished = true;
 
         // Test code for starting growth at tile 23
-        TileClass tile = tiles.Find(x => x.name == "23");
+        TileClass tile = tiles.Find(x => x.name == "20");
         tile.startGrowthPine();
+        InvokeRepeating("growth", 1.0f, 0.1f);
+        InvokeRepeating("expand", 2.0f, 2.0f);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-      //tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
-      TileClass tile = tiles.Find(x => x.name == "23");
-
-      if (tile.grow == true)
-      {
-        //Debug.Log("Starting growth() for tile " + tile.name);
-        InvokeRepeating("growth", 1.0f, 1.0f);
-        tile.grow = false;
-      }
-
 
     }
 
     void growth()
     {
-      TileClass tile = tiles.Find(x => x.name == "23");
-      tile.treeGrowth();
+      foreach (var tile in tiles)
+      {
+        if (tile.grow)
+          tile.treeGrowth();
+      }
+    }
+
+    void expand()
+    {
+      foreach (var tile in tiles)
+      {
+        if (tile.grow)
+        {
+            tile.currentDensity++;
+            tile.expand = true;
+        }
+      }
     }
 
     void drawMap()
@@ -256,7 +336,7 @@ public class SpawnMap : MonoBehaviour
                 tile.natureDensity = natureDensity;
 
                 tile.calculatePositions(natureDensity);
-                tile.calculateNeighbours();
+                //tile.calculateNeighbours();
                 tiles.Add(tile);
 
                 // Added find small location functions, so the smallLocation vector has data inside
@@ -271,6 +351,9 @@ public class SpawnMap : MonoBehaviour
             x += tileSize;
             z = (-(tileSize / 2) * ((float)N - 1));
         }
+
+        foreach (var tile in tiles)
+          tile.calculateNeighbours();
     }
 
     void drawGraphic()
