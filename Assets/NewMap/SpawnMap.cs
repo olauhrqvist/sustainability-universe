@@ -78,9 +78,8 @@ public class TileClass
         {
           // Grows a pine tree in the middle of the tile, starting the expansion process.
           GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
-
-          // Find middle of tile
-          float x = tileGameObject.transform.position.x;
+        // Find middle of tile
+        float x = tileGameObject.transform.position.x;
           float z = tileGameObject.transform.position.z;
           //Debug.Log("Tile starts at: " + (x-5f) + ", " + (z-5f) + "\n");
           //Debug.Log("Placing tree at: " + x + "," + z + "\n");
@@ -88,13 +87,13 @@ public class TileClass
 
 
           treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+          treeObject.name = "Pine";
           pineGameObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
           pineGameObject.transform.parent = tileGameObject.transform;
           tileTrees.Add(pineGameObject);
-          pineGameObject.name = "pineTreeObject " + (tileTrees.Count).ToString();
           grow = true;
-
-        }
+        
+    }
 
         public void destroyTrees()
         {
@@ -126,7 +125,7 @@ public class TileClass
             pineGameObject = GameObject.Instantiate(treeObject, pos, Quaternion.identity) as GameObject;
             pineGameObject.transform.parent = tileGameObject.transform;
             tileTrees.Add(pineGameObject);
-            pineGameObject.name = "pineTreeObject " + (tileTrees.Count).ToString();
+            pineGameObject.name = "pineTree";
             /*Color treeColor = new Color(
      Random.Range(0f, 0f),
      Random.Range(0f, 1f),
@@ -135,7 +134,10 @@ public class TileClass
             //Debug.Log("Adding tree at " + pos.x + ", 0, " + pos.z);
 
           }
-        }
+
+        //assest scale back to default
+        treeObject.transform.localScale = new Vector3(1, 1, 1);
+    }
 
 
     public void calculateNeighbours()
@@ -184,6 +186,7 @@ public class TileClass
           placeTrees();
           expand = false;
           //currentDensity++;
+          
       }
 
       // When density cap is reached

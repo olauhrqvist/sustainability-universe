@@ -76,7 +76,7 @@ public class mapClick : MonoBehaviour
         foreach (KeyValuePair<string, int> kvp in objDic)
         {
 
-            dicInfo += kvp.Key + " " + kvp.Value + "\r\n";
+            dicInfo += kvp.Key + ": " + kvp.Value + "\r\n";
         }
 
         tileInfo = "Total obj " + tileObjList.Count + "\r\n" + "Plant: " + plantCount + "  " + "Animal: " + animalCount + "\r\n" + dicInfo;
