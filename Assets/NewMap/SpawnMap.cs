@@ -5,8 +5,17 @@ using UnityEngine;
 
 public class TileClass
 {
-    // Variables
 
+    //Variables for RewardSystem
+    public float AnimalHappiness;
+    public float TreeHappiness;
+    public float TileHappiness; // ska vi ha detta? kanske en overall happiness på tilen ist?
+
+   
+
+
+
+    // Variables
     // Tile ID
     public string name;
     // Coordinate
@@ -265,6 +274,8 @@ public class SpawnMap : MonoBehaviour
     public List<TileClass> tiles = new List<TileClass>();
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -472,6 +483,11 @@ public class SpawnMap : MonoBehaviour
             xSmall = x - stepS * (5 - 1);
             zSmall += stepS * 2;
         }
+    }
+
+    public List<TileClass> Getlist()
+    {
+        return tiles;
     }
 
     /*void addTrees(float xTree, float zTree, float stepSize)
