@@ -27,31 +27,31 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Debug.Log(Time.timeScale);
-            if (!game_paused)
-            {
-                Debug.Log("In update, Esc pressed, Pause on");
-                Time.timeScale = 0;
-                showPauseMenu();
-                game_paused = true;
-
-            }
-            else if (game_paused)
-            {
-                Debug.Log("In update, Esc pressed, Pause off");
-                Time.timeScale = 1;
-                hidePauseMenu();
-                game_paused = false;
-            }
-
+            pauseAction();
         }
-
     }
 
+    public void pauseAction()
+    {
+        Debug.Log(Time.timeScale);
+        if (!game_paused)
+        {
+            Debug.Log("In update, Esc pressed, Pause on");
+            Time.timeScale = 0;
+            showPauseMenu();
+            game_paused = true;
 
+        }
+        else if (game_paused)
+        {
+            Debug.Log("In update, Esc pressed, Pause off");
+            Time.timeScale = 1;
+            hidePauseMenu();
+            game_paused = false;
+        }
+    }
     public void showPauseMenu()
     {
         //we want to paus the "global" clock that runs the game.
