@@ -125,6 +125,7 @@ public class mapClick : MonoBehaviour
                     WindowShow = true;
                     windowX = Input.mousePosition.x;
                     windowY = Screen.height - Input.mousePosition.y;
+                    
                     //
 
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
