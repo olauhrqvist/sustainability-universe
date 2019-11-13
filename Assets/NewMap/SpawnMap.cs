@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class TileClass
+public class TileClass : MonoBehaviour
 {
 
     //Variables for RewardSystem
@@ -93,7 +93,18 @@ public class TileClass
 
         //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
       }
+        public void GrowObject(GameObject sampleObject)
+        {
+            if(sampleObject.name == "Spruce")
+            {
+                startGrowthPine();
+            }
+            if (sampleObject.name == "Birch")
+            {
+                startGrowthLeaf();
+            }
 
+        }
         public void startGrowthLeaf()
         {
           leafForrest = true;
