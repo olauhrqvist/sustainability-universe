@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class YearCounter : MonoBehaviour
 {
-    //public GameObject RewardObject;
+   //script
     public RewardSystem other;
-
 
     //variable
 
     private int Year = 0;
     private float Counter = 10f;
-
-
-
-
 
     //------------------------------------------------------------------------------\\
 
@@ -24,14 +19,9 @@ public class YearCounter : MonoBehaviour
 
         if (Time.time >= Counter)
         {
-            Debug.Log(Counter);
-            Debug.Log(Year);
             Year = Year + 1;
-            Counter += Counter;
+            Counter += Counter;          
             other.Calculate();
-          //Debug.Log(other.TotalReward);
-
         }
     }
-
 }
