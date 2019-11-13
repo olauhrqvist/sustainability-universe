@@ -290,7 +290,7 @@ public class TileClass
     private void spreadTrees()
     {
       // Randomize a neighbour and start growing there
-      Debug.Log("neighbours before:" + neighbours.Count);
+      //Debug.Log("neighbours before:" + neighbours.Count);
 
       List<string> tmp = new List<string>();
       foreach (var n in neighbours)
@@ -305,7 +305,7 @@ public class TileClass
       System.Random random = new System.Random();
       int index = random.Next(0, neighbours.Count);
 
-      Debug.Log("neighbours:" + neighbours.Count + " index: " + index);
+      //Debug.Log("neighbours:" + neighbours.Count + " index: " + index);
 
       List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
       TileClass tile = tiles.Find(x => x.name == neighbours[index]);
