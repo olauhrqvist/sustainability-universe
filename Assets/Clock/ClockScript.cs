@@ -6,10 +6,14 @@ public class ClockScript : MonoBehaviour
 {
     private Text textClock;
     public float seconds, minutes;
+
+
     void Awake()
     {
         textClock = GetComponent<Text>();
     }
+
+
     void Update()
     {
         minutes = (int)(Time.time / 60f);

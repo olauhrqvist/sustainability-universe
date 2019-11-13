@@ -20,7 +20,7 @@ public class TileClass
     //Variables for RewardSystem
     public float AnimalHappiness;
     public float TreeHappiness;
-    public float TileHappiness; // ska vi ha detta? kanske en overall happiness p� tilen ist?
+    public float TileHappiness;
 
 
 
