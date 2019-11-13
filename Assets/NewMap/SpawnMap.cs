@@ -366,7 +366,7 @@ public class SpawnMap : MonoBehaviour
     private GameObject tile;
     private GameObject tree;
 
-    private float tileSize = 10;
+    public float tileSize = 10;
     public int N = 8;
     public Color planeColor;
 

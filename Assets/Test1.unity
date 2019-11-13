@@ -2388,7 +2388,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.06
+    m_Strength: 0.164
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -5123,6 +5123,26 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2301617561158192880, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
+--- !u!1 &1540669573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2301617562215352439, guid: b1b5b473c20bf32409d2cc680114fdfc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1540669572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1540669574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540669573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122ae42a3fdb4f24bb6ed0ecd4ff445f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlinePlane: {fileID: 7859095609148075784, guid: 0831df00608a2df488456bc43dba023c,
+    type: 3}
 --- !u!1 &1575187554
 GameObject:
   m_ObjectHideFlags: 0
