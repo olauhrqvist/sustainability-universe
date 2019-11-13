@@ -1547,6 +1547,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6149432143175503549, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149432143175503549, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6149432143510770800, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1668,16 +1678,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6149432144403737852, guid: a4c221be721e85c46aa60d87496f5e82,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149432143175503549, guid: a4c221be721e85c46aa60d87496f5e82,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6149432143175503549, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -3943,6 +3943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968821f36789d7c4999fc6d25445f0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  other: {fileID: 0}
 --- !u!1 &1242713633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,7 +4937,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pineObject
       value: 
-      objectReference: {fileID: 1369031296425274, guid: 22a3fd8d3e59a1149bdcd775c0e87241,
+      objectReference: {fileID: 1612273161005096, guid: ae9772ea62bbc724eb9b8ef81109f733,
         type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
