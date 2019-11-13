@@ -6,29 +6,34 @@ using UnityEngine;
 public class RewardSystem : MonoBehaviour
 {
     public int currency;
-    
-    
-    private float TotalReward;
-    private float AnimalTotalReward;
-    private float TreeTotalReward;
+
+
+    public float TotalReward;
+    public float AnimalTotalReward;
+    public float TreeTotalReward;
 
     private GameObject MYgameObject;
-    //private List<int> HappinessList = new List<int>();
+
+    public List<TileClass> listan = new List<TileClass>();
 
 
 
-    void Start()
+    public void Calculate()
     {
+        //MYgameObject = this.gameObject;
+        //SpawnMap SM = MYgameObject.GetComponent<SpawnMap>();
+
         NewCheck();
-        MYgameObject = this.gameObject;
-        SpawnMap SM = MYgameObject.GetComponent<SpawnMap>();
-        
-        foreach(TileClass i in SM.Getlist())
+        Debug.Log("INNE I REWARD");
+        listan = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
+
+
+        foreach(TileClass i in listan)
         {
            CalculateHappines(i);
         }
 
-         TotalReward = CaluclateTotalHappines(AnimalTotalReward, TreeTotalReward, SM.Getlist().Count);
+         TotalReward = CaluclateTotalHappines(AnimalTotalReward, TreeTotalReward, listan.Count);
 
 
     }
