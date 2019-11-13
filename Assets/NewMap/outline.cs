@@ -13,7 +13,9 @@ public class outline : MonoBehaviour
     void Start()
     {
         tileSize = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tileSize;
-        N = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().N+15 ;
+        N = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().N*2 ;
+        if (N <= 10)
+            N = 10;
         drawMap();
     }
 
@@ -26,20 +28,20 @@ public class outline : MonoBehaviour
     void drawMap()
     {
         
-        x = (-(tileSize / 2) * ((float)N+4));
-        z = (-(tileSize / 2) * ((float)N+4 ));
+        x = (-(tileSize / 2) * ((float)N+N));
+        z = (-(tileSize / 2) * ((float)N+N ));
 
-        for (int i = 0; i < N; i++) // x
+        for (int i = 0; i < N+N; i++) // x
         {
-            for (int j = 0; j < N+4; j++) //y
+            for (int j = 0; j < N+N; j++) //y
             {
                 
-                Instantiate(outlinePlane, new Vector3(x, -1, z), transform.rotation);
+                Instantiate(outlinePlane, new Vector3(x, -0.5f, z), transform.rotation);
                 z += tileSize;
             }
 
             x += tileSize;
-            z = (-(tileSize / 2) * ((float)N+4));
+            z = (-(tileSize / 2) * ((float)N+N));
         }
 
     }
