@@ -9,9 +9,9 @@ public class TileClass
     //Variables for RewardSystem
     public float AnimalHappiness;
     public float TreeHappiness;
-    public float TileHappiness; // ska vi ha detta? kanske en overall happiness på tilen ist?
+    public float TileHappiness; // ska vi ha detta? kanske en overall happiness pï¿½ tilen ist?
 
-   
+
 
 
 
@@ -38,9 +38,14 @@ public class TileClass
     public List<GameObject> tileTrees;
 
     // Pine tree GameObject
-    public GameObject pineGameObject;
 
+    public GameObject treeObject;
+    //public GameObject pineGameObject;
+    //public GameObject leafGameObject;
     // Methods
+    bool pineForrest;
+    bool leafForrest;
+    public int forrestID;
 
     // Constructor
     public TileClass()
@@ -54,6 +59,12 @@ public class TileClass
         growthDone = false;
         spread = false;
         expand = false;
+
+        pineForrest = false;
+        leafForrest = false;
+
+        forrestID = -1;
+
     }
 
     // Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
@@ -83,26 +94,53 @@ public class TileClass
         //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
       }
 
+        public void startGrowthLeaf()
+        {
+          leafForrest = true;
+          startGrowth();
+        }
+
         public void startGrowthPine()
         {
-          // Grows a pine tree in the middle of the tile, starting the expansion process.
-          GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
-        // Find middle of tile
-        float x = tileGameObject.transform.position.x;
+          pineForrest = true;
+          startGrowth();
+        }
+
+
+        public GameObject getTreeObject()
+        {
+          GameObject treeObject;
+
+          if (pineForrest)
+            return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().pineObject;
+
+          else // leafForrest
+              return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().leafObject;
+        }
+
+        public void startGrowth()
+        {
+
+          if (forrestID == -1)
+            forrestID = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forrestID++;
+          //Debug.Log("Tree part of forrest " + forrestID);
+          //GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forrestID;
+
+          GameObject treeObject = getTreeObject();
+
+          // Grows a tree in the middle of the tile, starting the expansion process.
+          float x = tileGameObject.transform.position.x;
           float z = tileGameObject.transform.position.z;
-          //Debug.Log("Tile starts at: " + (x-5f) + ", " + (z-5f) + "\n");
-          //Debug.Log("Placing tree at: " + x + "," + z + "\n");
 
 
 
           treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-          treeObject.name = "Pine";
-          pineGameObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
-          pineGameObject.transform.parent = tileGameObject.transform;
-          tileTrees.Add(pineGameObject);
+          //treeObject.name = "Pine";
+          treeObject = GameObject.Instantiate(treeObject, new Vector3(x, 0, z), Quaternion.identity) as GameObject;
+          treeObject.transform.parent = tileGameObject.transform;
+          tileTrees.Add(treeObject);
           grow = true;
-        
-    }
+        }
 
         public void destroyTrees()
         {
@@ -123,7 +161,7 @@ public class TileClass
         public void placeTrees()
         {
           // Places treeObjets on each available slot on the tile
-          GameObject treeObject = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().treeObject;
+          GameObject treeObject = getTreeObject();
 
           foreach (var pos in tilePositions)
           {
@@ -131,21 +169,22 @@ public class TileClass
             float y = Random.Range(0.5f, 1.0f);
             treeObject.transform.localScale = new Vector3(0.2f, y, 0.2f);
 
-            pineGameObject = GameObject.Instantiate(treeObject, pos, Quaternion.identity) as GameObject;
-            pineGameObject.transform.parent = tileGameObject.transform;
-            tileTrees.Add(pineGameObject);
-            pineGameObject.name = "pineTree";
+            treeObject = GameObject.Instantiate(treeObject, pos, Quaternion.identity) as GameObject;
+            treeObject.transform.parent = tileGameObject.transform;
+            treeObject.name = "pineTree";
+            tileTrees.Add(treeObject);
+
+            // Change the color of the tree to an RGB value. Can be randomized.
             /*Color treeColor = new Color(
      Random.Range(0f, 0f),
      Random.Range(0f, 1f),
      Random.Range(0f, 0f));
             pineGameObject.GetComponent<Renderer>().material.color = treeColor;*/
-            //Debug.Log("Adding tree at " + pos.x + ", 0, " + pos.z);
 
           }
 
         //assest scale back to default
-        treeObject.transform.localScale = new Vector3(1, 1, 1);
+      //  treeObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
@@ -195,7 +234,7 @@ public class TileClass
           placeTrees();
           expand = false;
           //currentDensity++;
-          
+
       }
 
       // When density cap is reached
@@ -219,7 +258,7 @@ public class TileClass
         // when max scale is reached, spread
 
 
-      if(spread == true)
+      if(growthDone == true)
         {
           spreadTrees();
           //spread = false;
@@ -236,7 +275,17 @@ public class TileClass
       TileClass tile = tiles.Find(x => x.name == neighbours[index]);
       //neighbours.Remove(neighbours[index]);
       if (tile.grow == false)
-        tile.startGrowthPine();
+        {
+          tile.forrestID = forrestID;
+
+          if(leafForrest)
+              tile.startGrowthLeaf();
+
+          else
+            tile.startGrowthPine();
+
+
+        }
 
 
     }
@@ -259,7 +308,9 @@ public class SpawnMap : MonoBehaviour
     public Color planeColor;
 
     public GameObject planeTile;
-    public GameObject treeObject;
+    public GameObject pineObject;
+    public GameObject leafObject;
+
     public GameObject mountain1;
     public GameObject mountain2;
     public GameObject mountain3;
@@ -275,6 +326,7 @@ public class SpawnMap : MonoBehaviour
 
     public bool finished = false;
     public List<TileClass> tiles = new List<TileClass>();
+    public int forrestID = 0;
 
 
 
@@ -289,6 +341,15 @@ public class SpawnMap : MonoBehaviour
 
         // Test code for starting growth at tile 23
         TileClass tile = tiles.Find(x => x.name == "14");
+        tile.startGrowthPine();
+
+        tile = tiles.Find(x => x.name == "28");
+        tile.startGrowthLeaf();
+
+        tile = tiles.Find(x => x.name == "41");
+        tile.startGrowthLeaf();
+
+        tile = tiles.Find(x => x.name == "79");
         tile.startGrowthPine();
 
         InvokeRepeating("growth", 1.0f, 0.1f);
