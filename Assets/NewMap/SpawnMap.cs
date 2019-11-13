@@ -55,9 +55,9 @@ public class TileClass
     //public GameObject pineGameObject;
     //public GameObject leafGameObject;
     // Methods
-    bool pineForrest;
-    bool leafForrest;
-    public int forrestID;
+    bool pineForest;
+    bool leafForest;
+    public int forestID;
 
     // Constructor
     public TileClass()
@@ -74,10 +74,10 @@ public class TileClass
         tileFull = false;
 
 
-        pineForrest = false;
-        leafForrest = false;
+        pineForest = false;
+        leafForest = false;
 
-        forrestID = -1;
+        forestID = -1;
 
     }
 
@@ -111,13 +111,13 @@ public class TileClass
 
         public void startGrowthLeaf()
         {
-          leafForrest = true;
+          leafForest = true;
           startGrowth();
         }
 
         public void startGrowthPine()
         {
-          pineForrest = true;
+          pineForest = true;
           startGrowth();
         }
 
@@ -126,7 +126,7 @@ public class TileClass
         {
           GameObject treeObject;
 
-          if (pineForrest)
+          if (pineForest)
             return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().pineObject;
 
           else // leafForrest
@@ -139,8 +139,8 @@ public class TileClass
           // Calculates all the positions on the tile
           calculatePositions(5);
 
-          if (forrestID == -1)
-            forrestID = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forrestID++;
+          if (forestID == -1)
+            forestID = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forestID++;
           //Debug.Log("Tree part of forrest " + forrestID);
           //GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forrestID;
 
@@ -153,7 +153,9 @@ public class TileClass
           Vector3 posVec = tilePositions[13].pos;
           tilePositions[13].filled = true;
 
-          treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+          //treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+          treeObject.transform.localScale = new Vector3(0, 0, 0);
+
           //treeObject.name = "Pine";
           treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
           treeObject.transform.parent = tileGameObject.transform;
@@ -184,9 +186,10 @@ public class TileClass
 
           //foreach (var pos in tilePositions)
           //{
-            System.Random random = new System.Random();
-            float y = Random.Range(0.5f, 1.0f);
-            treeObject.transform.localScale = new Vector3(0.2f, y, 0.2f);
+            //System.Random random = new System.Random();
+            //float y = Random.Range(0.5f, 1.0f);
+            //treeObject.transform.localScale = new Vector3(0.2f, y, 0.2f);
+            treeObject.transform.localScale = new Vector3(0, 0, 0);
 
             treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
             treeObject.transform.parent = tileGameObject.transform;
@@ -245,7 +248,29 @@ public class TileClass
 
       // If the current density is lower than cap, increase it each time function is called.
       Vector3 posVec = new Vector3();
-      int index = 13;
+      int index = 5;
+
+      foreach (var tree in tileTrees)
+      {
+        expand = true;
+
+        if(tree.transform.localScale.y < 0.5f)
+          {
+            expand = false;
+          }
+
+        if(tree.transform.localScale.y < 1f)
+        {
+          System.Random random = new System.Random();
+          float var = (float)random.Next(0, 10);
+          var = var/10;
+          tree.transform.localScale += new Vector3(0.2f, var, 0.2f);
+        }
+
+
+
+
+      }
 
       if (expand == true && tilePositions.Count != 1)
       {
@@ -264,7 +289,7 @@ public class TileClass
           tilePositions[index].filled = true;
           expand = false;
       }
-      else if (tileTrees.Count == 25 && spread == true && neighbours.Count != 1)
+      else if (tileTrees.Count > 20 && spread == true && neighbours.Count != 1)
       {
         //Debug.Log("Spreading...");
         spread = false;
@@ -272,18 +297,19 @@ public class TileClass
       }
 
         // Increase scale
-        if (growthDone == false)
+        /*if (growthDone == false)
         foreach (var tree in tileTrees)
         {
           //Debug.Log("Increasing scale by 10%");
           if(tree.transform.localScale.y < 2f)
-          tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+          Debug.Log("");
+          //tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
 
           else
             {
               growthDone = true;
             }
-        }
+        }*/
 
     }
 
@@ -313,9 +339,9 @@ public class TileClass
 
       if (tile.grow == false)
         {
-          tile.forrestID = forrestID;
+          tile.forestID = forestID;
 
-          if(leafForrest)
+          if(leafForest)
               tile.startGrowthLeaf();
 
           else
@@ -363,7 +389,7 @@ public class SpawnMap : MonoBehaviour
 
     public bool finished = false;
     public List<TileClass> tiles = new List<TileClass>();
-    public int forrestID = 0;
+    public int forestID = 0;
 
 
 
@@ -392,7 +418,7 @@ public class SpawnMap : MonoBehaviour
 
         InvokeRepeating("growth", 1.0f, 0.1f);
         InvokeRepeating("expand", 0.1f, 0.1f);
-        //InvokeRepeating("spread", 2.0f, 2.0f);
+        InvokeRepeating("spread", 2.0f, 5.0f);
 
     }
 
@@ -400,6 +426,17 @@ public class SpawnMap : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void spread()
+    {
+      foreach (var tile in tiles)
+      {
+        if (tile.grow)
+        {
+            tile.spread = true;
+        }
+      }
     }
 
     void growth()
