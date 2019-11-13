@@ -206,7 +206,7 @@ public class TileClass
           //}
 
         //assest scale back to default
-      //  treeObject.transform.localScale = new Vector3(1, 1, 1);
+       treeObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
