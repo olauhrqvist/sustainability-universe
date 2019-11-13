@@ -117,7 +117,7 @@ public class mapClick : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 200f))
+            if (Physics.Raycast(ray, out hit, 200f, LayerMask.GetMask("MapGround")))
             {
                 if (hit.collider.gameObject.tag == "tile")
                 {
