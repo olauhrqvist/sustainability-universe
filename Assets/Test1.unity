@@ -4036,6 +4036,7 @@ GameObject:
   - component: {fileID: 1239003831}
   - component: {fileID: 1239003830}
   - component: {fileID: 1239003833}
+  - component: {fileID: 1239003834}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4105,6 +4106,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseObjects: []
   game_paused: 0
+--- !u!114 &1239003834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239003829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968821f36789d7c4999fc6d25445f0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 1520603415257115786, guid: f4b1f4f9ab57fd24d93c78e36659be4f, type: 3}
 --- !u!1 &1242713633
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,7 +5112,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pineObject
       value: 
-      objectReference: {fileID: 1369031296425274, guid: 22a3fd8d3e59a1149bdcd775c0e87241,
+      objectReference: {fileID: 1612273161005096, guid: ae9772ea62bbc724eb9b8ef81109f733,
         type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
