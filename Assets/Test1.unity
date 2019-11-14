@@ -264,8 +264,12 @@ MonoBehaviour:
   shoppen: {fileID: 1752448557}
   Tree: {fileID: 1041624064}
   plants: {fileID: 136075809}
+  Fungus: {fileID: 467223472}
   Carnivores: {fileID: 21342678}
   Herbivores: {fileID: 2142559019}
+  Omnivores: {fileID: 1995548684}
+  Saprovores: {fileID: 2062606247}
+  EcoSystemStats: {fileID: 1868088633}
 --- !u!1 &128749524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2064,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &467223472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 688603263061468562, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &484681947
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,6 +5050,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9e0c0212919ae047bfeab432c27364b, type: 3}
+--- !u!1 &1868088633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7169933482729391730, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1877690355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,6 +5226,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseObjects: []
   game_paused: 0
+--- !u!1 &1995548684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1729237537342155618, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2024140100
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,6 +5382,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &2062606247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8488778795449361266, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2081023649 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1206955015141278088, guid: c9e0c0212919ae047bfeab432c27364b,
