@@ -34,7 +34,7 @@ public class MouseInput : InputValue
 
         //Mouse movment
 
-         if (mousepos.x < screen.x * .05f) //very left
+        if (mousepos.x < screen.x * .05f) //very left
         {
             OnMoveInput?.Invoke(-Vector3.forward);
         }
@@ -47,13 +47,28 @@ public class MouseInput : InputValue
         }
 
 
-        if (mousepos.y < screen.y * .05f) //Very Top
+        if (mousepos.y < screen.y * .05f) //Very Bottom
         {
-            OnMoveInput?.Invoke(Vector3.right);
+            if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf) && mousepos.x < screen.x * 0.85)
+            {
+                OnMoveInput?.Invoke(Vector3.right);
+            }
+            else if(!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf))
+            {
+                OnMoveInput?.Invoke(Vector3.right);
+            }
+
         }
-        else if (mousepos.y > screen.y * .95f) //very bottom
+        else if (mousepos.y > screen.y * .95f) //very Top
         {
-            OnMoveInput?.Invoke(-Vector3.right);
+            if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf) && mousepos.x < screen.x * 0.85)
+            {
+                OnMoveInput?.Invoke(-Vector3.right);
+            }
+            else if (!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf))
+            {
+                OnMoveInput?.Invoke(-Vector3.right);
+            }
         }
 
         //rotation
