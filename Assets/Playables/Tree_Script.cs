@@ -16,18 +16,18 @@ public class Tree_Script : Vegetation
                                 string species,
                                 int SunlightCost,
                                 int NutritionalCost) : base(
-                                                    "Tree",
-                                                    hierarchy,
-                                                    ID,
-                                                    mesh,
-                                                    range,
-                                                    space,
-                                                    enviroment,
-                                                    forestid,
-                                                    growthtime,
-                                                    species,
-                                                    SunlightCost,
-                                                    NutritionalCost)
+                                                    "Tree", // type = tree
+                                                    0, //hierarchy =0 ? not sure if it's 0 
+                                                    ID, // what is ID for a tree ?
+                                                    mesh, //?
+                                                    range, // ? 
+                                                    space, // ?
+                                                    enviroment,//?
+                                                    forestid, // set in tile script
+                                                    growthtime, // dynamic or fixed? if fixed value, set here.
+                                                    species, // name of tree? set in tile script
+                                                    SunlightCost, //not sure
+                                                    NutritionalCost)  // not sure, each tree cost the same ? or based on species?
     {
 
     }

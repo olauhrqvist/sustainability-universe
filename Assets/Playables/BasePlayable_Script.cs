@@ -41,6 +41,7 @@ public abstract class Base_Playable : MonoBehaviour
     public void SetModel(GameObject mesh) { Mesh = mesh; }
     public GameObject GetModel() { return Mesh; }
     public string GetSpecies() { return Species; }
+    public void SetSpecies(string input) { Species = input; }
     public string GetBaseType() { return Type; }
     public void SetID(int Input) { ID = Input; }
     public int GetID() { return ID; }
