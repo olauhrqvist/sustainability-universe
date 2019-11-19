@@ -35,6 +35,6 @@ public class Birch : Vegetation
     }
     private void Start()
     {
-        setModel(inputMesh);
+        SetModel(inputMesh);
     }
 }
