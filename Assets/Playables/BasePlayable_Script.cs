@@ -37,23 +37,22 @@ public abstract class Base_Playable : MonoBehaviour
             ForestID = forestid;
             GrowthTime = growthtime;
         }
-    public void setModel(GameObject mesh) 
-    {
-        Mesh = mesh;
-    }
-    public GameObject getModel()
-    { 
-        return Mesh; 
-    }
+    public Dictionary<string, double> GetEnviroments() { return Enviroments; }
+    public void SetModel(GameObject mesh) { Mesh = mesh; }
+    public GameObject GetModel() { return Mesh; }
+    public string GetSpecies() { return Species; }
+    public string GetBaseType() { return Type; }
+    public void SetID(int Input) { ID = Input; }
+    public int GetID() { return ID; }
+    public void SetRange(int Input) { Range = Input; }
+    public int GetRange() { return Range; }
+    public void SetOverallHealth(double Input) { OverallHealth = Input; }
+    public double GetOverallHealth() { return OverallHealth; }
+    public void SetSpaceCost(int Input) { SpaceCost = Input; }
+    public int GetSpaceCost() { return SpaceCost; }
+    public void SetForestID(int Input) { ForestID = Input; }
+    public int GetForestID() { return ForestID; }
+    public void SetGrowthTime(int Input) { GrowthTime = Input; }
+    public int GetGrowthTime() { return GrowthTime; }
 
-    public string getSpecies()
-    {
-        return Species;
-    }
-
-    public string getType()
-    {
-        return Type;
-    }
-    
 }
