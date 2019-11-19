@@ -30,7 +30,7 @@ public abstract class Base_Playable : MonoBehaviour
         {
             this.ID = ID;
             Mesh = mesh;
-            Type = species;
+            Type = type;
             Range = range;
             SpaceCost = space;
             Enviroments = enviroment;
