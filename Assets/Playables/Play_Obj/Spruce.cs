@@ -35,6 +35,6 @@ public class Spruce : Vegetation
     }
     private void Start()
     {
-        setModel(inputMesh);
+        SetModel(inputMesh);
     }
 }
