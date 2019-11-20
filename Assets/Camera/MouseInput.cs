@@ -44,7 +44,7 @@ public class MouseInput : InputValue
         }
         else if (mousepos.x > screen.x * 0.95f) // very right
         {
-            if (!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf))
+            if ((mousepos.y > screen.y * 0.53f || mousepos.y < screen.y * 0.47f) && !(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf))
             {
                 OnMoveInput?.Invoke(Vector3.forward);
             }

@@ -3210,6 +3210,11 @@ PrefabInstance:
       propertyPath: Show
       value: 
       objectReference: {fileID: 565737993}
+    - target: {fileID: 5291197708328867215, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: Deadzone
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1018697617440860652, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: m_Sprite
