@@ -149,16 +149,21 @@ public class TileClass : MonoBehaviour
         treeObject.transform.localScale = new Vector3(0, 0, 0);
 
         //treeObject.name = "Pine";
+        
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         //Tree_Script
-        treeObject.AddComponent<Tree_Script>();
-        treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
-        treeObject.GetComponent<Tree_Script>().SetGrowthTime(10); // not sure about the time ?
-        string Spe = "Leaf"; // Species? maybe tree name
         if (pineForest)
-            Spe = "Pine";
-        treeObject.GetComponent<Tree_Script>().SetSpecies(Spe); 
+        {
+            treeObject.AddComponent<Birch>();
+            treeObject.GetComponent<Birch>().SetForestID(forestID);
+        }
+        else
+        {
+            treeObject.AddComponent<Beech>();
+            treeObject.GetComponent<Beech>().SetForestID(forestID);
+        }
+
         //End Tree_Script
 
         tileTrees.Add(treeObject);
@@ -196,13 +201,16 @@ public class TileClass : MonoBehaviour
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         //Tree_script
-        treeObject.AddComponent<Tree_Script>();
-        treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
-        treeObject.GetComponent<Tree_Script>().SetGrowthTime(10); // not sure about the GrowthTime ?
-        string Spe = "Leaf"; // Species? maybe tree name
         if (pineForest)
-            Spe = "Pine";
-        treeObject.GetComponent<Tree_Script>().SetSpecies(Spe);
+        {
+            treeObject.AddComponent<Birch>();
+            treeObject.GetComponent<Birch>().SetForestID(forestID);
+        }
+        else
+        {
+            treeObject.AddComponent<Beech>();
+            treeObject.GetComponent<Beech>().SetForestID(forestID);
+        }
         //End Tree_Script
 
         //treeObject.name = "pineTree";
