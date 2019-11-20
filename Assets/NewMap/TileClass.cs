@@ -43,9 +43,18 @@ public class TileClass : MonoBehaviour
     bool leafForest;
     public int forestID;
 
+
+
+
     // Constructor
     public TileClass()
     {
+        int id = 0;
+        int pH = 0;
+        int Moisture = 100;
+        int Nutrition = 100;
+        int Space = 100;
+        string Groundtype = "base";
         tilePositions = new List<Pair>();
         neighbours = new List<string>();
         tileTrees = new List<GameObject>();
