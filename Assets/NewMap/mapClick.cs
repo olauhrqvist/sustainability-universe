@@ -35,6 +35,15 @@ public class mapClick : MonoBehaviour
         closeButton.SetActive(false);
     }
 
+
+    private void Start()
+    {
+        // ui button
+        closeButton = GameObject.Find("TileInfoClose");
+        closeButton.GetComponent<Image>().color = Color.clear;
+        closeButton.GetComponentInChildren<Text>().text = "";
+        closeButton.SetActive(false);
+    }
     void findObj()
     {
         foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])

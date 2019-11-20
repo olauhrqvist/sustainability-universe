@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Animal_Script : Base_Playable
 {
-    //int Type;
     int FoodHierarchy;
     int Population;
     public double AvailableFood()
     {
         return 0.0f;
     }
-
-    public Animal_Script(
+    public int GetFoodHierarchy() { return FoodHierarchy; }
+    public int GetPopulation() { return Population; }
+    public void SetPopulation(int Input) { Population = Input; }
+    protected Animal_Script(
                             string type,
                             int hierarchy,
                             int pop,
