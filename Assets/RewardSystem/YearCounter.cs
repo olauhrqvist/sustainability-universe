@@ -6,6 +6,7 @@ public class YearCounter : MonoBehaviour
 {
    //script
     public RewardSystem other;
+    public Global_Database Database;
 
     //variable
 

@@ -15,16 +15,16 @@ public class RewardSystem : MonoBehaviour
 
     public List<TileClass> listan = new List<TileClass>();
 
+    public RewardSystem()
+    {
+        listan = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
+    }
+
 
 
     public void Calculate()
-    {
-        //Debug.Log("INNE I REWARD");
-        
+    {    
         NewCheck();
-        listan = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
-
-        //Debug.Log(listan.Count);
 
         foreach(TileClass i in listan)
         {
@@ -32,7 +32,6 @@ public class RewardSystem : MonoBehaviour
         }
 
          TotalReward = CaluclateTotalHappines(AnimalTotalReward, TreeTotalReward, listan.Count);
-
 
     }
 

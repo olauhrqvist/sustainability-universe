@@ -3442,6 +3442,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   other: {fileID: 1520603415257115786, guid: f4b1f4f9ab57fd24d93c78e36659be4f, type: 3}
+  Database: {fileID: 5611440407512972673, guid: 7d2361b82a250a347979626362a1080f,
+    type: 3}
 --- !u!1 &1242713633
 GameObject:
   m_ObjectHideFlags: 0

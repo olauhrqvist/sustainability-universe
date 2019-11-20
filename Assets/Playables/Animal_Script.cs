@@ -12,7 +12,7 @@ public class Animal_Script : Base_Playable
         return 0.0f;
     }
 
-    protected Animal_Script(
+    public Animal_Script(
                             string type,
                             int hierarchy,
                             int pop,
