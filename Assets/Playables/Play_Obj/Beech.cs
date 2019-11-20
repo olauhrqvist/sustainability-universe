@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Birch : Tree_Script
+public class Beech : Tree_Script
 {
     public GameObject inputMesh;
 
-    public Birch(   int hierarchy = 1,
+    public Beech(   int hierarchy = 1,
                     int ID = 1,
                     GameObject test = default,
                     int range = 1,
@@ -14,7 +14,7 @@ public class Birch : Tree_Script
                     Dictionary<string, double> enviroment = null,
                     int forestid = 0,
                     int growthtime = 1,
-                    string species = "Birch",
+                    string species = "Beech",
                     int sunlightcost = 1,
                     int nutritioncost = 1
                     ) : base(hierarchy,

@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Birch : Tree_Script
+public class Fox : Carnivore_Script
 {
     public GameObject inputMesh;
 
-    public Birch(   int hierarchy = 1,
+    public Fox(int hierarchy = 1,
                     int ID = 1,
+                    int population = 1,
                     GameObject test = default,
                     int range = 1,
                     int space = 1,
                     Dictionary<string, double> enviroment = null,
                     int forestid = 0,
                     int growthtime = 1,
-                    string species = "Birch",
-                    int sunlightcost = 1,
-                    int nutritioncost = 1
+                    string species = "Fox"
                     ) : base(hierarchy,
+                           population,
                            ID,
                            test,
                            range,
@@ -25,9 +25,7 @@ public class Birch : Tree_Script
                            enviroment,
                            forestid,
                            growthtime,
-                           species,
-                           sunlightcost,
-                           nutritioncost)
+                           species)
     {
 
     }
