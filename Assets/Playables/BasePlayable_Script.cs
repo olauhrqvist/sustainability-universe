@@ -4,7 +4,7 @@ using UnityEngine;
 
 enum TileTypes { podzol, dirt }
 
-public abstract class Base_Playable : MonoBehaviour
+public  class Base_Playable : MonoBehaviour
 {
     int ID;
     GameObject Mesh;
@@ -17,7 +17,7 @@ public abstract class Base_Playable : MonoBehaviour
     int GrowthTime;
     string Species; // species
 
-    protected Base_Playable(
+    public Base_Playable(
                             string type,
                             int ID,
                             GameObject mesh,
