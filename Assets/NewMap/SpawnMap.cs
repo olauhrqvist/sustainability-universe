@@ -71,8 +71,8 @@ public class SpawnMap : MonoBehaviour
 
         markGroundtype();
         InvokeRepeating("growth", 1.0f, 0.1f);
-        InvokeRepeating("expand", 0.1f, 0.1f);
-        InvokeRepeating("spread", 2.0f, 1.0f);
+        InvokeRepeating("expand", 0.1f, 1.0f);
+        InvokeRepeating("spread", 2.0f, 3.0f);
 
 
 
@@ -86,7 +86,7 @@ public class SpawnMap : MonoBehaviour
       for (int i  = 0; i < 10; i++)
       {
         int index = random.Next(0, tiles.Count);
-        tiles[index].Groundtype = "podsol";
+        tiles[index].Groundtype = "podzol";
         //Debug.Log("Tile " + tiles[index].name + " is " + tiles[index].Groundtype);
       }
       for (int i  = 0; i < 10; i++)
@@ -122,7 +122,7 @@ public class SpawnMap : MonoBehaviour
           tile.tileGameObject.GetComponent<Renderer>().material.color = color;
         }
 
-        else if(tile.Groundtype == "podsol")
+        else if(tile.Groundtype == "podzol")
         {
           Color color = new Color(0, 102, 0);
           tile.tileGameObject.GetComponent<Renderer>().material.color = color;

@@ -301,11 +301,11 @@ public class TileClass : MonoBehaviour
 
         foreach (var tree in tileTrees)
         {
-            //expand = true;
+            expand = true;
 
             if (tree.transform.localScale.y < 0.5f)
             {
-                //expand = false;
+                expand = false;
             }
 
             if (tree.transform.localScale.y < 2f)
