@@ -1,14 +1,14 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class SpawnObject : MonoBehaviour
 {
-    //public GameObject sampleObject;
+   //public GameObject sampleObject;
     private TileClass tileclass;
     private SpawnMap spawnmap;
     private List<TileClass> tiles;
 
-    public void AddObject(GameObject sampleObject)
+    public void AddObject(string sampleObject)
     {
 
         transform.rotation = Quaternion.identity;
@@ -24,4 +24,5 @@ public class SpawnObject : MonoBehaviour
             tile.GrowObject(sampleObject);
         }
     }
-}
+}*/
+// Unused but not deleted yet
