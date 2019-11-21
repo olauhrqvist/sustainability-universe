@@ -15,15 +15,12 @@ public class RewardSystem : MonoBehaviour
 
     public List<TileClass> listan = new List<TileClass>();
 
-    public RewardSystem()
-    {
-        listan = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
-    }
 
 
 
     public void Calculate()
     {    
+        listan = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
         NewCheck();
 
         foreach(TileClass i in listan)

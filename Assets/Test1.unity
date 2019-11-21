@@ -243,6 +243,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scroll View
       objectReference: {fileID: 0}
+    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Name
+      value: Squirrel
+      objectReference: {fileID: 0}
     - target: {fileID: 1078510714340291267, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -533,11 +538,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boar
       objectReference: {fileID: 0}
-    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Name
-      value: Squirrel
-      objectReference: {fileID: 0}
     - target: {fileID: 6582727538211754660, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_Name
@@ -684,12 +684,12 @@ MonoBehaviour:
   shoppen: {fileID: 1752448557}
   Tree: {fileID: 1041624064}
   plants: {fileID: 136075809}
-  Fungus: {fileID: 0}
+  Fungus: {fileID: 167911812}
   Carnivores: {fileID: 21342678}
   Herbivores: {fileID: 2142559019}
-  Omnivores: {fileID: 0}
-  Saprovores: {fileID: 0}
-  EcoSystemStats: {fileID: 0}
+  Omnivores: {fileID: 1431703494}
+  Saprovores: {fileID: 113616044}
+  EcoSystemStats: {fileID: 450090579}
 --- !u!1001 &108946299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,6 +839,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0835915f597bc4ca5df60a7c22cbcc, type: 3}
+--- !u!1 &113616044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8488778795449361266, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &118709002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1061,6 +1067,12 @@ Terrain:
 --- !u!1 &136075809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6149432144319702966, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &167911812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 688603263061468562, guid: a4c221be721e85c46aa60d87496f5e82,
     type: 3}
   m_PrefabInstance: {fileID: 446325801}
   m_PrefabAsset: {fileID: 0}
@@ -3122,6 +3134,12 @@ Transform:
   m_Father: {fileID: 1242713634}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &450090579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7169933482729391730, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &451987997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4260,6 +4278,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scroll View
       objectReference: {fileID: 0}
+    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Name
+      value: Shrew
+      objectReference: {fileID: 0}
     - target: {fileID: 1078510714340291267, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4435,21 +4458,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -17
       objectReference: {fileID: 0}
-    - target: {fileID: 1078510713456005945, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1078510713493947926, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1078510714875361617, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3252335116374360657, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4580,11 +4588,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fox
       objectReference: {fileID: 0}
-    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Name
-      value: Shrew
-      objectReference: {fileID: 0}
     - target: {fileID: 6582727538211754660, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_Name
@@ -4649,6 +4652,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Weasel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078510713456005945, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078510713493947926, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078510714875361617, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca15dcb4a3841e46aef1b62913a203c, type: 3}
@@ -5508,6 +5526,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &1431703494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1729237537342155618, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1448851183
 GameObject:
   m_ObjectHideFlags: 0
@@ -6969,6 +6993,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scroll View
       objectReference: {fileID: 0}
+    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Name
+      value: Mouse
+      objectReference: {fileID: 0}
     - target: {fileID: 1078510714340291267, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7234,11 +7263,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoeDeer
       objectReference: {fileID: 0}
-    - target: {fileID: 6582727539143156767, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Name
-      value: Mouse
-      objectReference: {fileID: 0}
     - target: {fileID: 6582727538211754660, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_Name
@@ -7299,6 +7323,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Roe Deer
       objectReference: {fileID: 0}
+    - target: {fileID: 3252335118349252493, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Text
+      value: Hare
+      objectReference: {fileID: 0}
     - target: {fileID: 3252335116805566869, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_Texture
@@ -7309,11 +7338,6 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 10914, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 3252335118349252493, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Text
-      value: Hare
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca15dcb4a3841e46aef1b62913a203c, type: 3}
 --- !u!1 &1992584276 stripped

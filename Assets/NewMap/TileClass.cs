@@ -11,6 +11,8 @@ public class TileClass : MonoBehaviour
     public float TreeHappiness;
     public float TileHappiness;
     // Variables
+
+
     // Tile ID
     public string name;
     // Coordinate
@@ -42,6 +44,8 @@ public class TileClass : MonoBehaviour
     bool pineForest;
     bool leafForest;
     public int forestID;
+    Global_Database database;
+    
 
 
 
@@ -103,6 +107,8 @@ public class TileClass : MonoBehaviour
         if (sampleObject.name == "Spruce")
         {
             startGrowthPine();
+           // database.AddToDataBase(database.SpruceList, sampleObject, name);
+            //Debug.Log("ADAWDAWD");
         }
         if (sampleObject.name == "Birch")
         {
