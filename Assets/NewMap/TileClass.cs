@@ -42,9 +42,10 @@ public class TileClass : MonoBehaviour
     bool pineForest;
     bool leafForest;
     public int forestID;
-
+    public int Nutrition;
 
     public string Groundtype;
+    private System.Random random = new System.Random();
 
 
 
@@ -54,7 +55,7 @@ public class TileClass : MonoBehaviour
         int id = 0;
         int pH = 0;
         int Moisture = 100;
-        int Nutrition = 100;
+        //int Nutrition;
         int Space = 100;
         Groundtype = "";
         tilePositions = new List<Pair>();
@@ -70,6 +71,8 @@ public class TileClass : MonoBehaviour
         pineForest = false;
         leafForest = false;
         forestID = -1;
+
+
 
     }
     public void markGroundtype()
@@ -310,7 +313,7 @@ public class TileClass : MonoBehaviour
 
             if (tree.transform.localScale.y < 2f)
             {
-                System.Random random = new System.Random();
+
                 float var = (float)random.Next(0, 10);
                 var = var / 10;
                 tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
@@ -331,7 +334,7 @@ public class TileClass : MonoBehaviour
                     tmp.Add(t);
             }
             tilePositions = tmp;
-            System.Random random = new System.Random();
+            //System.Random random = new System.Random();
             index = random.Next(0, tilePositions.Count);
             posVec = tilePositions[index].pos;
             placeTrees(posVec);
@@ -377,7 +380,7 @@ public class TileClass : MonoBehaviour
 
 
 
-        System.Random random = new System.Random();
+        //System.Random random = new System.Random();
         int index = random.Next(0, neighbours.Count);
 
         //Debug.Log("neighbours:" + neighbours.Count + " index: " + index);

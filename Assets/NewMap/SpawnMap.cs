@@ -45,7 +45,7 @@ public class SpawnMap : MonoBehaviour
     public bool finished = false;
     public List<TileClass> tiles = new List<TileClass>();
     public int forestID = 0;
-
+    private System.Random random = new System.Random();
 
 
 
@@ -179,6 +179,9 @@ public class SpawnMap : MonoBehaviour
                 tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
                 tile.tileGameObject.name = i.ToString() + j.ToString();
                 tile.name = i.ToString() + j.ToString();
+
+                tile.Nutrition = random.Next(75, 125);
+                Debug.Log("Nutrition for tile " + tile.name + " is " + tile.Nutrition);
                 tile.x = i;
                 tile.y = j;
 
