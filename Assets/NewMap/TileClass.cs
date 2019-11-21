@@ -44,6 +44,8 @@ public class TileClass : MonoBehaviour
     public int forestID;
 
 
+    public string Groundtype;
+
 
 
     // Constructor
@@ -54,7 +56,7 @@ public class TileClass : MonoBehaviour
         int Moisture = 100;
         int Nutrition = 100;
         int Space = 100;
-        string Groundtype = "base";
+        Groundtype = "";
         tilePositions = new List<Pair>();
         neighbours = new List<string>();
         tileTrees = new List<GameObject>();
@@ -70,6 +72,24 @@ public class TileClass : MonoBehaviour
         forestID = -1;
 
     }
+    public void markGroundtype()
+    {
+
+      foreach (var n in neighbours)
+      {
+        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+        TileClass tile = tiles.Find(x => x.name == n);
+
+        if(tile.Groundtype == "")
+        {
+          //Debug.Log(tile.name + " is now " + Groundtype);
+          tile.Groundtype = Groundtype;
+        }
+
+      }
+
+    }
+
 
     // Calculates all the internal position on the tile based on the nature density. Adds them to tilePositions.
     public void calculatePositions(int currentDensity)
@@ -77,8 +97,8 @@ public class TileClass : MonoBehaviour
         tilePositions.Clear();
         //Vector3 pos;
         float stepSize = (10 / (currentDensity * 2));
-        float x = tileGameObject.transform.position.x - stepSize * (currentDensity - 1);
-        float z = tileGameObject.transform.position.z - stepSize * (currentDensity - 1);
+        float x = tileGameObject.transform.position.x - stepSize * (currentDensity - 0.5f);
+        float z = tileGameObject.transform.position.z - stepSize * (currentDensity - 0.5f);
 
 
         for (int i = 0; i < currentDensity; i++)
@@ -88,12 +108,12 @@ public class TileClass : MonoBehaviour
                 Vector3 pos = new Vector3(x, 0, z);
                 Pair t = new Pair(pos, false);
                 tilePositions.Add(t);
-                x += stepSize * 2;
+                x += stepSize * 3;
 
             }
-            x = tileGameObject.transform.position.x - stepSize * (currentDensity - 1);
+            x = tileGameObject.transform.position.x - stepSize * (currentDensity - 0.5f);
             //x = x - stepSize * (natureDensity - 1);
-            z += stepSize * 2;
+            z += stepSize * 3;
         }
 
         //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
@@ -138,7 +158,7 @@ public class TileClass : MonoBehaviour
     {
 
         // Calculates all the positions on the tile
-        calculatePositions(5);
+        calculatePositions(3);
 
         if (forestID == -1)
             forestID = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forestID++;
@@ -151,14 +171,14 @@ public class TileClass : MonoBehaviour
         float x = tileGameObject.transform.position.x;
         float z = tileGameObject.transform.position.z;
         //Debug.Log("tilePositions.Count at start: " + tilePositions.Count);
-        Vector3 posVec = tilePositions[13].pos;
-        tilePositions[13].filled = true;
+        Vector3 posVec = tilePositions[5].pos;
+        tilePositions[5].filled = true;
 
         //treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         treeObject.transform.localScale = new Vector3(0, 0, 0);
 
         //treeObject.name = "Pine";
-        
+
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         //Tree_Script
@@ -235,7 +255,7 @@ public class TileClass : MonoBehaviour
         //}
 
         //assest scale back to default
-        treeObject.transform.localScale = new Vector3(1, 1, 1);
+        //treeObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
@@ -281,19 +301,19 @@ public class TileClass : MonoBehaviour
 
         foreach (var tree in tileTrees)
         {
-            expand = true;
+            //expand = true;
 
             if (tree.transform.localScale.y < 0.5f)
             {
-                expand = false;
+                //expand = false;
             }
 
-            if (tree.transform.localScale.y < 1f)
+            if (tree.transform.localScale.y < 2f)
             {
                 System.Random random = new System.Random();
                 float var = (float)random.Next(0, 10);
                 var = var / 10;
-                tree.transform.localScale += new Vector3(0.2f, var, 0.2f);
+                tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
             }
 
 
@@ -318,7 +338,7 @@ public class TileClass : MonoBehaviour
             tilePositions[index].filled = true;
             expand = false;
         }
-        else if (tileTrees.Count > 20 && spread == true && neighbours.Count != 1)
+        else if (tileTrees.Count == 9 && spread == true && neighbours.Count != 1)
         {
             //Debug.Log("Spreading...");
             spread = false;

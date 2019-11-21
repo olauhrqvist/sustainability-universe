@@ -56,7 +56,7 @@ public class SpawnMap : MonoBehaviour
         drawMap();
         drawGraphic();
         //finished = true;
-        TileClass tile = tiles.Find(x => x.name == "14");
+        /*TileClass tile = tiles.Find(x => x.name == "14");
         tile.startGrowthPine();
 
 
@@ -67,15 +67,73 @@ public class SpawnMap : MonoBehaviour
          tile.startGrowthLeaf();
 
          tile = tiles.Find(x => x.name == "79");
-         tile.startGrowthPine();
+         tile.startGrowthPine();*/
 
+        markGroundtype();
         InvokeRepeating("growth", 1.0f, 0.1f);
         InvokeRepeating("expand", 0.1f, 0.1f);
-        InvokeRepeating("spread", 2.0f, 5.0f);
+        InvokeRepeating("spread", 2.0f, 1.0f);
 
-       
+
 
     }
+
+    void markGroundtype()
+    {
+      // Place two kinds of types on the map and have them spread
+      System.Random random = new System.Random();
+
+      for (int i  = 0; i < 10; i++)
+      {
+        int index = random.Next(0, tiles.Count);
+        tiles[index].Groundtype = "podsol";
+        //Debug.Log("Tile " + tiles[index].name + " is " + tiles[index].Groundtype);
+      }
+      for (int i  = 0; i < 10; i++)
+      {
+        int index = random.Next(0, tiles.Count);
+        tiles[index].Groundtype = "brownearth";
+        //Debug.Log("Tile " + tiles[index].name + " is " + tiles[index].Groundtype);
+
+      }
+
+
+      // spread the soil over the map
+      spread:
+      foreach (var t in tiles)
+        if (t.Groundtype != "")
+          t.markGroundtype();
+
+      foreach (var t in tiles)
+          if (t.Groundtype == "")
+            goto spread;
+
+
+
+
+
+      foreach (var tile in tiles)
+      {
+
+
+        /*if(tile.Groundtype == "brownearth")
+        {
+          Color color = new Color(51, 102, 0);
+          tile.tileGameObject.GetComponent<Renderer>().material.color = color;
+        }
+
+        else if(tile.Groundtype == "podsol")
+        {
+          Color color = new Color(0, 102, 0);
+          tile.tileGameObject.GetComponent<Renderer>().material.color = color;
+        }
+*/
+        tile.calculateNeighbours();
+
+      }
+
+    }
+
     void spread()
     {
         foreach (var tile in tiles)
@@ -103,7 +161,7 @@ public class SpawnMap : MonoBehaviour
             if (tile.grow)
             {
                 tile.expand = true;
-                tile.spread = true;
+                //tile.spread = true;
             }
         }
     }
@@ -118,7 +176,7 @@ public class SpawnMap : MonoBehaviour
             for (int j = 0; j < N; j++) //y
             {
                 TileClass tile = new TileClass();
-                tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation); 
+                tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
                 tile.tileGameObject.name = i.ToString() + j.ToString();
                 tile.name = i.ToString() + j.ToString();
                 tile.x = i;
