@@ -3,52 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //-----------Carnivore-----------\\
-
 public class WolfInfo : Wolf  //varg
-{   
+{
     public string TilePosition;
-    
-
-    public WolfInfo Adding(string tilename, WolfInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
+    public GameObject Newobject;
 }
+
+
 public class shrewInfo : Shrew //Näbbmus
 {
     public string TilePosition;
-
-
-    public shrewInfo Adding(string tilename, shrewInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
+    public GameObject Newobject;
 }
+
+
 public class WeaselInfo : Weasel //vessla
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public WeaselInfo Adding(string tilename, WeaselInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
+
 public class FoxInfo : Fox   //Fox
 {
     public string TilePosition;
-
-    public FoxInfo Adding(string tilename, FoxInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
+    public GameObject Newobject;
+  
 }
 
 //-----------Herbivore-----------\\
@@ -56,46 +36,33 @@ public class FoxInfo : Fox   //Fox
 public class MouseInfo : Mouse //möss
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public MouseInfo Adding(string tilename, MouseInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
+
+
+
 public class HareInfo : Hare //Hare
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public HareInfo Adding(string tilename, HareInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
+
+
 public class DeerInfo : RoeDeer //Rådjur
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public DeerInfo Adding(string tilename, DeerInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
+
+
 public class MooseInfo : Moose   //älg
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public MooseInfo Adding(string tilename, MooseInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
 
 //-----------Herbivore-----------\\
@@ -103,82 +70,55 @@ public class MooseInfo : Moose   //älg
 public class SquirrelInfo : Squirrel  // Ekorre
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public SquirrelInfo Adding(string tilename, SquirrelInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
+
+
 public class RatInfo : Rat            // råttor
 {
     public string TilePosition;
-
-    public RatInfo Adding(string tilename, RatInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
+    public GameObject Newobject;
 
 }
+
+
 public class WildBoarInfo : Boar    // vildsvin
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public WildBoarInfo Adding(string tilename, WildBoarInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
+
+
 public class BrownBearInfo : BrownBear    // Björn
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public BrownBearInfo Adding(string tilename, BrownBearInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
 
 //-----------Tree-type-----------\\
 
-public class BeechInfo : Beech   
+public class BeechInfo : Beech
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public BeechInfo Adding(string tilename, BeechInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
-public class BirchInfo : Birch   
+
+public class BirchInfo : Birch
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public BirchInfo Adding(string tilename, BirchInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
-public class SpruceInfo : Spruce 
+
+
+public class SpruceInfo : Spruce
 {
     public string TilePosition;
+    public GameObject Newobject;
 
-    public SpruceInfo Adding(string tilename, SpruceInfo NewObject)
-    {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
 }
 

@@ -31,262 +31,166 @@ public class Global_Database : MonoBehaviour
     public List<BeechInfo> BeechList = new List<BeechInfo>();
     public List<BirchInfo> BirchList = new List<BirchInfo>();
     public List<SpruceInfo> SpruceList = new List<SpruceInfo>();
- 
+
     // which list you want to add the Object, wolflist for wolf etc
-  /*  public void AddWolfToDataBase(List<WolfInfo> lista, GameObject NewObject, string Name)
-    {    
-       // lista.Add(WolfInfo.Adding(Name,NewObject));
-    }*/
+    /*  public void AddWolfToDataBase(List<WolfInfo> lista, GameObject NewObject, string Name)
+      {    
+         // lista.Add(WolfInfo.Adding(Name,NewObject));
+      }*/
+    
 
-
-
-
-//-----------Carnivore-----------\\
-
-public class WolfInfo : Wolf  //varg
-{
-    public string TilePosition;
-    public GameObject Newobject; 
-    WolfInfo other;
-
-    public WolfInfo WolfAdding(string tilename, GameObject NewObject)
+    public void AddWolf(string name, GameObject other)
     {
-      other.TilePosition = tilename;
-      other.Newobject = NewObject;
-
-      return other;
-    }
-}
-
-
-public class shrewInfo : Shrew //Näbbmus
-    {
-        public string TilePosition;
-        public GameObject Newobject;
-        shrewInfo other;
-
-        public shrewInfo shrewAdding(string tilename, GameObject NewObject)
+        WolfList.Add(new WolfInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
-    }
-   
-        
-public class WeaselInfo : Weasel //vessla
-    {
-        public string TilePosition;
-        public GameObject Newobject;
-        WeaselInfo other;
-
-        public WeaselInfo WeaselAdding(string tilename, GameObject NewObject)
-        {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
-
-            return other;
-        }
     }
 
-    public class FoxInfo : Fox   //Fox
+    public void AddShrew(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        FoxInfo other;
-
-        public FoxInfo FoxAdding(string tilename, GameObject NewObject)
+        ShrewList.Add(new shrewInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
+    }
 
-            return other;
-        }
+    public void AddWeasel(string name, GameObject other)
+    {
+        WeaselList.Add(new WeaselInfo()
+        {
+            TilePosition = name,
+            Newobject = other
+        });
+    }
+
+    public void AddFox(string name, GameObject other)
+    {
+        FoxList.Add(new FoxInfo()
+        {
+            TilePosition = name,
+            Newobject = other
+        });
+
     }
 
     //-----------Herbivore-----------\\
 
-    public class MouseInfo : Mouse //möss
-{
-    public string TilePosition;
-
-    public MouseInfo Adding(string tilename, MouseInfo NewObject)
+    public void AddMouse(string name, GameObject other)
     {
-        NewObject.TilePosition = tilename;
-
-        return NewObject;
-    }
-}
-
-
-public class HareInfo : Hare //Hare
-    {
-        public string TilePosition;
-        public GameObject Newobject;
-        HareInfo other;
-
-        public HareInfo HareAdding(string tilename, GameObject NewObject)
+        MouseList.Add(new MouseInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-
-    public class DeerInfo : RoeDeer //Rådjur
+    public void AddHare(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        DeerInfo other;
-
-        public DeerInfo DeerAdding(string tilename, GameObject NewObject)
+        HareList.Add(new HareInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-
-    public class MooseInfo : Moose   //älg
+    public void AddDeer(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        MooseInfo other;
-
-        public MooseInfo MooseAdding(string tilename, GameObject NewObject)
+        DeerList.Add(new DeerInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
+    }
+
+    public void AddMoose(string name, GameObject other)
+    {
+        MooseList.Add(new MooseInfo()
+        {
+            TilePosition = name,
+            Newobject = other
+        });
+
     }
 
     //-----------Herbivore-----------\\
 
-    public class SquirrelInfo : Squirrel  // Ekorre
+    public void AddSquirrel(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        SquirrelInfo other;
-
-        public SquirrelInfo SquirrelAdding(string tilename, GameObject NewObject)
+        SquirrelList.Add(new SquirrelInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-
-    public class RatInfo : Rat            // råttor
+    public void AddRat(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        RatInfo other;
-
-        public RatInfo RatAdding(string tilename, GameObject NewObject)
+        RatList.Add(new RatInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-
-    public class WildBoarInfo : Boar    // vildsvin
+    public void AddBoar(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        WildBoarInfo other;
-
-        public WildBoarInfo BoarAdding(string tilename, GameObject NewObject)
+        BoarList.Add(new WildBoarInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-
-    public class BrownBearInfo : BrownBear    // Björn
+    public void AddBear(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        BrownBearInfo other;
-
-        public BrownBearInfo BearAdding(string tilename, GameObject NewObject)
+        BrownBearList.Add(new BrownBearInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
     //-----------Tree-type-----------\\
 
-    public class BeechInfo : Beech
+    public void AddBeech(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        BeechInfo other;
-
-        public BeechInfo BeechAdding(string tilename, GameObject NewObject)
+        BeechList.Add(new BeechInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-    public class BirchInfo : Birch
+    public void AddBirch(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        BirchInfo other;
-
-        public BirchInfo BirchAdding(string tilename, GameObject NewObject)
+        BirchList.Add(new BirchInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
 
-
-    public class SpruceInfo : Spruce
+    public void AddSpruce(string name, GameObject other)
     {
-        public string TilePosition;
-        public GameObject Newobject;
-        SpruceInfo other;
-
-        public SpruceInfo SpruceAdding(string tilename, GameObject NewObject)
+        SpruceList.Add(new SpruceInfo()
         {
-            other.TilePosition = tilename;
-            other.Newobject = NewObject;
+            TilePosition = name,
+            Newobject = other
+        });
 
-            return other;
-        }
     }
-
-
-
-
-
-
-
-
-
 
 }

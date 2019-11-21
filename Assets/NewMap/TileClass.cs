@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class TileClass : MonoBehaviour
 {
+    //Main Database
+    Global_Database database = new Global_Database();
+
+
+
+
+
+
+    // public Global_Database Database;
+
     // Start is called before the first frame update
 
     //Variables for RewardSystem
@@ -48,6 +58,7 @@ public class TileClass : MonoBehaviour
 
     public string Groundtype;
     private System.Random random = new System.Random();
+
 
 
 
@@ -128,8 +139,9 @@ public class TileClass : MonoBehaviour
         if (sampleObject.name == "Spruce")
         {
             startGrowthPine();
-           // database.AddToDataBase(database.SpruceList, sampleObject, name);
-            //Debug.Log("ADAWDAWD");
+           // database.AddWolf(name, sampleObject);
+            
+            
         }
         if (sampleObject.name == "Birch")
         {
