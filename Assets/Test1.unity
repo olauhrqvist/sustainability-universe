@@ -541,7 +541,7 @@ PrefabInstance:
     - target: {fileID: 6582727538211754660, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_Name
-      value: RatObject
+      value: Rat
       objectReference: {fileID: 0}
     - target: {fileID: 3252335117015187768, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
@@ -623,6 +623,21 @@ PrefabInstance:
       propertyPath: m_Text
       value: Rat
       objectReference: {fileID: 0}
+    - target: {fileID: 1013820209848030576, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 2010097728}
+    - target: {fileID: 1013820211886869454, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 1200029491}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 931832574}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca15dcb4a3841e46aef1b62913a203c, type: 3}
 --- !u!1 &74851726
@@ -837,6 +852,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Brown Bear
       objectReference: {fileID: 0}
+    - target: {fileID: 64866632271551933, guid: 6b0835915f597bc4ca5df60a7c22cbcc,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 441510861}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0835915f597bc4ca5df60a7c22cbcc, type: 3}
 --- !u!1 &113616044 stripped
@@ -987,6 +1007,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Moose
       objectReference: {fileID: 0}
+    - target: {fileID: 64866632271551933, guid: 6b0835915f597bc4ca5df60a7c22cbcc,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 657487254}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0835915f597bc4ca5df60a7c22cbcc, type: 3}
 --- !u!1 &128749524
@@ -1824,6 +1849,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: Wolf
       objectReference: {fileID: 0}
+    - target: {fileID: 64866632271551933, guid: 6b0835915f597bc4ca5df60a7c22cbcc,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 980372985}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0835915f597bc4ca5df60a7c22cbcc, type: 3}
 --- !u!1 &318313738
@@ -2722,12 +2752,17 @@ PrefabInstance:
         type: 3}
       propertyPath: sampleObject
       value: 
-      objectReference: {fileID: 100000, guid: 7dca68918011bd644a4dc268eea79b44, type: 3}
+      objectReference: {fileID: 2088011613}
     - target: {fileID: 1013820210548217879, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: Name
       value: Birch
       objectReference: {fileID: 0}
+    - target: {fileID: 1013820210548217879, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 2088011613}
     - target: {fileID: 3252335116360994433, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2737,12 +2772,17 @@ PrefabInstance:
         type: 3}
       propertyPath: sampleObject
       value: 
-      objectReference: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+      objectReference: {fileID: 1641798922}
     - target: {fileID: 1013820211898527404, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: Name
       value: Spruce
       objectReference: {fileID: 0}
+    - target: {fileID: 1013820211898527404, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 1641798922}
     - target: {fileID: 3252335116360994434, guid: a4c221be721e85c46aa60d87496f5e82,
         type: 3}
       propertyPath: m_IsActive
@@ -3114,6 +3154,16 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1013820211195594409, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: sampleObject
+      value: 
+      objectReference: {fileID: 1208781444}
+    - target: {fileID: 1013820211195594409, guid: a4c221be721e85c46aa60d87496f5e82,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 1208781444}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4c221be721e85c46aa60d87496f5e82, type: 3}
 --- !u!1 &446376515
@@ -4818,6 +4868,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1013820209848030576, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 512193374}
+    - target: {fileID: 1013820211886869454, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 1690694839}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 29628688}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca15dcb4a3841e46aef1b62913a203c, type: 3}
 --- !u!1 &961920307
@@ -6369,6 +6434,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!1 &1641798922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6582727538441922936, guid: a4c221be721e85c46aa60d87496f5e82,
+    type: 3}
+  m_PrefabInstance: {fileID: 446325801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1656877902
 GameObject:
   m_ObjectHideFlags: 0
@@ -7488,6 +7559,21 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 10914, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1013820209848030576, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 953880465}
+    - target: {fileID: 1013820211886869454, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 1014639073}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: Spawnable
+      value: 
+      objectReference: {fileID: 1183417197}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca15dcb4a3841e46aef1b62913a203c, type: 3}
 --- !u!1 &1992584276 stripped

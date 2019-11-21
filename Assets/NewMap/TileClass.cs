@@ -123,15 +123,15 @@ public class TileClass : MonoBehaviour
 
         //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
     }
-    public void GrowObject(GameObject sampleObject)
+    public void GrowObject(string SpawnType)
     {
-        if (sampleObject.name == "Spruce")
+        if (SpawnType == "Spruce")
         {
             startGrowthPine();
            // database.AddToDataBase(database.SpruceList, sampleObject, name);
             //Debug.Log("ADAWDAWD");
         }
-        if (sampleObject.name == "Birch")
+        if (SpawnType == "Birch")
         {
             startGrowthLeaf();
         }

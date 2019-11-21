@@ -5,24 +5,35 @@ using UnityEngine.EventSystems;
 using System;
 public class DropHandler : MonoBehaviour, IDropHandler
 {
-    public SpawnObject SpawnScript;
-    public GameObject sampleObject;
-    public String Name;
+    public GameObject Spawnable;
+    string Name;
+    private List<TileClass> tiles;
+
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform invPanel = transform as RectTransform;
 
         if(!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition)){
-            //Debug.Log("drop");
-
-            //var newobj = SpawnScript.AddObject(sampleObject);
-            sampleObject.name = Name;
-            SpawnScript.AddObject(sampleObject);
-
-            //string name = SpawnScript.name;
-            //newobj.AddComponent(Type.GetType(name));
-            //newobj.tag = tagname;
+            Name = Spawnable.name;
+            //Debug.Log(Name);
+            AddObject(Name);
         }
 
+    }
+    public void AddObject(string sampleObject)
+    {
+
+        transform.rotation = Quaternion.identity;
+
+        RaycastHit hit = new RaycastHit();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            GameObject TargetTile = hit.collider.gameObject;
+            tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+            TileClass tile = tiles.Find(x => x.name == TargetTile.name);
+            tile.GrowObject(sampleObject);
+        }
     }
 }
