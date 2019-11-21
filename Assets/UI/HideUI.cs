@@ -12,35 +12,63 @@ public class HideUI : MonoBehaviour
     public Sprite ShowSprite;
     public Sprite HideSprite;
     public Button ButtonSprite;
+    public GameObject Hide;
+    public GameObject Show;
+    public void ToggleText()
+    {
+        if (!Hidden)
+        {
+            Hidden = true;
+            ToggleAll();
+            Hide.SetActive(false);
+            Show.SetActive(true);
+        }
+        else
+        {
+            Hidden = false;
+            ToggleAll();
+            Hide.SetActive(true);
+            Show.SetActive(false);
+        }
+    }
     public void ToggleUIElements()
     {
         if (!Hidden)
         {
             Hidden = true;
+            ToggleAll();
+            ButtonSprite.image.sprite = HideSprite;
+        }
+        else
+        {
+            Hidden = false;
+            ToggleAll();
+            ButtonSprite.image.sprite = ShowSprite;
+        }
+    }
+
+    private void ToggleAll()
+    {
+        if (Hidden)
+        {
             foreach (GameObject i in UIElements)
             {
-                i.SetActive(false);
+                i.SetActive(!Hidden);
             }
             Vector3 temp = new Vector3(Movement, 0, 0);
             foreach (GameObject j in Buttons)
             {
                 j.transform.localPosition += temp;
             }
-
-            ButtonSprite.image.sprite = HideSprite;
         }
         else
         {
-            Hidden = false;
-            UIElements[0].SetActive(true);
             Vector3 temp = new Vector3(-Movement, 0, 0);
-
+            UIElements[0].SetActive(true);
             foreach (GameObject j in Buttons)
             {
                 j.transform.localPosition += temp;
             }
-
-            ButtonSprite.image.sprite = ShowSprite;
         }
     }
 }
