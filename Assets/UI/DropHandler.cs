@@ -13,7 +13,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
         RectTransform invPanel = transform as RectTransform;
 
         if(!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition)){
-            Debug.Log("drop");
+            //Debug.Log("drop");
 
             //var newobj = SpawnScript.AddObject(sampleObject);
             sampleObject.name = Name;
