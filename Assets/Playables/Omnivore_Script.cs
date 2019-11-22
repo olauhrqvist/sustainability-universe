@@ -29,4 +29,8 @@ public class Omnivore_Script : Animal_Script
         {
 
         }
+    private void Awake()
+    {
+        SetBaseType("Omnivore");
+    }
 }

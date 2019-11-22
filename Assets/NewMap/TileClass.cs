@@ -123,19 +123,100 @@ public class TileClass : MonoBehaviour
 
         //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
     }
-    public void GrowObject(string SpawnType)
+    public void GrowObject(string SpawnType, string type)
     {
-        if (SpawnType == "Spruce")
+        switch (type)
         {
-            startGrowthPine();
-           // database.AddToDataBase(database.SpruceList, sampleObject, name);
-            //Debug.Log("ADAWDAWD");
-        }
-        if (SpawnType == "Birch")
-        {
-            startGrowthLeaf();
-        }
+            case "Tree":
+                switch (SpawnType)
+                {
+                    case "Spruce":
+                        startGrowthPine();
+                        // database.AddToDataBase(database.SpruceList, sampleObject, name);
+                        //Debug.Log("ADAWDAWD");
+                        break;
 
+                    case "Birch":
+                        startGrowthLeaf();
+                        break;
+
+                    case "Beech":
+                        break;
+
+                    default:
+                        Debug.Log("Tree not found : " + SpawnType);
+                        break;
+                }
+                break;
+
+            case "Carnivore":
+                switch (SpawnType)
+                {
+                    case "Shrew":
+                        break;
+
+                    case "Weasel":
+                        break;
+
+                    case "Fox":
+                        break;
+
+                    case "Wolf":
+                        break;
+
+                    default:
+                        Debug.Log("Carnivore not found : " + SpawnType);
+                        break;
+                }
+                break;
+
+            case "Herbivore":
+                switch (SpawnType)
+                {
+                    case "Mouse":
+                        break;
+
+                    case "Hare":
+                        break;
+
+                    case "RoeDeer":
+                        break;
+
+                    case "Moose":
+                        break;
+
+                    default:
+                        Debug.Log("Herbivore not found : " + SpawnType);
+                        break;
+                }
+                break;
+
+            case "Omnivore":
+                switch (SpawnType)
+                {
+                    case "Squirrel":
+                        break;
+
+                    case "Rat":
+                        break;
+
+                    case "Boar":
+                        break;
+
+                    case "BrownBear":
+                        break;
+
+                    default:
+                        Debug.Log("Omnivore not found : " + SpawnType);
+                        break;
+                }
+                break;
+
+            default:
+                Debug.Log("Type not found : " + type);
+                break;
+            
+        }
     }
     public void startGrowthLeaf()
     {
