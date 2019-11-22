@@ -2,29 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Classes for all the diffrent type of animals, trees etc.
+// Tileposition takes the the name of the tile and 
+// Newobject takes the Object
+
 //-----------Carnivore-----------\\
-public class WolfInfo : Wolf  //varg
+public class WolfInfo : Wolf  
 {
     public string TilePosition;
     public GameObject Newobject;
 }
 
 
-public class shrewInfo : Shrew //Näbbmus
+public class shrewInfo : Shrew 
 {
     public string TilePosition;
     public GameObject Newobject;
 }
 
 
-public class WeaselInfo : Weasel //vessla
+public class WeaselInfo : Weasel 
 {
     public string TilePosition;
     public GameObject Newobject;
 
 }
 
-public class FoxInfo : Fox   //Fox
+public class FoxInfo : Fox   
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -33,7 +37,7 @@ public class FoxInfo : Fox   //Fox
 
 //-----------Herbivore-----------\\
 
-public class MouseInfo : Mouse //möss
+public class MouseInfo : Mouse 
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -42,7 +46,7 @@ public class MouseInfo : Mouse //möss
 
 
 
-public class HareInfo : Hare //Hare
+public class HareInfo : Hare 
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -50,7 +54,7 @@ public class HareInfo : Hare //Hare
 }
 
 
-public class DeerInfo : RoeDeer //Rådjur
+public class DeerInfo : RoeDeer 
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -58,7 +62,7 @@ public class DeerInfo : RoeDeer //Rådjur
 }
 
 
-public class MooseInfo : Moose   //älg
+public class MooseInfo : Moose  
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -67,7 +71,7 @@ public class MooseInfo : Moose   //älg
 
 //-----------Herbivore-----------\\
 
-public class SquirrelInfo : Squirrel  // Ekorre
+public class SquirrelInfo : Squirrel 
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -75,7 +79,7 @@ public class SquirrelInfo : Squirrel  // Ekorre
 }
 
 
-public class RatInfo : Rat            // råttor
+public class RatInfo : Rat
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -83,7 +87,7 @@ public class RatInfo : Rat            // råttor
 }
 
 
-public class WildBoarInfo : Boar    // vildsvin
+public class WildBoarInfo : Boar 
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -91,7 +95,7 @@ public class WildBoarInfo : Boar    // vildsvin
 }
 
 
-public class BrownBearInfo : BrownBear    // Björn
+public class BrownBearInfo : BrownBear
 {
     public string TilePosition;
     public GameObject Newobject;

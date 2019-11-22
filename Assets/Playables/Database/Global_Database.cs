@@ -5,7 +5,7 @@ using UnityEngine;
 public class Global_Database : MonoBehaviour
 {
 
-    public List<TileClass> TileList = new List<TileClass>();
+  //  public List<TileClass> TileList = new List<TileClass>();
 
     //-----------Carnivore List-----------\\
     public List<WolfInfo> WolfList = new List<WolfInfo>();
