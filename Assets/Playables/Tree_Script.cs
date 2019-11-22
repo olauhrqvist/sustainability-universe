@@ -31,4 +31,8 @@ public class Tree_Script : Vegetation
     {
 
     }
+    private void Awake()
+    {
+        SetBaseType("Tree");
+    }
 }

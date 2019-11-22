@@ -15,7 +15,7 @@ public class Saprovore_Script : Animal_Script
                             int forestid,
                             int growthtime,
                             string species) : base(
-                                                "Saprove",
+                                                "Saprovore",
                                                 hierarchy,
                                                 pop,
                                                 ID,
@@ -29,4 +29,8 @@ public class Saprovore_Script : Animal_Script
         {
 
         }
+    private void Awake()
+    {
+        SetBaseType("Saprovore");
+    }
 }

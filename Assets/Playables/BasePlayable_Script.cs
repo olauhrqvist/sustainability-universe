@@ -8,7 +8,7 @@ public  class Base_Playable : MonoBehaviour
 {
     int ID;
     GameObject Mesh;
-    public string Type;
+    string Type;
     int Range;
     double OverallHealth = 100;
     int SpaceCost;
@@ -43,6 +43,8 @@ public  class Base_Playable : MonoBehaviour
     public string GetSpecies() { return Species; }
     public void SetSpecies(string input) { Species = input; }
     public string GetBaseType() { return Type; }
+
+    public void SetBaseType(string Input) { Type = Input; }
     public void SetID(int Input) { ID = Input; }
     public int GetID() { return ID; }
     public void SetRange(int Input) { Range = Input; }

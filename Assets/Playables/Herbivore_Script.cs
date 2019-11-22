@@ -29,4 +29,8 @@ public class Herbivore_Script : Animal_Script
         {
 
         }
+    private void Awake()
+    {
+        SetBaseType("Herbivore");
+    }
 }
