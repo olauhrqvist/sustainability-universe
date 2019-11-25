@@ -253,6 +253,33 @@ public class TileClass : MonoBehaviour
             return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().leafObject;
     }
 
+    //addTreeData() : add scripts to each tree and add each tree to the global database
+    private void addTreeData(GameObject treeObject)
+    {
+        if (pineForest)
+        {
+            treeObject.AddComponent<Spruce>();
+            treeObject.GetComponent<Spruce>().SetForestID(forestID);
+            globalDatabase.AddSpruce(tileGameObject.name, treeObject);
+            print("Tile " + tileGameObject.name + " and SpruceList count is: " + globalDatabase.SpruceList.Count);
+
+        }
+        else if (leafForest)
+        {
+            treeObject.AddComponent<Birch>();
+            treeObject.GetComponent<Birch>().SetForestID(forestID);
+            globalDatabase.AddBirch(tileGameObject.name, treeObject);
+            print("Tile " + tileGameObject.name + " and BirchList count is: " + globalDatabase.BirchList.Count);
+        }
+        else
+        {
+            treeObject.AddComponent<Beech>();
+            treeObject.GetComponent<Beech>().SetForestID(forestID);
+            globalDatabase.AddBeech(tileGameObject.name, treeObject);
+            print("Tile " + tileGameObject.name + " and BeechList count is: " + globalDatabase.BeechList.Count);
+        }
+    }
+
     public void startGrowth()
     {
 
@@ -281,22 +308,13 @@ public class TileClass : MonoBehaviour
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         //Tree_Script
-        if (pineForest)
-        {
-            treeObject.AddComponent<Birch>();
-            treeObject.GetComponent<Birch>().SetForestID(forestID);
-            globalDatabase.AddBirch(tileGameObject.name, treeObject);
-            print("Birch count is: " + globalDatabase.BirchList.Count);
-
-        }
-        else
-        {
-            treeObject.AddComponent<Beech>();
-            treeObject.GetComponent<Beech>().SetForestID(forestID);
-            globalDatabase.AddBeech(tileGameObject.name, treeObject);
-            print("Beech count is: " + globalDatabase.BeechList.Count);
-        }
-
+        /*
+          treeObject.AddComponent<Spruce>();
+            treeObject.GetComponent<Spruce>().SetForestID(forestID);
+            globalDatabase.AddSpruce(tileGameObject.name, treeObject);
+            print("Tile is " + tileGameObject.name + "SpruceList count is: " + globalDatabase.SpruceList.Count);
+         * */
+        addTreeData(treeObject);
         //End Tree_Script
 
         tileTrees.Add(treeObject);
@@ -334,21 +352,7 @@ public class TileClass : MonoBehaviour
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         //Tree_script
-        if (pineForest)
-        {
-            treeObject.AddComponent<Birch>();
-            treeObject.GetComponent<Birch>().SetForestID(forestID);
-            globalDatabase.AddBirch(tileGameObject.name, treeObject);
-            print("Birch count is: "+ globalDatabase.BirchList.Count);
-            
-        }
-        else
-        {
-            treeObject.AddComponent<Beech>();
-            treeObject.GetComponent<Beech>().SetForestID(forestID);
-            globalDatabase.AddBeech(tileGameObject.name, treeObject);
-            print("Beech count is: " + globalDatabase.BeechList.Count);
-        }
+        addTreeData(treeObject);
         //End Tree_Script
 
         //treeObject.name = "pineTree";
@@ -367,6 +371,8 @@ public class TileClass : MonoBehaviour
         //treeObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
+
+    
 
     public void calculateNeighbours()
     {
