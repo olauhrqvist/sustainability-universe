@@ -30,5 +30,8 @@ public class Carnivore_Script : Animal_Script
         {
 
         }
-
+    private void Awake()
+    {
+        SetBaseType("Carnivore");
+    }
 }

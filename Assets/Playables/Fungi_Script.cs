@@ -31,4 +31,8 @@ public class Fungi_Script : Vegetation
     {
 
     }
+    private void Awake()
+    {
+        SetBaseType("Fungus");
+    }
 }

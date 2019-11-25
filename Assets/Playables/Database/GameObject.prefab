@@ -43,3 +43,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6307a3e67401d34eb10a978c00682f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileList: []
+  WolfList: []
+  ShrewList: []
+  WeaselList: []
+  FoxList: []
+  MouseList: []
+  HareList: []
+  DeerList: []
+  MooseList: []
+  SquirrelList: []
+  RatList: []
+  BoarList: []
+  BrownBearList: []
+  BeechList: []
+  BirchList: []
+  SpruceList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
