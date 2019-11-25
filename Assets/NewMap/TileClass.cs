@@ -5,7 +5,7 @@ using UnityEngine;
 public class TileClass : MonoBehaviour
 {
     //Main Database
-    Global_Database database = new Global_Database();
+    Global_Database globalDatabase = new Global_Database();
 
 
 
@@ -285,11 +285,16 @@ public class TileClass : MonoBehaviour
         {
             treeObject.AddComponent<Birch>();
             treeObject.GetComponent<Birch>().SetForestID(forestID);
+            globalDatabase.AddBirch(tileGameObject.name, treeObject);
+            print("Birch count is: " + globalDatabase.BirchList.Count);
+
         }
         else
         {
             treeObject.AddComponent<Beech>();
             treeObject.GetComponent<Beech>().SetForestID(forestID);
+            globalDatabase.AddBeech(tileGameObject.name, treeObject);
+            print("Beech count is: " + globalDatabase.BeechList.Count);
         }
 
         //End Tree_Script
@@ -333,11 +338,16 @@ public class TileClass : MonoBehaviour
         {
             treeObject.AddComponent<Birch>();
             treeObject.GetComponent<Birch>().SetForestID(forestID);
+            globalDatabase.AddBirch(tileGameObject.name, treeObject);
+            print("Birch count is: "+ globalDatabase.BirchList.Count);
+            
         }
         else
         {
             treeObject.AddComponent<Beech>();
             treeObject.GetComponent<Beech>().SetForestID(forestID);
+            globalDatabase.AddBeech(tileGameObject.name, treeObject);
+            print("Beech count is: " + globalDatabase.BeechList.Count);
         }
         //End Tree_Script
 
@@ -497,6 +507,7 @@ public class TileClass : MonoBehaviour
         }
 
 
+        
 
 
     }
