@@ -260,23 +260,23 @@ public class TileClass : MonoBehaviour
         {
             treeObject.AddComponent<Spruce>();
             treeObject.GetComponent<Spruce>().SetForestID(forestID);
-            globalDatabase.AddSpruce(tileGameObject.name, treeObject);
-            print("Tile " + tileGameObject.name + " and SpruceList count is: " + globalDatabase.SpruceList.Count);
+           // globalDatabase.AddSpruce(tileGameObject.name, treeObject);
+           // print("Tile " + tileGameObject.name + " and SpruceList count is: " + globalDatabase.SpruceList.Count);
 
         }
         else if (leafForest)
         {
             treeObject.AddComponent<Birch>();
             treeObject.GetComponent<Birch>().SetForestID(forestID);
-            globalDatabase.AddBirch(tileGameObject.name, treeObject);
-            print("Tile " + tileGameObject.name + " and BirchList count is: " + globalDatabase.BirchList.Count);
+          //  globalDatabase.AddBirch(tileGameObject.name, treeObject);
+          //  print("Tile " + tileGameObject.name + " and BirchList count is: " + globalDatabase.BirchList.Count);
         }
         else
         {
             treeObject.AddComponent<Beech>();
             treeObject.GetComponent<Beech>().SetForestID(forestID);
-            globalDatabase.AddBeech(tileGameObject.name, treeObject);
-            print("Tile " + tileGameObject.name + " and BeechList count is: " + globalDatabase.BeechList.Count);
+          //  globalDatabase.AddBeech(tileGameObject.name, treeObject);
+          // print("Tile " + tileGameObject.name + " and BeechList count is: " + globalDatabase.BeechList.Count);
         }
     }
 
