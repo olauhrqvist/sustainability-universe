@@ -93,9 +93,9 @@ public class mapClick : MonoBehaviour
             dicInfo += kvp.Key + ": " + kvp.Value + "\r\n";
         }
 
-        int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
-        int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
-        int carnivores = globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name);
+        int herbivores = globalDatabase.calHerbivores(selectTile.GetComponent<Collider>().name);
+        int omnivores = globalDatabase.calOmnivores(selectTile.GetComponent<Collider>().name);
+        int carnivores = globalDatabase.calCarnivores(selectTile.GetComponent<Collider>().name);
 
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
         + "Herbivores: " + herbivores + "\r\n"
