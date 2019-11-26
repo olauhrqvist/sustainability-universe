@@ -17,7 +17,8 @@ public class RoeDeer : Herbivore_Script
                     int growthtime = 1,
                     string species = "RoeDeer",
                      double meatValue = 20,
-                    double vegetationValue = 0
+                    double vegetationValue = 0,
+                    double foodNeeded = 150
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -29,7 +30,8 @@ public class RoeDeer : Herbivore_Script
                            growthtime,
                            species,
                            meatValue,
-                           vegetationValue)
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

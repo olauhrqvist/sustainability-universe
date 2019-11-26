@@ -32,7 +32,8 @@ public class Beech : Tree_Script
                            sunlightcost,
                            nutritioncost,
                            meatValue,
-                           vegetationValue)
+                           vegetationValue,
+                           0)
     {
 
     }

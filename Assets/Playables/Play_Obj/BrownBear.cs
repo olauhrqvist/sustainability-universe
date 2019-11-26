@@ -17,7 +17,8 @@ public class BrownBear : Omnivore_Script
                     int growthtime = 1,
                     string species = "BrownBear",
                      double meatValue = 400,
-                    double vegetationValue = 0
+                    double vegetationValue = 0,
+                    double foodNeeded = 1400
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -29,7 +30,8 @@ public class BrownBear : Omnivore_Script
                            growthtime,
                            species,
                            meatValue,
-                           vegetationValue)
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

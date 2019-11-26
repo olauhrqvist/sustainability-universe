@@ -17,7 +17,8 @@ public class Weasel : Carnivore_Script
                     int growthtime = 1,
                     string species = "Weasel",
                     double meatValue = 2,
-                    double vegetationValue = 0
+                    double vegetationValue = 0,
+                    double foodNeeded = 8
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -29,7 +30,8 @@ public class Weasel : Carnivore_Script
                            growthtime,
                            species,
                            meatValue,
-                           vegetationValue)
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

@@ -17,7 +17,8 @@ public class Fox : Carnivore_Script
                     int growthtime = 1,
                     string species = "Fox",
                     double meatValue = 8,
-                    double vegetationValue = 0
+                    double vegetationValue = 0,
+                    double foodNeeded = 80
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -29,7 +30,8 @@ public class Fox : Carnivore_Script
                            growthtime,
                            species,
                            meatValue,
-                           vegetationValue
+                           vegetationValue,
+                           foodNeeded
                            )
     {
 

@@ -17,7 +17,8 @@ public class Boar : Omnivore_Script
                     int growthtime = 1,
                     string species = "Boar",
                     double meatValue = 100,
-                    double vegetationValue = 0
+                    double vegetationValue = 0,
+                    double foodNeeded = 500 //not set in stone!
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -29,7 +30,8 @@ public class Boar : Omnivore_Script
                            growthtime,
                            species,
                            meatValue,
-                           vegetationValue)
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

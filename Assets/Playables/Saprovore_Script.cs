@@ -16,7 +16,8 @@ public class Saprovore_Script : Animal_Script
                             int growthtime,
                             string species,
                             double meatValue,
-                            double vegetationValue) : base(
+                            double vegetationValue,
+                            double foodNeeded) : base(
                                                 "Saprovore",
                                                 hierarchy,
                                                 pop,
@@ -29,7 +30,8 @@ public class Saprovore_Script : Animal_Script
                                                 growthtime,
                                                 species,
                                                 meatValue,
-                                                vegetationValue)
+                                                vegetationValue,
+                                                0)
         {
 
         }
