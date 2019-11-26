@@ -3,66 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Classes for all the diffrent type of animals, trees etc.
-// Tileposition takes the the name of the tile and 
+// Tileposition takes the the name of the tile and
 // Newobject takes the Object
 
 //-----------Carnivore-----------\\
-public class WolfInfo : Wolf  
+public class WolfInfo : Wolf
 {
     public string TilePosition;
     public GameObject Newobject;
 }
 
 
-public class shrewInfo : Shrew 
+public class shrewInfo : Shrew
 {
     public string TilePosition;
     public GameObject Newobject;
 }
 
 
-public class WeaselInfo : Weasel 
+public class WeaselInfo : Weasel
 {
     public string TilePosition;
     public GameObject Newobject;
 
 }
 
-public class FoxInfo : Fox   
-{
-    public string TilePosition;
-    public GameObject Newobject;
-  
-}
-
-//-----------Herbivore-----------\\
-
-public class MouseInfo : Mouse 
-{
-    public string TilePosition;
-    public GameObject Newobject;
-
-}
-
-
-
-public class HareInfo : Hare 
-{
-    public string TilePosition;
-    public GameObject Newobject;
-
-}
-
-
-public class DeerInfo : RoeDeer 
-{
-    public string TilePosition;
-    public GameObject Newobject;
-
-}
-
-
-public class MooseInfo : Moose  
+public class FoxInfo : Fox
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -71,7 +37,41 @@ public class MooseInfo : Moose
 
 //-----------Herbivore-----------\\
 
-public class SquirrelInfo : Squirrel 
+public class MouseInfo : Mouse
+{
+    public string TilePosition;
+    public GameObject Newobject;
+
+}
+
+
+
+public class HareInfo : Hare
+{
+    public string TilePosition;
+    public GameObject Newobject;
+
+}
+
+
+public class DeerInfo : RoeDeer
+{
+    public string TilePosition;
+    public GameObject Newobject;
+
+}
+
+
+public class MooseInfo : Moose
+{
+    public string TilePosition;
+    public GameObject Newobject;
+
+}
+
+//-----------Herbivore-----------\\
+
+public class SquirrelInfo : Squirrel
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -87,7 +87,7 @@ public class RatInfo : Rat
 }
 
 
-public class WildBoarInfo : Boar 
+public class WildBoarInfo : Boar
 {
     public string TilePosition;
     public GameObject Newobject;
@@ -125,4 +125,3 @@ public class SpruceInfo : Spruce
     public GameObject Newobject;
 
 }
-

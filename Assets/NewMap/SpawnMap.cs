@@ -118,7 +118,7 @@ public class SpawnMap : MonoBehaviour
       {
 
 
-        if(tile.Groundtype == "brownearth")
+        /*if(tile.Groundtype == "brownearth")
         {
           Color color = new Color(51, 102, 0);
           tile.tileGameObject.GetComponent<Renderer>().material.color = color;
@@ -128,7 +128,7 @@ public class SpawnMap : MonoBehaviour
         {
           Color color = new Color(0, 102, 0);
           tile.tileGameObject.GetComponent<Renderer>().material.color = color;
-        }
+        }*/
 
         tile.calculateNeighbours();
 
@@ -149,9 +149,6 @@ public class SpawnMap : MonoBehaviour
 
     void growth()
     {
-
-      Debug.Log("Wolves on map:" + globalDatabase.WolfList.Count);
-
         foreach (var tile in tiles)
         {
             if (tile.grow)

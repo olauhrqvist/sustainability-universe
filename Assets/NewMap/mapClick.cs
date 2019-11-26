@@ -181,14 +181,14 @@ public class mapClick : MonoBehaviour
                 else if (hit.collider.gameObject.tag == "Plant")
                 {
                     WindowShow = false;
-                    print("hit trees");
+                    //print("hit trees");
                     if (selectTile != null)
                         selectTile.GetComponent<Renderer>().material.color = orginColor;
                 }
                 else
                 {
                     WindowShow = false;
-                    print("hit other things");
+                    //print("hit other things");
                     if (selectTile != null)
                         selectTile.GetComponent<Renderer>().material.color = orginColor;
                 }
