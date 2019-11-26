@@ -15,7 +15,10 @@ public class Fungi_Script : Vegetation
                                 int growthtime,
                                 string species,
                                 int SunlightCost,
-                                int NutritionalCost) : base(
+                                int NutritionalCost,
+                                double MeatValue,
+                                double VegetationValue,
+                                double foodNeeded) : base(
                                                     "Fungi",
                                                     hierarchy,
                                                     ID,
@@ -27,7 +30,10 @@ public class Fungi_Script : Vegetation
                                                     growthtime,
                                                     species,
                                                     SunlightCost,
-                                                    NutritionalCost)
+                                                    NutritionalCost,
+                                                    MeatValue,
+                                                    VegetationValue,
+                                                    0)
     {
 
     }

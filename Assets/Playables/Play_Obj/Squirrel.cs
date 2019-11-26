@@ -15,7 +15,10 @@ public class Squirrel : Omnivore_Script
                     Dictionary<string, double> enviroment = null,
                     int forestid = 0,
                     int growthtime = 1,
-                    string species = "Squirrel"
+                    string species = "Squirrel",
+                    double meatValue = 0.5,
+                    double vegetationValue = 0,
+                    double foodNeeded = 20
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -25,7 +28,10 @@ public class Squirrel : Omnivore_Script
                            enviroment,
                            forestid,
                            growthtime,
-                           species)
+                           species,
+                           meatValue,
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

@@ -15,7 +15,10 @@ public class Moose : Herbivore_Script
                     Dictionary<string, double> enviroment = null,
                     int forestid = 0,
                     int growthtime = 1,
-                    string species = "Moose"
+                    string species = "Moose",
+                    double meatValue = 800,
+                    double vegetationValue = 0,
+                    double foodNeeded = 1100
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -25,7 +28,10 @@ public class Moose : Herbivore_Script
                            enviroment,
                            forestid,
                            growthtime,
-                           species)
+                           species,
+                           meatValue,
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

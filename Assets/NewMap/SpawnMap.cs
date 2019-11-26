@@ -118,7 +118,7 @@ public class SpawnMap : MonoBehaviour
       {
 
 
-        /*if(tile.Groundtype == "brownearth")
+        if(tile.Groundtype == "brownearth")
         {
           Color color = new Color(51, 102, 0);
           tile.tileGameObject.GetComponent<Renderer>().material.color = color;
@@ -129,7 +129,7 @@ public class SpawnMap : MonoBehaviour
           Color color = new Color(0, 102, 0);
           tile.tileGameObject.GetComponent<Renderer>().material.color = color;
         }
-*/
+
         tile.calculateNeighbours();
 
       }

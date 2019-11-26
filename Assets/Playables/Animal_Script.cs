@@ -6,6 +6,9 @@ public class Animal_Script : Base_Playable
 {
     int FoodHierarchy;
     int Population;
+    double MeatValue; //how much food does the animals contain
+    double VegetationValue; //how much food the vegetation contains
+    double FoodNeeded; //food needed per population of 1
     public double AvailableFood()
     {
         return 0.0f;
@@ -24,7 +27,10 @@ public class Animal_Script : Base_Playable
                             Dictionary<string, double> enviroment,
                             int forestid,
                             int growthtime,
-                            string species) : base(
+                            string species,
+                            double meatValue,
+                            double vegetationValue,
+                            double foodNeeded) : base(
                                                 type,
                                                 ID,
                                                 mesh,
@@ -33,7 +39,10 @@ public class Animal_Script : Base_Playable
                                                 enviroment,
                                                 forestid,
                                                 growthtime,
-                                                species)
+                                                species,
+                                                meatValue,
+                                                vegetationValue,
+                                                foodNeeded)
         {
             FoodHierarchy = hierarchy;
             Population = pop;

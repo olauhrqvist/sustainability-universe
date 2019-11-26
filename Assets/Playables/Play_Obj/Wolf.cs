@@ -15,7 +15,10 @@ public class Wolf : Carnivore_Script
                     Dictionary<string, double> enviroment = null,
                     int forestid = 0,
                     int growthtime = 1,
-                    string species = "Wolf"
+                    string species = "Wolf",
+                    double meatValue = 50,
+                    double vegetationValue = 0,
+                    double foodNeeded = 6000
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -25,7 +28,10 @@ public class Wolf : Carnivore_Script
                            enviroment,
                            forestid,
                            growthtime,
-                           species)
+                           species,
+                           meatValue,
+                           vegetationValue,
+                           foodNeeded)
     {
 
     }

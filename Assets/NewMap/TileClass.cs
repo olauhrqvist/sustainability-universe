@@ -60,6 +60,11 @@ public class TileClass : MonoBehaviour
     private System.Random random = new System.Random();
 
 
+    //OnTileData variables
+    public double meatOnTile;
+    public double vegetationOnTile;
+
+
 
 
     // Constructor
@@ -84,10 +89,16 @@ public class TileClass : MonoBehaviour
         pineForest = false;
         leafForest = false;
         forestID = -1;
+        
+        //OnTileData
+        meatOnTile = 0;
+        vegetationOnTile = 0;
+    
 
 
 
-    }
+
+}
     public void markGroundtype()
     {
 
