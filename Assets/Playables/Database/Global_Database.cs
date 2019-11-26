@@ -32,12 +32,25 @@ public class Global_Database : MonoBehaviour
     public List<BirchInfo> BirchList = new List<BirchInfo>();
     public List<SpruceInfo> SpruceList = new List<SpruceInfo>();
 
+
+      //-----------Species List-----------\\
+      //public List<GameObject> CarnivoreList = new List<GameObject>();
+
     // which list you want to add the Object, wolflist for wolf etc
     /*  public void AddWolfToDataBase(List<WolfInfo> lista, GameObject NewObject, string Name)
-      {    
+      {
          // lista.Add(WolfInfo.Adding(Name,NewObject));
       }*/
-    
+
+      /*public void addCarnivore(string name, GameObject other, string species)
+      {
+        CarnivoreList.Add(new CarnivoreInfo()
+        {
+          TilePosition = name,
+          Newobject = other
+        });
+      }*/
+
 
     public void AddWolf(string name, GameObject other)
     {
@@ -46,7 +59,6 @@ public class Global_Database : MonoBehaviour
             TilePosition = name,
             Newobject = other
         });
-
     }
 
     public void AddShrew(string name, GameObject other)
@@ -191,6 +203,84 @@ public class Global_Database : MonoBehaviour
             Newobject = other
         });
 
+      }
+
+    public int calculateCarnivores(string tile)
+    {
+      int carnivores = 0;
+      foreach (var w in WolfList)
+      {
+        if (w.TilePosition == tile)
+          carnivores++;
+      }
+      foreach (var s in ShrewList)
+      {
+        if (s.TilePosition == tile)
+          carnivores++;
+      }
+      foreach (var f in FoxList)
+        {
+          if (f.TilePosition == tile)
+            carnivores++;
+        }
+        foreach (var w in WeaselList)
+          {
+            if (w.TilePosition == tile)
+              carnivores++;
+          }
+          return carnivores;
+    }
+
+    public int calculateOmnivores(string tile)
+    {
+      int omnivores = 0;
+      foreach (var w in SquirrelList)
+      {
+        if (w.TilePosition == tile)
+          omnivores++;
+      }
+      foreach (var s in BoarList)
+      {
+        if (s.TilePosition == tile)
+          omnivores++;
+      }
+      foreach (var f in RatList)
+        {
+          if (f.TilePosition == tile)
+            omnivores++;
+        }
+        foreach (var w in BrownBearList)
+          {
+            if (w.TilePosition == tile)
+              omnivores++;
+          }
+          return omnivores;
+    }
+
+    public int calculateHerbivores(string tile)
+    {
+      int herbivores = 0;
+      foreach (var w in MouseList)
+      {
+        if (w.TilePosition == tile)
+          herbivores++;
+      }
+      foreach (var s in HareList)
+      {
+        if (s.TilePosition == tile)
+          herbivores++;
+      }
+      foreach (var f in MooseList)
+        {
+          if (f.TilePosition == tile)
+            herbivores++;
+        }
+        foreach (var w in DeerList)
+          {
+            if (w.TilePosition == tile)
+              herbivores++;
+          }
+          return herbivores;
     }
 
 }

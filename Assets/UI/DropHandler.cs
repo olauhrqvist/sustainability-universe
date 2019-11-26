@@ -8,7 +8,10 @@ public class DropHandler : MonoBehaviour, IDropHandler
     public GameObject Spawnable;
     string Name, Type;
     private List<TileClass> tiles;
-    Global_Database globalDatabase = new Global_Database();
+    private Global_Database globalDatabase;
+
+
+
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -17,7 +20,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
         if(!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition)){
             Name = Spawnable.name;
             Type = Spawnable.GetComponent<Base_Playable>().GetBaseType();
-            //Debug.Log(Name);
+            Debug.Log(Name);
             AddObject(Name, Type);
         }
 
@@ -36,7 +39,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
             tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
             TileClass tile = tiles.Find(x => x.name == TargetTile.name);
             AddtoDatabase(sampleObject, type, TargetTile.name);
-           
+
             tile.GrowObject(sampleObject, type);
         }
     }
@@ -45,6 +48,9 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
     public void AddtoDatabase(string sampleObject, string type, string name)
     {
+      //globalDatabase = new Global_Database();
+      globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+
         switch (type)
         {
             case "Tree":

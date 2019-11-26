@@ -24,7 +24,7 @@ public class mapClick : MonoBehaviour
     private int plantCount = 0;
     private int animalCount = 0;
     private GameObject closeButton;
-
+    private Global_Database globalDatabase;// = new Global_Database();
 
     private void Awake()
     {
@@ -43,6 +43,8 @@ public class mapClick : MonoBehaviour
         closeButton.GetComponent<Image>().color = Color.clear;
         closeButton.GetComponentInChildren<Text>().text = "";
         closeButton.SetActive(false);
+
+
     }
     void findObj()
     {
@@ -59,6 +61,9 @@ public class mapClick : MonoBehaviour
 
     void printFoundList()
     {
+      // Fetch Database
+      globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+
         string dicInfo = "";
         foreach (var obj in foundObj)
         {
@@ -88,7 +93,17 @@ public class mapClick : MonoBehaviour
             dicInfo += kvp.Key + ": " + kvp.Value + "\r\n";
         }
 
-        tileInfo = "Total obj " + tileObjList.Count + "\r\n" + "Plant: " + plantCount + "  " + "Animal: " + animalCount + "\r\n" + dicInfo;
+        int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
+        int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
+        int carnivores = globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name);
+
+        tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
+        + "Herbivores: " + herbivores + "\r\n"
+        + "Omnivores: " + omnivores + "\r\n"
+        + "Carnivores: " + carnivores + "\r\n";
+
+
+        //tileInfo = "Total obj " + tileObjList.Count + "\r\n" + "Plant: " + plantCount + "  " + "Animal: " + animalCount + "\r\n" + dicInfo;
 
     }
 
@@ -99,10 +114,10 @@ public class mapClick : MonoBehaviour
             windowY = windowY - windowHight;
         if (windowWidth + windowX > Screen.width)
             windowX = windowX - windowWidth;
-      
+
         GUI.Label(new Rect(10, 20, windowWidth-10, windowHight - offset), tileInfo);
 
-        ////// Invisible(tranparent) ui button behind the gui button so the ray light can not go through the gui close button. 
+        ////// Invisible(tranparent) ui button behind the gui button so the ray light can not go through the gui close button.
         closeButton.SetActive(true);
         Vector3 pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         closeButton.GetComponent<RectTransform>().sizeDelta = new Vector2(windowWidth / 3, 20);
@@ -111,14 +126,14 @@ public class mapClick : MonoBehaviour
         ///
         if (GUI.Button(new Rect(windowWidth / 2 - windowWidth / 4, windowHight - 30, windowWidth / 2, 20), "Close"))
         {
-            
-            print("Close Tile Info");
+
+            //print("Close Tile Info");
             WindowShow = false;
             closeButton.SetActive(false);
             if (selectTile != null)
                 selectTile.GetComponent<Renderer>().material.color = orginColor;
         }
-        
+
     }
     void OnGUI()
     {
@@ -134,7 +149,7 @@ public class mapClick : MonoBehaviour
                     WindowShow = true;
                     windowX = Input.mousePosition.x;
                     windowY = Screen.height - Input.mousePosition.y;
-                    
+
                     //
 
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
@@ -146,7 +161,7 @@ public class mapClick : MonoBehaviour
                         selectTile.GetComponent<Renderer>().material.color = clickColor;
                     }
 
-                    
+
                     if (prevTile != null && prevTile != selectTile)
                     {
 
@@ -184,6 +199,6 @@ public class mapClick : MonoBehaviour
         {
             GUI.Window(0, new Rect(windowX, windowY, windowWidth, windowHight), MyWindow, "   ");
         }
-            
+
     }
 }

@@ -47,11 +47,13 @@ public class SpawnMap : MonoBehaviour
     public int forestID = 0;
     private System.Random random = new System.Random();
 
+    public Global_Database globalDatabase = new Global_Database();
 
 
     // Start is called before the first frame update
     void Start()
     {
+        globalDatabase = new Global_Database();
         natureDensity = 5;
         drawMap();
         drawGraphic();
@@ -147,6 +149,9 @@ public class SpawnMap : MonoBehaviour
 
     void growth()
     {
+
+      Debug.Log("Wolves on map:" + globalDatabase.WolfList.Count);
+
         foreach (var tile in tiles)
         {
             if (tile.grow)
@@ -181,7 +186,7 @@ public class SpawnMap : MonoBehaviour
                 tile.name = i.ToString() + j.ToString();
 
                 tile.Nutrition = random.Next(75, 125);
-                Debug.Log("Nutrition for tile " + tile.name + " is " + tile.Nutrition);
+                //Debug.Log("Nutrition for tile " + tile.name + " is " + tile.Nutrition);
                 tile.x = i;
                 tile.y = j;
 
