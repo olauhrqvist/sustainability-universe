@@ -15,7 +15,10 @@ public class Carnivore_Script : Animal_Script
                             Dictionary<string, double> enviroment,
                             int forestid,
                             int growthtime,
-                            string species) : base(
+                            string species,
+                            double meatValue,
+                            double vegetationValue
+                            ) : base(
                                                 "Carnivore",
                                                 hierarchy,
                                                 pop,
@@ -26,7 +29,9 @@ public class Carnivore_Script : Animal_Script
                                                 enviroment,
                                                 forestid,
                                                 growthtime,
-                                                species)
+                                                species,
+                                                meatValue,
+                                                vegetationValue)
         {
 
         }

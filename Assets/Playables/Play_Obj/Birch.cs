@@ -16,7 +16,10 @@ public class Birch : Tree_Script
                     int growthtime = 1,
                     string species = "Birch",
                     int sunlightcost = 1,
-                    int nutritioncost = 1
+                    int nutritioncost = 1,
+                    double meatValue = 0,
+                    double vegetationValue = 100 //plojvalue
+
                     ) : base(hierarchy,
                            ID,
                            test,
@@ -27,7 +30,9 @@ public class Birch : Tree_Script
                            growthtime,
                            species,
                            sunlightcost,
-                           nutritioncost)
+                           nutritioncost,
+                           meatValue,
+                           vegetationValue)
     {
 
     }

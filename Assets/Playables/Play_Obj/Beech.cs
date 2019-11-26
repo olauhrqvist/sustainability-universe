@@ -6,7 +6,7 @@ public class Beech : Tree_Script
 {
     public GameObject inputMesh;
 
-    public Beech(   int hierarchy = 1,
+    public Beech(int hierarchy = 1,
                     int ID = 1,
                     GameObject test = default,
                     int range = 1,
@@ -16,7 +16,10 @@ public class Beech : Tree_Script
                     int growthtime = 1,
                     string species = "Beech",
                     int sunlightcost = 1,
-                    int nutritioncost = 1
+                    int nutritioncost = 1,
+                    double meatValue = 0,
+                    double vegetationValue = 200 //plojvalue
+
                     ) : base(hierarchy,
                            ID,
                            test,
@@ -27,7 +30,9 @@ public class Beech : Tree_Script
                            growthtime,
                            species,
                            sunlightcost,
-                           nutritioncost)
+                           nutritioncost,
+                           meatValue,
+                           vegetationValue)
     {
 
     }
