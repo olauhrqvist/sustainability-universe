@@ -47,7 +47,7 @@ public class SpawnMap : MonoBehaviour
     public int forestID = 0;
     private System.Random random = new System.Random();
 
-    public Global_Database globalDatabase = new Global_Database();
+    public Global_Database globalDatabase;//= new Global_Database();
 
 
     // Start is called before the first frame update

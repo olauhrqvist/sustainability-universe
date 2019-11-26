@@ -5,15 +5,11 @@ using UnityEngine;
 public class TileClass : MonoBehaviour
 {
     //Main Database
-    Global_Database globalDatabase = new Global_Database();
-
-
-
 
 
 
     // public Global_Database Database;
-
+    public Global_Database globalDatabase;
     // Start is called before the first frame update
 
     //Variables for RewardSystem
@@ -93,11 +89,7 @@ public class TileClass : MonoBehaviour
         //OnTileData
         meatOnTile = 0;
         vegetationOnTile = 0;
-    
-
-
-
-
+   
 }
     public void markGroundtype()
     {
@@ -255,7 +247,6 @@ public class TileClass : MonoBehaviour
 
     public GameObject getTreeObject()
     {
-        GameObject treeObject;
 
         if (pineForest)
             return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().pineObject;
@@ -267,27 +258,25 @@ public class TileClass : MonoBehaviour
     //addTreeData() : add scripts to each tree and add each tree to the global database
     private void addTreeData(GameObject treeObject)
     {
+
+        globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
         if (pineForest)
         {
             treeObject.AddComponent<Spruce>();
             treeObject.GetComponent<Spruce>().SetForestID(forestID);
-           // globalDatabase.AddSpruce(tileGameObject.name, treeObject);
-           // print("Tile " + tileGameObject.name + " and SpruceList count is: " + globalDatabase.SpruceList.Count);
-
+            globalDatabase.AddTreetype(tileGameObject.name, "Spruce", treeObject);
         }
         else if (leafForest)
         {
             treeObject.AddComponent<Birch>();
             treeObject.GetComponent<Birch>().SetForestID(forestID);
-          //  globalDatabase.AddBirch(tileGameObject.name, treeObject);
-          //  print("Tile " + tileGameObject.name + " and BirchList count is: " + globalDatabase.BirchList.Count);
+            globalDatabase.AddTreetype(tileGameObject.name, "Birch", treeObject);
         }
         else
         {
             treeObject.AddComponent<Beech>();
             treeObject.GetComponent<Beech>().SetForestID(forestID);
-          //  globalDatabase.AddBeech(tileGameObject.name, treeObject);
-          // print("Tile " + tileGameObject.name + " and BeechList count is: " + globalDatabase.BeechList.Count);
+           globalDatabase.AddTreetype(tileGameObject.name, "Beech", treeObject);
         }
     }
 
@@ -319,12 +308,6 @@ public class TileClass : MonoBehaviour
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         //Tree_Script
-        /*
-          treeObject.AddComponent<Spruce>();
-            treeObject.GetComponent<Spruce>().SetForestID(forestID);
-            globalDatabase.AddSpruce(tileGameObject.name, treeObject);
-            print("Tile is " + tileGameObject.name + "SpruceList count is: " + globalDatabase.SpruceList.Count);
-         * */
         addTreeData(treeObject);
         //End Tree_Script
 

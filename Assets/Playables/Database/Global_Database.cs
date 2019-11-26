@@ -66,35 +66,35 @@ public class Global_Database : MonoBehaviour
 
     public int calHerbivores(string tile)
     {
-        int carnivores = 0;
+        int herbivores = 0;
         foreach (var c in HerbivoreList)
         {
             if (c.TilePosition == tile)
-                carnivores++;
+                herbivores++;
         }
-        return carnivores;
+        return herbivores;
     }
 
     public int calTreetype(string tile)
     {
-        int carnivores = 0;
+        int treetype = 0;
         foreach (var c in TreeTypeList)
         {
             if (c.TilePosition == tile)
-                carnivores++;
+                treetype++;
         }
-        return carnivores;
+        return treetype;
     }
 
     public int calOmnivores(string tile)
     {
-        int carnivores = 0;
+        int omnivores = 0;
         foreach (var c in TreeTypeList)
         {
             if (c.TilePosition == tile)
-                carnivores++;
+                omnivores++;
         }
-        return carnivores;
+        return omnivores;
     }
 
 }

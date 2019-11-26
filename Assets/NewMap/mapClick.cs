@@ -8,9 +8,6 @@ public class mapClick : MonoBehaviour
 {
     public Color clickColor;
     private GameObject selectTile = null;
-    private GameObject prevTile = null;
-    List<GameObject> foundObj = new List<GameObject>();
-    List<GameObject> tileObjList = new List<GameObject>();
     private Color planeColor;
     private Color orginColor;
     private int i = 1;
@@ -20,9 +17,6 @@ public class mapClick : MonoBehaviour
     private float windowY = 0;
     private float windowWidth = 180;
     private float windowHight = 150;
-    private Dictionary<string, int> objDic = new Dictionary<string, int>();
-    private int plantCount = 0;
-    private int animalCount = 0;
     private GameObject closeButton;
     private Global_Database globalDatabase;// = new Global_Database();
 
@@ -46,65 +40,28 @@ public class mapClick : MonoBehaviour
 
 
     }
-    void findObj()
+
+    private void Update()
     {
-        foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
+        if (WindowShow)
         {
-            if (gameObj.name == "TemplateModel(Clone)" || gameObj.tag == "Animal" || gameObj.tag == "Plant" || gameObj.name == "rpgpp_lt_tree_pine_01(Clone)")
-            {
-                foundObj.Add(gameObj);
-
-            }
+            updateTileInfo();
         }
-
     }
 
-    void printFoundList()
+    void updateTileInfo()
     {
       // Fetch Database
-      globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
-
-        string dicInfo = "";
-        foreach (var obj in foundObj)
-        {
-            if (selectTile.GetComponent<Collider>().bounds.Contains(obj.transform.position))
-                tileObjList.Add(obj);
-        }
-        //print("In this tile, there are: " + tileObjList.Count + " objects.");
-        foreach (var obj in tileObjList)
-        {
-            if (obj.tag == "Plant")
-                plantCount++;
-            if (obj.tag == "Animal")
-                animalCount++;
-            if (!objDic.ContainsKey(obj.name))
-            {
-                objDic.Add(obj.name, 1);
-            }
-            else
-            {
-                objDic[obj.name]++;
-            }
-        }
-
-        foreach (KeyValuePair<string, int> kvp in objDic)
-        {
-
-            dicInfo += kvp.Key + ": " + kvp.Value + "\r\n";
-        }
-
+        globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
         int herbivores = globalDatabase.calHerbivores(selectTile.GetComponent<Collider>().name);
         int omnivores = globalDatabase.calOmnivores(selectTile.GetComponent<Collider>().name);
         int carnivores = globalDatabase.calCarnivores(selectTile.GetComponent<Collider>().name);
-
+        int treenumber = globalDatabase.calTreetype(selectTile.GetComponent<Collider>().name); 
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
+        + "Tree:     " + treenumber + "\r\n"
         + "Herbivores: " + herbivores + "\r\n"
         + "Omnivores: " + omnivores + "\r\n"
         + "Carnivores: " + carnivores + "\r\n";
-
-
-        //tileInfo = "Total obj " + tileObjList.Count + "\r\n" + "Plant: " + plantCount + "  " + "Animal: " + animalCount + "\r\n" + dicInfo;
-
     }
 
     void MyWindow(int WindowID)
@@ -150,8 +107,6 @@ public class mapClick : MonoBehaviour
                     windowX = Input.mousePosition.x;
                     windowY = Screen.height - Input.mousePosition.y;
 
-                    //
-
                     planeColor = hit.collider.gameObject.GetComponent<Renderer>().material.GetColor("_Color");
                     selectTile = hit.collider.gameObject;
                     if (i == 1)
@@ -161,42 +116,18 @@ public class mapClick : MonoBehaviour
                         selectTile.GetComponent<Renderer>().material.color = clickColor;
                     }
 
+                    
+                    selectTile.GetComponent<Renderer>().material.color = clickColor;
 
-                    if (prevTile != null && prevTile != selectTile)
-                    {
-
-                        selectTile.GetComponent<Renderer>().material.color = clickColor;
-                        prevTile.GetComponent<Renderer>().material.color = orginColor;
-                    }
-
-                    prevTile = selectTile;
-                    findObj();
-                    printFoundList();
-                    foundObj.Clear();
-                    tileObjList.Clear();
-                    objDic.Clear();
-                    animalCount = 0;
-                    plantCount = 0;
-                }
-                else if (hit.collider.gameObject.tag == "Plant")
-                {
-                    WindowShow = false;
-                    //print("hit trees");
-                    if (selectTile != null)
-                        selectTile.GetComponent<Renderer>().material.color = orginColor;
-                }
-                else
-                {
-                    WindowShow = false;
-                    //print("hit other things");
-                    if (selectTile != null)
-                        selectTile.GetComponent<Renderer>().material.color = orginColor;
+                    
+                   
                 }
 
             }
         }
         if (WindowShow)
         {
+           // updateTileInfo();
             GUI.Window(0, new Rect(windowX, windowY, windowWidth, windowHight), MyWindow, "   ");
         }
 
