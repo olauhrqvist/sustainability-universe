@@ -55,42 +55,25 @@ public class DropHandler : MonoBehaviour, IDropHandler
         {
             case "Tree":            
                         globalDatabase.AddTreetype(Tile,sampleObject ,Spawnable);          
-                        print("Tile " + name + " and SpruceList count is: " + globalDatabase.TreeTypeList.Count);
+                        print("Tile " + name + " and TreeList count is: " + globalDatabase.TreeTypeList.Count);
                         break;
 
             case "Carnivore":
                 
                          globalDatabase.AddCarnivore(Tile, sampleObject, Spawnable);
-                         print("Tile " + name + " and ShrewList count is: " + globalDatabase.CarnivoreList.Count);
+                         print("Tile " + name + " and CarnivoreList count is: " + globalDatabase.CarnivoreList.Count);
                          break;
 
             case "Herbivore":
                         globalDatabase.AddHerbivore(Tile, sampleObject, Spawnable);
-                        print("Tile " + name + " and MouseList count is: " + globalDatabase.HerbivoreList.Count);
+                        print("Tile " + name + " and HerbivoreList count is: " + globalDatabase.HerbivoreList.Count);
                         break;
 
             case "Omnivore":
-                    case "Squirrel":
                         globalDatabase.AddOmnivore(Tile, sampleObject, Spawnable);
-                        print("Tile " + name + " and SquirrleList count is: " + globalDatabase.OmnivoreList.Count);
+                        print("Tile " + name + " and OmnivoreList count is: " + globalDatabase.OmnivoreList.Count);
                         break;
-
-                Debug.Log("Type not found : " + type);
-                break;
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

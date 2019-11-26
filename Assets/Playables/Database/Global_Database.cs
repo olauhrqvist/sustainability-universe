@@ -83,16 +83,19 @@ public class Global_Database : MonoBehaviour
             if (c.TilePosition == tile)
                 treetype++;
         }
+ 
         return treetype;
     }
 
     public int calOmnivores(string tile)
     {
         int omnivores = 0;
-        foreach (var c in TreeTypeList)
+        foreach (var c in OmnivoreList)
         {
             if (c.TilePosition == tile)
+            {
                 omnivores++;
+            }
         }
         return omnivores;
     }

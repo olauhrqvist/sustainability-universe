@@ -58,10 +58,10 @@ public class mapClick : MonoBehaviour
         int carnivores = globalDatabase.calCarnivores(selectTile.GetComponent<Collider>().name);
         int treenumber = globalDatabase.calTreetype(selectTile.GetComponent<Collider>().name); 
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
-        + "Tree:     " + treenumber + "\r\n"
-        + "Herbivores: " + herbivores + "\r\n"
-        + "Omnivores: " + omnivores + "\r\n"
-        + "Carnivores: " + carnivores + "\r\n";
+        + "Tree:     " + (treenumber-1) + "\r\n"
+        + "Herbivores: " + (herbivores-1) + "\r\n"
+        + "Omnivores: " + (omnivores-1) + "\r\n"
+        + "Carnivores: " + (carnivores-1) + "\r\n";
     }
 
     void MyWindow(int WindowID)
