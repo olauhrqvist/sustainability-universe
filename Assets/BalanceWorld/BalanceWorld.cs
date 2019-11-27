@@ -17,38 +17,93 @@ public class BalanceWorld : Global_Database
 
 
     //gå igenom vectorn med djur och sätt ett meat värde på de tiles där djur finns.
-    // setMeatlevelOnTile();
-        
-         update_herbivore(MouseList, 0.4, 0.35);
-         update_herbivore(HareList, 0.35, 0.25);
-         update_herbivore(RoeDeerList, 0.25, 0.15);
-         update_herbivore(MooseList, 0.15, 0.10);
+       
 
-        update_omnivore(SquirrelList, 0.4, 0.35);
-        update_omnivore(RatList, 0.35, 0.25);
-        update_omnivore(BoarList, 0.25, 0.15);
-        update_omnivore(BrownBearList, 0.15, 0.10);
+        //start with herbivores
+         foreach(Gameobject g in MouseList)
+         {
+            update_herbivore(g, 0.4, 0.35);
+         }
+         setMeatlevelOnTile();
+          foreach(Gameobject g in HareList)
+         {
+            update_herbivore(g, 0.35, 0.25);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in RoeDeerList)
+         {
+            update_herbivore(g, 0.25, 0.15);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in MooseList)
+         {
+            update_herbivore(g, 0.15, 0.10);
+         }
+         setMeatlevelOnTile();
+         
+     
+         //Then continue with omnivores
+         foreach(Gameobject g in SquirrelList)
+         {
+            update_omnivore(g, 0.4, 0.35);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in RatList)
+         {
+            update_omnivore(g, 0.35, 0.25);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in BoarList)
+         {
+            update_omnivore(g, 0.25, 0.15);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in BrownBearList)
+         {
+            update_omnivore(, 0.15, 0.10);
+         }
+         setMeatlevelOnTile();
 
-        update_carnivore(ShrewList, 0.4, 0.35);
-        update_carnivore(WeaselList, 0.35, 0.25);
-        update_carnivore(FoxList, 0.25, 0.15);
-        update_carnivore(WolfList, 0.15, 0.10);
-        
+        //finally go through the carnivores
+         foreach(Gameobject g in ShrewList)
+         {
+            update_carnivore(g, 0.4, 0.35);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in WeaselList)
+         {
+            update_carnivore(g, 0.35, 0.25);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in FoxList)
+         {
+            update_carnivore(g, 0.25, 0.15);
+         }
+         setMeatlevelOnTile();
+         foreach(Gameobject g in WolfList)
+         {
+            update_carnivore(g, 0.15, 0.10);
+         }
+         setMeatlevelOnTile();
+
      }
 
 
                    
-    void update_herbivore(List<> animal, double growth, double decrease)
+    void update_herbivore(GameObject animal, double growth, double decrease)
     {
 
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
        // take in the global vector that holds the herbivore coordinate
 
-       // for each object in that vector
-        {
+
+    
            // check available food on that coordinate + adjacent coordinates within the range for that animal
+           //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
+           //så måste vi uppdatera available food på den tilen * range
             if(tile.availableFood >= animal.neededFood)
             {
+            //vi sätter familjens/artens satisfiedyears counter
                 animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
                 animal.hungryYears = 0;
                 if(animal.satisfiedYears % 2 == 0 ) //if the animals have been satisfied for two years in a row then they will increase the population
@@ -65,7 +120,7 @@ public class BalanceWorld : Global_Database
                     animal.population -= Math.Ceiling(animal.Population * decrease);
                 }   
             }
-          }
+          
      }
            
 
@@ -73,8 +128,7 @@ void update_omnivore(gameobject animal, double growth, double decrease)
 {
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
 //take in the global vector that holds the herbivore coordinate
-   // for each object in that vector
-    {
+ 
      //   check available food on that coordinate + adjacent coordinates within the range for that animal
         if(tile.availableFood >= animal.neededFood)
         {
@@ -108,7 +162,7 @@ void update_omnivore(gameobject animal, double growth, double decrease)
             }  
         }
 
-    }
+    
 
 }
 

@@ -20,7 +20,9 @@ public class Global_Database : MonoBehaviour
             TilePosition = tile,
             name = name,
             Newobject = other
+            
         });
+        Debug.Log("toodels: " + name);
     }
 
     public void AddHerbivore(string tile, string name, GameObject other)

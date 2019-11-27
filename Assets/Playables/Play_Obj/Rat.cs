@@ -6,7 +6,7 @@ public class Rat : Omnivore_Script
 {
     public GameObject inputMesh;
 
-    public Rat(int hierarchy = 1,
+    public Rat(int hierarchy = 2,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class Rat : Omnivore_Script
                     string species = "Rat",
                     double meatValue = 2,
                     double vegetationValue = 0,
-                    double foodNeeded = 10
+                    double foodNeeded = 20,
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class Rat : Omnivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

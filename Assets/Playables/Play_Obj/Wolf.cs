@@ -6,7 +6,7 @@ public class Wolf : Carnivore_Script
 {
     public GameObject inputMesh;
 
-    public Wolf(int hierarchy = 1,
+    public Wolf(int hierarchy = 4,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class Wolf : Carnivore_Script
                     string species = "Wolf",
                     double meatValue = 50,
                     double vegetationValue = 0,
-                    double foodNeeded = 6000
+                    double foodNeeded = 6000,
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class Wolf : Carnivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

@@ -30,7 +30,9 @@ public class Animal_Script : Base_Playable
                             string species,
                             double meatValue,
                             double vegetationValue,
-                            double foodNeeded) : base(
+                            double foodNeeded,
+                            int satisfiedYears,
+                            int hungryYears) : base(
                                                 type,
                                                 ID,
                                                 mesh,
@@ -42,7 +44,9 @@ public class Animal_Script : Base_Playable
                                                 species,
                                                 meatValue,
                                                 vegetationValue,
-                                                foodNeeded)
+                                                foodNeeded,
+                                                satisfiedYears,
+                                                hungryYears)
         {
             FoodHierarchy = hierarchy;
             Population = pop;
