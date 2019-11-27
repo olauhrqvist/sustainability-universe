@@ -680,7 +680,7 @@ RectTransform:
   - {fileID: 6149432144492525419}
   - {fileID: 2765622901622118251}
   m_Father: {fileID: 6149432144403737827}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1062,7 +1062,7 @@ RectTransform:
   - {fileID: 691305559584580006}
   - {fileID: 107145014169392110}
   m_Father: {fileID: 6149432144403737827}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1512,11 +1512,11 @@ RectTransform:
   - {fileID: 695525190502822784}
   - {fileID: 4087455022040166825}
   m_Father: {fileID: 6149432144403737827}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -122.1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4348641378453950416
@@ -3029,9 +3029,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6840582549973806172}
   - {fileID: 8346190489564162315}
   - {fileID: 8399910434241006159}
+  - {fileID: 6840582549973806172}
   m_Father: {fileID: 6149432143510770800}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3616,7 +3616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a205c9d5024e3fa4f93e32c582d5a9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: Spruce
   inputMesh: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
 --- !u!1 &6997595251592078247
 GameObject:
@@ -4894,6 +4893,46 @@ PrefabInstance:
       propertyPath: m_Text
       value: Spruce
       objectReference: {fileID: 0}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: sampleObject
+      value: 
+      objectReference: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: tagname
+      value: Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335116805566869, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 10900, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3252335117984804651, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 10900, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3252335117104257425, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335117104257425, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335117104257425, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252335117104257424, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 1451529609bdc4e4883669d01d413e57, type: 2}
     - target: {fileID: 1078510713456005945, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4909,16 +4948,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 3252335116805566869, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 10900, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 3252335117984804651, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 10900, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1078510713822136518, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4944,31 +4973,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 3252335117104257425, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252335117104257425, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252335117104257425, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: sampleObject
-      value: 
-      objectReference: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
-    - target: {fileID: 1013820211249193931, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: tagname
-      value: Plant
-      objectReference: {fileID: 0}
     - target: {fileID: 1078510713814800662, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4989,11 +4993,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 3252335117104257424, guid: 9ca15dcb4a3841e46aef1b62913a203c,
-        type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 8400000, guid: 1451529609bdc4e4883669d01d413e57, type: 2}
     - target: {fileID: 3252335117101118159, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
