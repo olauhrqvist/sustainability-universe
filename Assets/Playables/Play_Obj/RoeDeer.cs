@@ -6,7 +6,7 @@ public class RoeDeer : Herbivore_Script
 {
     public GameObject inputMesh;
 
-    public RoeDeer(int hierarchy = 1,
+    public RoeDeer(int hierarchy = 3,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class RoeDeer : Herbivore_Script
                     string species = "RoeDeer",
                      double meatValue = 20,
                     double vegetationValue = 0,
-                    double foodNeeded = 150
+                    double foodNeeded = 150,
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class RoeDeer : Herbivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

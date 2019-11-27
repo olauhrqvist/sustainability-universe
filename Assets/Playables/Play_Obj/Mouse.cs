@@ -18,7 +18,9 @@ public class Mouse : Herbivore_Script
                     string species = "Mouse",
                     double meatValue = 0.2,
                     double vegetationValue = 0,
-                    double foodNeeded = 2
+                    double foodNeeded = 2,
+                    int satisfiedYears = 0, 
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class Mouse : Herbivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

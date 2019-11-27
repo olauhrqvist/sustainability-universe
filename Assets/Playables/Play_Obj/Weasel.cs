@@ -6,7 +6,7 @@ public class Weasel : Carnivore_Script
 {
     public GameObject inputMesh;
 
-    public Weasel(int hierarchy = 1,
+    public Weasel(int hierarchy = 2,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class Weasel : Carnivore_Script
                     string species = "Weasel",
                     double meatValue = 2,
                     double vegetationValue = 0,
-                    double foodNeeded = 8
+                    double foodNeeded = 8,
+                    int satisfiedYears= 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class Weasel : Carnivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded, 
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

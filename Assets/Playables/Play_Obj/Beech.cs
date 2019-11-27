@@ -18,8 +18,9 @@ public class Beech : Tree_Script
                     int sunlightcost = 1,
                     int nutritioncost = 1,
                     double meatValue = 0,
-                    double vegetationValue = 200 //plojvalue
-
+                    double vegetationValue = 200, //plojvalue
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            ID,
                            test,
@@ -33,7 +34,9 @@ public class Beech : Tree_Script
                            nutritioncost,
                            meatValue,
                            vegetationValue,
-                           0)
+                           0,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

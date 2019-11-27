@@ -18,7 +18,9 @@ public class Tree_Script : Vegetation
                                 int NutritionalCost,
                                 double MeatValue,
                                 double VegetationValue,
-                                double foodNeeded) : base(
+                                double foodNeeded,
+                                int satisfiedYears,
+                                int hungryYears) : base(
                                                     "Tree",
                                                     hierarchy,
                                                     ID,
@@ -33,7 +35,9 @@ public class Tree_Script : Vegetation
                                                     NutritionalCost,
                                                     MeatValue,
                                                     VegetationValue,
-                                                    0)
+                                                    0,
+                                                    satisfiedYears,
+                                                    hungryYears)
     {
 
     }

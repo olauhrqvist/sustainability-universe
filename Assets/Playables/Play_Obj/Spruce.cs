@@ -18,7 +18,9 @@ public class Spruce : Tree_Script
                     int sunlightcost = 1,
                     int nutritioncost = 1,
                     double meatValue = 0,
-                    double vegetationValue = 150//plojvalue
+                    double vegetationValue = 150,//plojvalue
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            ID,
                            test,
@@ -32,7 +34,9 @@ public class Spruce : Tree_Script
                            nutritioncost,
                            meatValue,
                            vegetationValue,
-                           0)
+                           0,
+                           satisfiedYears,
+                           hungryYears)
     {
   
     }

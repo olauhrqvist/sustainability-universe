@@ -6,7 +6,7 @@ public class BrownBear : Omnivore_Script
 {
     public GameObject inputMesh;
 
-    public BrownBear(int hierarchy = 1,
+    public BrownBear(int hierarchy = 4,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class BrownBear : Omnivore_Script
                     string species = "BrownBear",
                      double meatValue = 400,
                     double vegetationValue = 0,
-                    double foodNeeded = 1400
+                    double foodNeeded = 1400,
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class BrownBear : Omnivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

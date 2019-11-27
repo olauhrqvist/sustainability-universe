@@ -6,7 +6,7 @@ public class Boar : Omnivore_Script
 {
     public GameObject inputMesh;
 
-    public Boar(int hierarchy = 1,
+    public Boar(int hierarchy = 3,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class Boar : Omnivore_Script
                     string species = "Boar",
                     double meatValue = 100,
                     double vegetationValue = 0,
-                    double foodNeeded = 500 //not set in stone!
+                    double foodNeeded = 500, //not set in stone!
+                    int satisfiedYears = 0,
+                    int hungryYears= 0  
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class Boar : Omnivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }

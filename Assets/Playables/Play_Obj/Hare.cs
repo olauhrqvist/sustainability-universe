@@ -6,7 +6,7 @@ public class Hare : Herbivore_Script
 {
     public GameObject inputMesh;
 
-    public Hare(int hierarchy = 1,
+    public Hare(int hierarchy = 2,
                     int ID = 1,
                     int population = 1,
                     GameObject test = default,
@@ -18,7 +18,9 @@ public class Hare : Herbivore_Script
                     string species = "Hare",
                     double meatValue = 3,
                     double vegetationValue = 0,
-                    double foodNeeded = 20
+                    double foodNeeded = 20,
+                    int satisfiedYears = 0,
+                    int hungryYears = 0
                     ) : base(hierarchy,
                            population,
                            ID,
@@ -31,7 +33,9 @@ public class Hare : Herbivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded)
+                           foodNeeded,
+                           satisfiedYears,
+                           hungryYears)
     {
 
     }
