@@ -7,46 +7,54 @@ public class EcoStatHandler : MonoBehaviour
 {
     private Global_Database globalDatabase;
     private TileClass tileclass;
-    private bool TogglepH = false;
-    private List<Action> ActionList = new List<Action>();
     static private Color DefaultColor = new Color(0, 102, 0);
+    Queue<Action> ActionQueue = new Queue<Action>();    // Used for toggling UI changes
+
+    // Color tiles based on ground type
     public void DisplaypH(bool active)
     {
-        /*if (ActionList != null)
+        // Empties queue if it exists
+        if (ActionQueue.Count != 0)
         {
-            ActionList[0].DynamicInvoke();
-        }*/
-        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
-        if (!active)
-        {
-            foreach (var tile in tiles)
-            {
-
-
-                if (tile.Groundtype == "brownearth")
-                {
-                    Color color = new Color(51, 102, 0);
-                    tile.tileGameObject.GetComponent<Renderer>().material.color = color;
-                }
-
-                else if (tile.Groundtype == "podzol")
-                {
-                    Color color = new Color(0, 102, 0);
-                    tile.tileGameObject.GetComponent<Renderer>().material.color = color;
-                }
-            }
-            //ActionList.Add(delegate { DisplaypH(true); }) ;
+            Action action = ActionQueue.Dequeue();
+            action();
         }
         else
         {
-            foreach (var tile in tiles)
+            List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+            if (!active)
             {
-                tile.tileGameObject.GetComponent<Renderer>().material.color = DefaultColor;
+                foreach (var tile in tiles)
+                {
+
+
+                    if (tile.Groundtype == "brownearth")
+                    {
+                        Color color = new Color(51, 102, 0);
+                        tile.tileGameObject.GetComponent<Renderer>().material.color = color;
+                    }
+
+                    else if (tile.Groundtype == "podzol")
+                    {
+                        Color color = new Color(0, 102, 0);
+                        tile.tileGameObject.GetComponent<Renderer>().material.color = color;
+                    }
+                }
+                // Add it to the queue so that next EcoStat action will reverse this
+                ActionQueue.Enqueue(() => DisplaypH(true));
             }
-            //ActionList.Add(delegate { DisplaypH(false); });
+            else
+            {
+                // Reverse the coloring
+                foreach (var tile in tiles)
+                {
+                    tile.tileGameObject.GetComponent<Renderer>().material.color = DefaultColor;
+                }
+            }
         }
     }
+    public void DisplayAnimalLocation(string Animal)
+    {
+        return;
+    }
 }
-//GameObject.Find("wolf").GetComponent<Wolf>().GetFoodHierarchy();
-//GameObject.Find(name).GetComponent<Wolf>().GetFoodHierarchy();
-
