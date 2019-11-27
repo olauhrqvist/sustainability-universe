@@ -173,8 +173,7 @@ void update_omnivore(gameobject animal, double growth, double decrease)
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
        // take in the global vector that holds the herbivore coordinate
 
-       // for each object in that vector
-        {
+  
            // check available food on that coordinate + adjacent coordinates within the range for that animal
             if(tile.availableMeat >= animal.neededFood)
             {
