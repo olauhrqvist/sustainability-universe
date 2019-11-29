@@ -2,41 +2,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EcoStatHandler : MonoBehaviour
 {
     //private Global_Database globalDatabasea;
     private TileClass tileclass;
     static private Color DefaultColor = new Color(0, 102, 0);
     static private Color MarkColor = new Color(0, 0, 1, 100);
-    Queue<Action> ActionQueue = new Queue<Action>();    // Used for toggling UI changes
+    readonly Queue<Action> ActionQueue = new Queue<Action>();    // Used for toggling UI changes
     private string LastAction;
     private Global_Database globalDatabase;// = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
-    readonly Dictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
+    readonly Dictionary<string, dynamic> AnimalTypeDict = new Dictionary<string, dynamic>();
+    Dictionary<string, TileClass> TileDict;
     // Color tiles based on ground type
     void Awake()
     {
         // creates a dictionary of animals in the scene
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+        DefaultColor = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().planeColor;
 
-        dict["Wolf"] = globalDatabase.WolfList;
-        dict["Shrew"] = globalDatabase.ShrewList;
-        dict["Weasel"] = globalDatabase.WeaselList;
-        dict["Fox"] = globalDatabase.FoxList;
+        AnimalTypeDict["Wolf"] = globalDatabase.WolfList;
+        AnimalTypeDict["Shrew"] = globalDatabase.ShrewList;
+        AnimalTypeDict["Weasel"] = globalDatabase.WeaselList;
+        AnimalTypeDict["Fox"] = globalDatabase.FoxList;
 
-        dict["Mouse"] = globalDatabase.MouseList;
-        dict["Hare"] = globalDatabase.HareList;
-        dict["RoeDeer"] = globalDatabase.DeerList;
-        dict["Moose"] = globalDatabase.MooseList;
+        AnimalTypeDict["Mouse"] = globalDatabase.MouseList;
+        AnimalTypeDict["Hare"] = globalDatabase.HareList;
+        AnimalTypeDict["RoeDeer"] = globalDatabase.DeerList;
+        AnimalTypeDict["Moose"] = globalDatabase.MooseList;
 
-        dict["Squirrel"] = globalDatabase.SquirrelList;
-        dict["Rat"] = globalDatabase.RatList;
-        dict["Boar"] = globalDatabase.BoarList;
-        dict["BrownBear"] = globalDatabase.BrownBearList;
+        AnimalTypeDict["Squirrel"] = globalDatabase.SquirrelList;
+        AnimalTypeDict["Rat"] = globalDatabase.RatList;
+        AnimalTypeDict["Boar"] = globalDatabase.BoarList;
+        AnimalTypeDict["BrownBear"] = globalDatabase.BrownBearList;
 
-        dict["Beech"] = globalDatabase.BeechList;
-        dict["Birch"] = globalDatabase.BirchList;
-        dict["Spruce"] = globalDatabase.SpruceList;
+        AnimalTypeDict["Beech"] = globalDatabase.BeechList;
+        AnimalTypeDict["Birch"] = globalDatabase.BirchList;
+        AnimalTypeDict["Spruce"] = globalDatabase.SpruceList;
+
+        TileDict = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict; 
     }
     public void DisplaypH(bool active)
     {
@@ -92,17 +96,21 @@ public class EcoStatHandler : MonoBehaviour
                 active = true;
             }
         }
-        if (dict.ContainsKey(Animal))   // Test to see if Key exists
+        if (AnimalTypeDict.ContainsKey(Animal))   // Test to see if Key exists
         {
+            int sum = 0;
             List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
             if (!active)
             {
                 List<string> Marks = new List<string>();
-                foreach (var a in dict[Animal]) // add all position to a list
+                foreach (var a in AnimalTypeDict[Animal]) // add all position to a list
                 {
                     Marks.Add(a.TilePosition);
-                    MarkMap(Marks);
                 }
+                sum = MarkMap(Marks);
+                textbox.SetActive(true);
+                text.GetComponent<Text>().text = sum + " " + Animal;
+
                 ActionQueue.Enqueue(() => ClearMap());
                 LastAction = Animal;
             }
@@ -120,29 +128,23 @@ public class EcoStatHandler : MonoBehaviour
         {
             tile.tileGameObject.GetComponent<Renderer>().material.color = DefaultColor;
         }
+        textbox.SetActive(false);
     }
 
     // Let another function change color of all marked objects
-    private void MarkMap(List<string> Marks)
+    public GameObject textbox;
+    public GameObject text;
+    private int MarkMap(List<string> Marks)
     {
-        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
-        string temp = "";
+        int sum = 0;
         foreach (var M in Marks)
         {
-            foreach (var T in tiles)        // Search for tile
+            if (GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict.ContainsKey(M))
             {
-                temp += T.x;
-                temp += T.y;
-                //Debug.Log(M + " =? " + temp);
-
-                if (M == temp)     // If Tile matches animal location
-                {
-                    T.tileGameObject.GetComponent<Renderer>().material.color = MarkColor;//material.color = color;
-                    temp = "";
-                    break;
-                }
-                temp = "";
+                TileDict[M].tileGameObject.GetComponent<Renderer>().material.color = MarkColor;
+                sum++;
             }
         }
+        return sum;
     }
 }

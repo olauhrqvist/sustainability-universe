@@ -49,6 +49,9 @@ public class SpawnMap : MonoBehaviour
 
     public Global_Database globalDatabase;//= new Global_Database();
 
+    // Tile Dictionary key="x"+"y"
+    public Dictionary<string, TileClass> TileDict = new Dictionary<string, TileClass>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -76,10 +79,21 @@ public class SpawnMap : MonoBehaviour
         InvokeRepeating("expand", 0.1f, 1.0f);
         InvokeRepeating("spread", 2.0f, 3.0f);
 
-
+        // Building a doctionary for all tiles for fast access
+        BuildDictionary();
 
     }
-
+    public void BuildDictionary()
+    {
+        string temp = "";
+        foreach (var T in tiles)
+        {
+            temp += T.x;
+            temp += T.y;
+            TileDict[temp] = T;
+            temp = "";
+        }
+    }
     void markGroundtype()
     {
       // Place two kinds of types on the map and have them spread
@@ -200,7 +214,6 @@ public class SpawnMap : MonoBehaviour
                 float xSmall = x - stepS * (5 - 1);
                 float zSmall = z - stepS * (5 - 1);
                 findSmallLocations(xSmall, zSmall, stepS);
-
                 z += tileSize;
             }
 
