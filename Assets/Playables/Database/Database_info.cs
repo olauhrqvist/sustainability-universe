@@ -8,7 +8,7 @@ using UnityEngine;
 
 //-----------Carnivore-----------\\
 
-public class CarnivoreInfo : Wolf
+public class CarnivoreInfo// : Wolf
 {
     public string TilePosition;
     public string name;

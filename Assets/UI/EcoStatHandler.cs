@@ -5,13 +5,39 @@ using UnityEngine;
 
 public class EcoStatHandler : MonoBehaviour
 {
-    private Global_Database globalDatabase;
+    //private Global_Database globalDatabasea;
     private TileClass tileclass;
     static private Color DefaultColor = new Color(0, 102, 0);
     static private Color MarkColor = new Color(0, 0, 1, 100);
     Queue<Action> ActionQueue = new Queue<Action>();    // Used for toggling UI changes
     private string LastAction;
+    private Global_Database globalDatabase;// = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+    readonly Dictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
     // Color tiles based on ground type
+    void Awake()
+    {
+        // creates a dictionary of animals in the scene
+        globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+
+        dict["Wolf"] = globalDatabase.WolfList;
+        dict["Shrew"] = globalDatabase.ShrewList;
+        dict["Weasel"] = globalDatabase.WeaselList;
+        dict["Fox"] = globalDatabase.FoxList;
+
+        dict["Mouse"] = globalDatabase.MouseList;
+        dict["Hare"] = globalDatabase.HareList;
+        dict["RoeDeer"] = globalDatabase.DeerList;
+        dict["Moose"] = globalDatabase.MooseList;
+
+        dict["Squirrel"] = globalDatabase.SquirrelList;
+        dict["Rat"] = globalDatabase.RatList;
+        dict["Boar"] = globalDatabase.BoarList;
+        dict["BrownBear"] = globalDatabase.BrownBearList;
+
+        dict["Beech"] = globalDatabase.BeechList;
+        dict["Birch"] = globalDatabase.BirchList;
+        dict["Spruce"] = globalDatabase.SpruceList;
+    }
     public void DisplaypH(bool active)
     {
         // Empties queue if it exists
@@ -60,109 +86,30 @@ public class EcoStatHandler : MonoBehaviour
         {
             Action action = ActionQueue.Dequeue();
             action();
-            if(LastAction == Animal)
+            if (LastAction == Animal)
             {
                 LastAction = "";
                 active = true;
             }
         }
-
-        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
-        if (!active)
+        if (dict.ContainsKey(Animal))   // Test to see if Key exists
         {
-            globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
-            string temp = "";
-            string animaltype = GameObject.Find(Animal).GetComponent<Base_Playable>().GetBaseType();
-            
-            switch (animaltype) // Searches different databases depending on type // can be optimized
+            List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+            if (!active)
             {
-                case "Carnivore":
-                    List<CarnivoreInfo> ElementListCar = globalDatabase.CarnivoreList;
-                    foreach (var A in ElementListCar)        // Find all animals that match the string
-                    {
-                        if (A.name == Animal)
-                        {
-                            foreach (var T in tiles)        // Search for tile
-                            {
-                                temp += T.x;
-                                temp += T.y;
-                                //Debug.Log(A.TilePosition+" =? "+ temp);
-
-                                if (A.TilePosition == temp)     // If Tile matches animal location
-                                {
-                                    T.tileGameObject.GetComponent<Renderer>().material.color = MarkColor;//material.color = color;
-                                }
-                                temp = "";
-                            }
-                        }
-                    }
-                    break;
-                case "Herbivore":
-                    List<HerbivoreInfo> ElementListHer = globalDatabase.HerbivoreList;
-                    foreach (var A in ElementListHer)        // Find all animals that match the string
-                    {
-                        if (A.name == Animal)
-                        {
-                            foreach (var T in tiles)        // Search for tile
-                            {
-                                temp += T.x;
-                                temp += T.y;
-
-                                if (A.TilePosition == temp)     // If Tile matches animal location
-                                {
-                                    T.tileGameObject.GetComponent<Renderer>().material.color = MarkColor;//material.color = color;
-                                }
-                                temp = "";
-                            }
-                        }
-                    }
-                    break;
-                case "Omnivore":
-                    List<OmnivoreInfo> ElementListOmn = globalDatabase.OmnivoreList;
-                    foreach (var A in ElementListOmn)        // Find all animals that match the string
-                    {
-                        if (A.name == Animal)
-                        {
-                            foreach (var T in tiles)        // Search for tile
-                            {
-                                temp += T.x;
-                                temp += T.y;
-
-                                if (A.TilePosition == temp)     // If Tile matches animal location
-                                {
-                                    T.tileGameObject.GetComponent<Renderer>().material.color = MarkColor;//material.color = color;
-                                }
-                                temp = "";
-                            }
-                        }
-                    }
-                    break;
-                case "Tree":
-                    List<TreeTypeInfo> ElementListTree = globalDatabase.TreeTypeList;
-                    foreach (var A in ElementListTree)        // Find all animals that match the string
-                    {
-                        if (A.name == Animal)
-                        {
-                            foreach (var T in tiles)        // Search for tile
-                            {
-                                temp += T.x;
-                                temp += T.y;
-
-                                if (A.TilePosition == temp)     // If Tile matches animal location
-                                {
-                                    T.tileGameObject.GetComponent<Renderer>().material.color = MarkColor;//material.color = color;
-                                }
-                                temp = "";
-                            }
-                        }
-                    }
-                    break;
-                default:
-                    Debug.Log("Animal type not found");
-                    break;
+                List<string> Marks = new List<string>();
+                foreach (var a in dict[Animal]) // add all position to a list
+                {
+                    Marks.Add(a.TilePosition);
+                    MarkMap(Marks);
+                }
+                ActionQueue.Enqueue(() => ClearMap());
+                LastAction = Animal;
             }
-            ActionQueue.Enqueue(() => ClearMap());
-            LastAction = Animal;
+        }
+        else
+        {
+            Debug.Log("Key Doesn't Exist");
         }
     }
     private void ClearMap()
@@ -172,6 +119,30 @@ public class EcoStatHandler : MonoBehaviour
         foreach (var tile in tiles)
         {
             tile.tileGameObject.GetComponent<Renderer>().material.color = DefaultColor;
+        }
+    }
+
+    // Let another function change color of all marked objects
+    private void MarkMap(List<string> Marks)
+    {
+        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+        string temp = "";
+        foreach (var M in Marks)
+        {
+            foreach (var T in tiles)        // Search for tile
+            {
+                temp += T.x;
+                temp += T.y;
+                //Debug.Log(M + " =? " + temp);
+
+                if (M == temp)     // If Tile matches animal location
+                {
+                    T.tileGameObject.GetComponent<Renderer>().material.color = MarkColor;//material.color = color;
+                    temp = "";
+                    break;
+                }
+                temp = "";
+            }
         }
     }
 }

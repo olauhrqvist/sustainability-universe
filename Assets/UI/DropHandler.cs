@@ -48,7 +48,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
 
 
-    public void AddtoDatabase(string sampleObject, string type, string Tile)
+    public void AddtoDatabase(string sampleObject, string type, string name)
     {
         //globalDatabase = new Global_Database();
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
