@@ -6,9 +6,12 @@ public class Animal_Script : Base_Playable
 {
     int FoodHierarchy;
     int Population;
-    double MeatValue; //how much food does the animals contain
-    double VegetationValue; //how much food the vegetation contains
-    double FoodNeeded; //food needed per population of 1
+    // Already exists in base class
+    //double MeatValue; //how much food does the animals contain
+    //double VegetationValue; //how much food the vegetation contains
+    //double FoodNeeded; //food needed per population of 1
+
+
     public double AvailableFood()
     {
         return 0.0f;

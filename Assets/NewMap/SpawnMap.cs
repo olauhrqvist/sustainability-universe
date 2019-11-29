@@ -191,7 +191,7 @@ public class SpawnMap : MonoBehaviour
         {
             for (int j = 0; j < N; j++) //y
             {
-                TileClass tile = new TileClass();
+                TileClass tile = gameObject.AddComponent<TileClass>();
                 tile.tileGameObject = Instantiate(planeTile, new Vector3(x, 0, z), transform.rotation);
                 tile.tileGameObject.name = i.ToString() + j.ToString();
                 tile.name = i.ToString() + j.ToString();
