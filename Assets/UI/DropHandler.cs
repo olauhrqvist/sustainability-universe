@@ -35,7 +35,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
         RaycastHit hit = new RaycastHit();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 1000))
+        if (Physics.Raycast(ray, out hit, 200f, LayerMask.GetMask("MapGround")))
         {
             GameObject TargetTile = hit.collider.gameObject;
             tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
