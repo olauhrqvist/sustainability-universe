@@ -266,18 +266,22 @@ public class TileClass : MonoBehaviour
             treeObject.AddComponent<Spruce>();
             treeObject.GetComponent<Spruce>().SetForestID(forestID);
             globalDatabase.AddTreetype(tileGameObject.name, "Spruce", treeObject);
+            globalDatabase.AddSpruce(tileGameObject.name, treeObject);
         }
         else if (leafForest)
         {
             treeObject.AddComponent<Birch>();
             treeObject.GetComponent<Birch>().SetForestID(forestID);
             globalDatabase.AddTreetype(tileGameObject.name, "Birch", treeObject);
+            globalDatabase.AddBirch(tileGameObject.name, treeObject);
         }
         else
         {
             treeObject.AddComponent<Beech>();
             treeObject.GetComponent<Beech>().SetForestID(forestID);
-           globalDatabase.AddTreetype(tileGameObject.name, "Beech", treeObject);
+            globalDatabase.AddTreetype(tileGameObject.name, "Beech", treeObject);
+            globalDatabase.AddBeech(tileGameObject.name, treeObject);
+
         }
     }
 

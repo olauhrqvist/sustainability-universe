@@ -54,6 +54,8 @@ public class Global_Database : MonoBehaviour
             name = name,
             Newobject = other
         });
+        print("add tree type, the tile is " + tile);
+        print("list count: " + TreeTypeList.Count);
     }
 
     public int calCarnivores(string tile)
@@ -343,6 +345,7 @@ public class Global_Database : MonoBehaviour
         {
             if (w.TilePosition == tile)
                 Tree++;
+            
         }
         foreach (var w in BeechList)
         {
