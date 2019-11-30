@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class BalanceWorld : Global_Database
 {
+   public static TileClass tileClass { get; set; }
+
+   Global_Database Something_tile = tileClass.globalDatabase;
+    //we are hoping that tiles is what we want it to be.
+    
+    
     /*
-    public enum list { MouseInfo, };
-
-
-   
+    
     // Update is called once per year
     public void YearUpdate()
     {
