@@ -26,7 +26,7 @@ public class YearCounter : MonoBehaviour
             Counter += Counter;          
             other.Calculate();
 
-           // bw.YearUpdate();//this is causing a nullreference error.
+            bw.YearUpdate();//this is causing a nullreference error.
         }
         
     }

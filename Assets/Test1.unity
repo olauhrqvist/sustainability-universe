@@ -8732,6 +8732,7 @@ MonoBehaviour:
   other: {fileID: 1520603415257115786, guid: f4b1f4f9ab57fd24d93c78e36659be4f, type: 3}
   Database: {fileID: 5611440407512972673, guid: 7d2361b82a250a347979626362a1080f,
     type: 3}
+  bw: {fileID: 6523644493133138599, guid: d1794e40f33b3674e84d63b9dbc40891, type: 3}
 --- !u!1001 &1241252924
 PrefabInstance:
   m_ObjectHideFlags: 0
