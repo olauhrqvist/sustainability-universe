@@ -7,8 +7,8 @@ public abstract class Vegetation : Base_Playable
     int GrowthHierarchy;
     int SunlightCost;
     int NutritionalCost;
-    double MeatValue;
-    double VegetationValue;
+    //double MeatValue;
+    //double VegetationValue;
 
     protected Vegetation(
                            string type,

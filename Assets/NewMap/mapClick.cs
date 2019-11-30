@@ -53,15 +53,15 @@ public class mapClick : MonoBehaviour
     {
       // Fetch Database
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
-        int herbivores = globalDatabase.calHerbivores(selectTile.GetComponent<Collider>().name);
-        int omnivores = globalDatabase.calOmnivores(selectTile.GetComponent<Collider>().name);
-        int carnivores = globalDatabase.calCarnivores(selectTile.GetComponent<Collider>().name);
-        int treenumber = globalDatabase.calTreetype(selectTile.GetComponent<Collider>().name); 
+        int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
+        int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
+        int carnivores = globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name);
+        int treenumber = globalDatabase.calculateTreetype(selectTile.GetComponent<Collider>().name); 
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
-        + "Tree:     " + (treenumber-1) + "\r\n"
-        + "Herbivores: " + (herbivores-1) + "\r\n"
-        + "Omnivores: " + (omnivores-1) + "\r\n"
-        + "Carnivores: " + (carnivores-1) + "\r\n";
+        + "Tree:     " + (treenumber) + "\r\n"
+        + "Herbivores: " + (herbivores) + "\r\n"
+        + "Omnivores: " + (omnivores) + "\r\n"
+        + "Carnivores: " + (carnivores) + "\r\n";
     }
 
     void MyWindow(int WindowID)
