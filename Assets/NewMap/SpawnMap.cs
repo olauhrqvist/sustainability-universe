@@ -79,7 +79,7 @@ public class SpawnMap : MonoBehaviour
         InvokeRepeating("expand", 0.1f, 1.0f);
         InvokeRepeating("spread", 2.0f, 3.0f);
 
-        // Building a doctionary for all tiles for fast access
+        // Building a dictionary for all tiles for fast access
         BuildDictionary();
 
     }

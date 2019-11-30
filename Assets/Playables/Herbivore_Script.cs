@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Herbivore_Script : Animal_Script
 {
+
+    
+    
+
     public Herbivore_Script(
                             int hierarchy,
                             int pop,
@@ -43,4 +47,5 @@ public class Herbivore_Script : Animal_Script
     {
         SetBaseType("Herbivore");
     }
+
 }

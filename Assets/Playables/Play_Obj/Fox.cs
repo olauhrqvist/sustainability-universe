@@ -5,6 +5,14 @@ using UnityEngine;
 public class Fox : Carnivore_Script
 {
     public GameObject inputMesh;
+    private int SatisfiedYears;
+    public int satisfiedYears { get { return SatisfiedYears; } set { SatisfiedYears = value; } }
+    private int HungryYears;
+    public int hungryYears { get { return HungryYears; } set { HungryYears = value; } }
+    private double FoodNeeded;
+    public double foodNeeded { get { return FoodNeeded; } set { FoodNeeded = value; } }
+    private int Population;
+    public int population { get { return Population; } set { Population = value; } }
 
     public Fox(int hierarchy = 3,
                     int ID = 1,

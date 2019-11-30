@@ -59,6 +59,7 @@ public class TileClass : MonoBehaviour
     //OnTileData variables
     public double meatOnTile;
     public double vegetationOnTile;
+   
 
 
 

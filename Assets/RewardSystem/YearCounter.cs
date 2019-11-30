@@ -7,6 +7,8 @@ public class YearCounter : MonoBehaviour
    //script
     public RewardSystem other;
     public Global_Database Database;
+    public BalanceWorld bw;
+
 
     //variable
 
@@ -23,6 +25,9 @@ public class YearCounter : MonoBehaviour
             Year = Year + 1;
             Counter += Counter;          
             other.Calculate();
+
+           // bw.YearUpdate();//this is causing a nullreference error.
         }
+        
     }
 }

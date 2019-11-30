@@ -42,7 +42,7 @@ public class WolfInfo : Wolf
 }
 
 
-public class shrewInfo : Shrew
+public class ShrewInfo : Shrew
 {
     public string TilePosition;
     public GameObject Newobject;

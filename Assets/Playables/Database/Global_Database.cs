@@ -124,7 +124,7 @@ public class Global_Database : MonoBehaviour
 
     //-----------Carnivore List-----------\\
     public List<WolfInfo> WolfList = new List<WolfInfo>();
-    public List<shrewInfo> ShrewList = new List<shrewInfo>();
+    public List<ShrewInfo> ShrewList = new List<ShrewInfo>();
     public List<WeaselInfo> WeaselList = new List<WeaselInfo>();
     public List<FoxInfo> FoxList = new List<FoxInfo>();
 
@@ -134,13 +134,11 @@ public class Global_Database : MonoBehaviour
     public List<DeerInfo> DeerList = new List<DeerInfo>();
     public List<MooseInfo> MooseList = new List<MooseInfo>();
 
-
     //-----------Omnivore List-----------\\
     public List<SquirrelInfo> SquirrelList = new List<SquirrelInfo>();
     public List<RatInfo> RatList = new List<RatInfo>();
     public List<WildBoarInfo> BoarList = new List<WildBoarInfo>();
     public List<BrownBearInfo> BrownBearList = new List<BrownBearInfo>();
-
 
     //-----------TreeType List-----------\\
     public List<BeechInfo> BeechList = new List<BeechInfo>();
@@ -148,7 +146,7 @@ public class Global_Database : MonoBehaviour
     public List<SpruceInfo> SpruceList = new List<SpruceInfo>();
 
 
-
+//***********************************************
 
 
 
@@ -163,7 +161,7 @@ public class Global_Database : MonoBehaviour
 
     public void AddShrew(string name, GameObject other)
     {
-        ShrewList.Add(new shrewInfo()
+        ShrewList.Add(new ShrewInfo()
         {
             TilePosition = name,
             Newobject = other
