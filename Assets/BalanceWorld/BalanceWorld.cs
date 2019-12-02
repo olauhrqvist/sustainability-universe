@@ -11,7 +11,7 @@ public class BalanceWorld : Global_Database
 
     public BalanceWorld()
     {
-        globalTiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+        //globalTiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
     }
 
     
