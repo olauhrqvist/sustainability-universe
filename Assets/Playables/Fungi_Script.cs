@@ -33,11 +33,9 @@ public class Fungi_Script : Vegetation
                                                     species,
                                                     SunlightCost,
                                                     NutritionalCost,
-                                                    MeatValue,
-                                                    VegetationValue,
-                                                    0,
-                                                    satisfiedYears,
-                                                    hungryYears)
+                                                   
+                                                    VegetationValue
+                                                    )
     {
 
     }

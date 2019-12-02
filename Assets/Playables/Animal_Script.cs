@@ -5,20 +5,28 @@ using UnityEngine;
 public class Animal_Script : Base_Playable
 {
     int FoodHierarchy;
-    int Population;
+    //int Population;
     // Already exists in base class
     //double MeatValue; //how much food does the animals contain
     //double VegetationValue; //how much food the vegetation contains
     //double FoodNeeded; //food needed per population of 1
 
+    private int SatisfiedYears;
+    public int satisfiedYears { get { return SatisfiedYears; } set { SatisfiedYears = value; } }
+    private int HungryYears;
+    public int hungryYears { get { return HungryYears; } set { HungryYears = value; } }
+    private double FoodNeeded;
+    public double foodNeeded { get { return FoodNeeded; } set { FoodNeeded = value; } }
+    private int Population;
+    public int population { get { return Population; } set { Population = value; } }
 
     public double AvailableFood()
     {
         return 0.0f;
     }
     public int GetFoodHierarchy() { return FoodHierarchy; }
-    public int GetPopulation() { return Population; }
-    public void SetPopulation(int Input) { Population = Input; }
+  /*  public int GetPopulation() { return Population; }
+    public void SetPopulation(int Input) { Population = Input; } */
     protected Animal_Script(
                             string type,
                             int hierarchy,
@@ -44,14 +52,12 @@ public class Animal_Script : Base_Playable
                                                 enviroment,
                                                 forestid,
                                                 growthtime,
-                                                species,
-                                                meatValue,
-                                                vegetationValue,
-                                                foodNeeded,
-                                                satisfiedYears,
-                                                hungryYears)
+                                                species)
         {
             FoodHierarchy = hierarchy;
             Population = pop;
+            SatisfiedYears = satisfiedYears;
+            HungryYears = hungryYears;
+         FoodNeeded = foodNeeded;
         }
 }

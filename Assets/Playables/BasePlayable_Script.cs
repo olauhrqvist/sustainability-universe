@@ -16,11 +16,8 @@ public  class Base_Playable : MonoBehaviour
     int ForestID;
     int GrowthTime;
     string Species; // species
-    double MeatValue;
-    double VegetationValue;
-    double FoodNeeded;
-    int SatisfiedYears;
-    int HungryYears;
+
+
 
     public Base_Playable(
                             string type,
@@ -31,12 +28,7 @@ public  class Base_Playable : MonoBehaviour
                             Dictionary<string, double> enviroment,
                             int forestid,
                             int growthtime,
-                            string species,
-                            double meatValue,
-                            double vegetationValue,
-                            double foodNeeded,
-                            int satisfiedYears,
-                            int hungryYears)
+                            string species)
         {
             this.ID = ID;
             Mesh = mesh;
@@ -46,11 +38,7 @@ public  class Base_Playable : MonoBehaviour
             Enviroments = enviroment;
             ForestID = forestid;
             GrowthTime = growthtime;
-            MeatValue = meatValue;
-            VegetationValue = vegetationValue;
-            FoodNeeded = foodNeeded;
-            SatisfiedYears = satisfiedYears;
-            HungryYears = hungryYears;
+       
         }
     public Dictionary<string, double> GetEnviroments() { return Enviroments; }
     public void SetModel(GameObject mesh) { Mesh = mesh; }

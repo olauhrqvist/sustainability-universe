@@ -23,11 +23,9 @@ public abstract class Vegetation : Base_Playable
                            string species,
                            int SunlightCost,
                            int NutritionalCost,
-                           double MeatValue,
-                           double VegetationValue,
-                           double foodNeeded,
-                           int satisfiedYears,
-                            int hungryYears) : base(
+                          
+                           double VegetationValue
+                           ) : base(
                                                type,
                                                ID,
                                                mesh,
@@ -36,12 +34,9 @@ public abstract class Vegetation : Base_Playable
                                                enviroment,
                                                forestid,
                                                growthtime,
-                                               species,
-                                               MeatValue,
-                                               VegetationValue,
-                                               0,/*default*/
-                                               satisfiedYears,
-                                               hungryYears)
+                                               species
+                                              
+                                             )
     {
         GrowthHierarchy = hierarchy;
         this.SunlightCost = SunlightCost;

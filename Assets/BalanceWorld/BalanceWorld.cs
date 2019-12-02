@@ -263,6 +263,8 @@ public class BalanceWorld : MonoBehaviour
             Debug.Log("Number of shrews2: " + GameObject.Find("Shrew").GetComponent<Shrew>().population);
             Debug.Log("Number of Years2: " + GameObject.Find("Shrew").GetComponent<Shrew>().satisfiedYears);
         }
+
+
         void update_fox(GameObject animal, string pos, double growth, double decrease)
         {
             //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
