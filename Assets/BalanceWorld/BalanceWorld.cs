@@ -4,9 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BalanceWorld : Global_Database
+public class BalanceWorld : MonoBehaviour
 {
+
+    List<TileClass> globalTiles = new List<TileClass>();
    public static TileClass tile { get; set; }
+   private Global_Database Databas;
+
+    public void Start()
+    {
+    }
 
 
     public BalanceWorld()
@@ -14,18 +21,20 @@ public class BalanceWorld : Global_Database
         //globalTiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
     }
 
-    
+
 
 
     //we are hoping that tiles is what we want it to be.
 
-    public List<TileClass> globalTiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+ 
 
 
     // Update is called once per year
     public void YearUpdate()
     {
-        Debug.Log("We are in year info!");
+        Databas = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+        globalTiles =  GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
+    Debug.Log("We are in year info!");
         //gå igenom vectorn med djur och sätt ett meat värde på de tiles där djur finns.
 
 
@@ -38,7 +47,7 @@ public class BalanceWorld : Global_Database
           }
  */        // setMeatlevelOnTile();
 
-        foreach (HareInfo h in HareList)
+        foreach (HareInfo h in Databas.HareList)
         {
             update_hare(h.Newobject, h.TilePosition, 0.35, 0.25);
         }
@@ -78,8 +87,12 @@ public class BalanceWorld : Global_Database
         // setMeatlevelOnTile();
 
         //finally go through the carnivores
-        foreach (ShrewInfo s in ShrewList)
+
+       // print(Databas.ShrewList.Count);
+
+        foreach (ShrewInfo s in Databas.ShrewList)
         {
+         //   print("adbaluiaw");
             update_shrew(s.Newobject, s.TilePosition, 0.4, 0.35);
         }
         //setMeatlevelOnTile();
@@ -88,7 +101,7 @@ public class BalanceWorld : Global_Database
               update_carnivore(w.Newobject, w.TilePosition, 0.35, 0.25);
            }*/
         //setMeatlevelOnTile();
-        foreach (FoxInfo f in FoxList)
+        foreach (FoxInfo f in Databas.FoxList)
         {
             update_fox(f.Newobject, f.TilePosition, 0.25, 0.15);
         }
@@ -243,7 +256,7 @@ public class BalanceWorld : Global_Database
                           //  GameObject.Find("Shrew").GetComponent<Shrew>().population -= (int)Math.Ceiling(temp * decrease);
                         }
                     }
-                    Debug.Log("Number of shrews: " + GameObject.Find("Shrew").GetComponent<Shrew>().population);
+                    Debug.Log("Number of shrews342452325: " + GameObject.Find("Shrew").GetComponent<Shrew>().population);
                     Debug.Log("Number of Years: " + GameObject.Find("Shrew").GetComponent<Shrew>().satisfiedYears);
                 }
             }
