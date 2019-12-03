@@ -92,8 +92,8 @@ public class BalanceWorld : MonoBehaviour
 
         foreach (ShrewInfo s in Databas.ShrewList)
         {
-         //   print("adbaluiaw");
-            update_shrew(s.TilePosition, 0.4, 0.35);
+            //   print("adbaluiaw");
+            update_shrew(s, 0.4, 0.35); // throws in the whole array element (s) into the function
         }
         //setMeatlevelOnTile();
         /*   foreach(WeaselInfo w in WeaselList)
@@ -233,18 +233,19 @@ public class BalanceWorld : MonoBehaviour
                         }   
                     }
                   }*/
-        void update_shrew(string pos, double growth, double decrease)
+        void update_shrew(ShrewInfo Targetanimal, double growth, double decrease)
         {
-            
-            Shrew animal = GameObject.Find("Shrew").GetComponent<Shrew>();
+            Shrew animal = Targetanimal;
+            string pos = Targetanimal.TilePosition;
 
             //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
             // take in the global vector that holds the herbivore coordinate
-         //   int h = animal.hungryYears;
-            foreach (TileClass t in globalTiles)
-            {
-                if (t.name == pos)
+            //   int h = animal.hungryYears;
+            /*foreach (TileClass t in globalTiles)
+            {*/
+            if (GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict.ContainsKey(pos))//check the Tile dictionary for tile with string "pos" exist
                 {
+                    TileClass t = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict[pos]; // Tile exists place in variable t
                     //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
                     //så måste vi uppdatera available food på den tilen * range
                     int beforeChangedPop;
@@ -291,7 +292,7 @@ public class BalanceWorld : MonoBehaviour
                     }
              
                 }
-            }
+            //}
             
             Debug.Log("Number of shrews______________________________________: " + animal.population);
             Debug.Log("Number of satisifedYears______________________________: " + animal.satisfiedYears);
