@@ -3695,6 +3695,7 @@ RectTransform:
   - {fileID: 6149432143307294544}
   - {fileID: 6149432144492525419}
   - {fileID: 2765622901622118251}
+  - {fileID: 8399910434241006159}
   m_Father: {fileID: 6149432144403737827}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4078,12 +4079,12 @@ RectTransform:
   - {fileID: 6149432143645547766}
   - {fileID: 691305559584580006}
   - {fileID: 107145014169392110}
-  m_Father: {fileID: 6149432144403737827}
-  m_RootOrder: 1
+  m_Father: {fileID: 8346190489564162315}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 103}
+  m_AnchoredPosition: {x: 0, y: -116}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &937330658593263698
@@ -4532,7 +4533,7 @@ RectTransform:
   - {fileID: 695525190502822784}
   - {fileID: 4087455022040166825}
   m_Father: {fileID: 6149432144403737827}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -6052,7 +6053,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8346190489564162315}
-  - {fileID: 8399910434241006159}
   - {fileID: 6840582549973806172}
   m_Father: {fileID: 6149432143510770800}
   m_RootOrder: 1
@@ -10272,12 +10272,12 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 1078510713817112622, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+    - target: {fileID: 1078510713583470338, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 1078510713583470338, guid: 9ca15dcb4a3841e46aef1b62913a203c,
+    - target: {fileID: 1078510713817112622, guid: 9ca15dcb4a3841e46aef1b62913a203c,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
