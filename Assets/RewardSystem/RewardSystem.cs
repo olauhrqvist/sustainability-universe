@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RewardSystem : MonoBehaviour
 {
-    public float currency;
+    public float currency = 100;
 
     public float TotalReward;
     public float AnimalTotalReward;
@@ -52,7 +52,7 @@ public class RewardSystem : MonoBehaviour
 
     public void AddCurrency(float TotalReward)
     {
-        currency = 1000f * TotalReward; //exempel
+        currency += 1000f * TotalReward; //exempel
     }
 
 
