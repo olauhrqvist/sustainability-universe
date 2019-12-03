@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2631788, g: 0.7027544, b: 0.83219737, a: 1}
+  m_IndirectSpecularColor: {r: 0.26312017, g: 0.7029798, b: 0.8322077, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4374,13 +4374,13 @@ PrefabInstance:
         type: 3}
       propertyPath: pineObject
       value: 
-      objectReference: {fileID: 1612273161005096, guid: ae9772ea62bbc724eb9b8ef81109f733,
+      objectReference: {fileID: 1612273161005096, guid: 02cf6dfbe392c644998380244a460a58,
         type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: leafObject
       value: 
-      objectReference: {fileID: 1458573784885960, guid: 6910e2407cd484a42a0c2598114751a0,
+      objectReference: {fileID: 1612273161005096, guid: 02cf6dfbe392c644998380244a460a58,
         type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
@@ -4391,22 +4391,26 @@ PrefabInstance:
         type: 3}
       propertyPath: spruceObject
       value: 
-      objectReference: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+      objectReference: {fileID: 1369031296425274, guid: 22a3fd8d3e59a1149bdcd775c0e87241,
+        type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: spruceObject
       value: 
-      objectReference: {fileID: 100000, guid: 58c79ebc04f48c74fa4869c3f7d941fd, type: 3}
+      objectReference: {fileID: 1369031296425274, guid: 22a3fd8d3e59a1149bdcd775c0e87241,
+        type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: birchObject
       value: 
-      objectReference: {fileID: 100000, guid: 7dca68918011bd644a4dc268eea79b44, type: 3}
+      objectReference: {fileID: 1458573784885960, guid: 6910e2407cd484a42a0c2598114751a0,
+        type: 3}
     - target: {fileID: 2301617562215352437, guid: b1b5b473c20bf32409d2cc680114fdfc,
         type: 3}
       propertyPath: beechObject
       value: 
-      objectReference: {fileID: 100000, guid: 15977c94193725642b83e5c7be73b2e8, type: 3}
+      objectReference: {fileID: 1458573784885960, guid: 6910e2407cd484a42a0c2598114751a0,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 2301617561158192880, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1b5b473c20bf32409d2cc680114fdfc, type: 3}
