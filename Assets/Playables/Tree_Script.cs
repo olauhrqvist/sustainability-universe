@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tree_Script : Vegetation
 {
+    private float scaleLimit;
+
     public Tree_Script(
                                 int hierarchy,
                                 int ID,
@@ -20,7 +22,8 @@ public class Tree_Script : Vegetation
                                 double VegetationValue,
                                 double foodNeeded,
                                 int satisfiedYears,
-                                int hungryYears) : base(
+                                int hungryYears
+                                ) : base(
                                                     "Tree",
                                                     hierarchy,
                                                     ID,
@@ -36,8 +39,13 @@ public class Tree_Script : Vegetation
                                                  
                                                     VegetationValue)
     {
-
+        
     }
+
+    public void SetScale(float Input) { scaleLimit = Input; }
+    public float GetScale() {return scaleLimit; }
+
+
     private void Awake()
     {
         SetBaseType("Tree");

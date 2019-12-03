@@ -300,12 +300,14 @@ public class TileClass : MonoBehaviour
     //addTreeData() : add scripts to each tree and add each tree to the global database
     private void addTreeData(GameObject treeObject)
     {
-
+        float n = Random.Range(10, 20);
+        float s = n / 10f;
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
         if (spruceForest)
         {
-            treeObject.AddComponent<Spruce>();
-            treeObject.GetComponent<Spruce>().SetForestID(forestID);
+            treeObject.AddComponent<Tree_Script>();
+            treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
+            treeObject.GetComponent<Tree_Script>().SetScale(s);
             globalDatabase.AddTreetype(tileGameObject.name, "Spruce", treeObject);
             globalDatabase.AddSpruce(tileGameObject.name, treeObject);
 
@@ -315,8 +317,9 @@ public class TileClass : MonoBehaviour
         {
             BirchInfo tmp = new BirchInfo();
             vegetationOnTile += tmp.vegetationValue;
-            treeObject.AddComponent<Birch>();
-            treeObject.GetComponent<Birch>().SetForestID(forestID);
+            treeObject.AddComponent<Tree_Script>();
+            treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
+            treeObject.GetComponent<Tree_Script>().SetScale(s);
             globalDatabase.AddTreetype(tileGameObject.name, "Birch", treeObject);
             globalDatabase.AddBirch(tileGameObject.name, treeObject);
 
@@ -327,8 +330,9 @@ public class TileClass : MonoBehaviour
             BeechInfo tmp = new BeechInfo();
             vegetationOnTile += tmp.vegetationValue;
             Debug.Log("vegetationOnTile: " + vegetationOnTile);
-            treeObject.AddComponent<Beech>();
-            treeObject.GetComponent<Beech>().SetForestID(forestID);
+            treeObject.AddComponent<Tree_Script>();
+            treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
+            treeObject.GetComponent<Tree_Script>().SetScale(s);
             globalDatabase.AddTreetype(tileGameObject.name, "Beech", treeObject);
             globalDatabase.AddBeech(tileGameObject.name, treeObject);
 
@@ -468,21 +472,18 @@ public class TileClass : MonoBehaviour
         foreach (var tree in tileTrees)
         {
             expand = true;
-            // random scale for the tree
-          /*  float n = Random.Range(100, 200);
-            float s = n / 100f;*/
+            
 
             if (tree.transform.localScale.y < 0.5f)
             {
                 expand = false;
             }
 
-            if (tree.transform.localScale.y < 2f)
+            if (tree.transform.localScale.y < tree.GetComponent<Tree_Script>().GetScale())
             {
-
-                float var = (float)random.Next(0, 10);
-                var = var / 10;
-                tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                
+                float s = 0.01f;
+                tree.transform.localScale += new Vector3(s, s, s);
             }
 
 

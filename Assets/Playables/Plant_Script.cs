@@ -20,7 +20,8 @@ public class Plant_Script : Vegetation
                                 double VegetationValue,
                                 double foodNeeded,
                                 int satisfiedYears,
-                                int hungryYears) : base(
+                                int hungryYears
+                                ) : base(
                                                     "Plant",
                                                     hierarchy,
                                                     ID,
@@ -33,7 +34,6 @@ public class Plant_Script : Vegetation
                                                     species,
                                                     SunlightCost,
                                                     NutritionalCost,
-                                                    
                                                     VegetationValue)
     {
 
