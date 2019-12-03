@@ -356,6 +356,7 @@ public class TileClass : MonoBehaviour
         Vector3 posVec = tilePositions[5].pos;
         tilePositions[5].filled = true;
 
+        
         //treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         treeObject.transform.localScale = new Vector3(0, 0, 0);
 
@@ -467,6 +468,9 @@ public class TileClass : MonoBehaviour
         foreach (var tree in tileTrees)
         {
             expand = true;
+            // random scale for the tree
+          /*  float n = Random.Range(100, 200);
+            float s = n / 100f;*/
 
             if (tree.transform.localScale.y < 0.5f)
             {
