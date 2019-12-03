@@ -15,8 +15,8 @@ public class mapClick : MonoBehaviour
     private bool WindowShow = false;
     private float windowX = 0;
     private float windowY = 0;
-    private float windowWidth = 180;
-    private float windowHight = 150;
+    private float windowWidth = 200;
+    private float windowHight = 175;
     private GameObject closeButton;
     private Global_Database globalDatabase;// = new Global_Database();
 
@@ -56,12 +56,23 @@ public class mapClick : MonoBehaviour
         int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
         int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
         int carnivores = globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name);
-        int treenumber = globalDatabase.calculateTreetype(selectTile.GetComponent<Collider>().name); 
+        int treenumber = globalDatabase.calculateTreetype(selectTile.GetComponent<Collider>().name);
+
+
+        List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+        //double meat = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).meatOnTile;
+        List<double> meatlist = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).foodHierarchy;
+        double vegetation = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).vegetationOnTile;
+        //Debug.Log("Tile:" + selectTile.GetComponent<Collider>().name + " " + meat);
+
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
         + "Tree:     " + (treenumber) + "\r\n"
         + "Herbivores: " + (herbivores) + "\r\n"
         + "Omnivores: " + (omnivores) + "\r\n"
-        + "Carnivores: " + (carnivores) + "\r\n";
+        + "Carnivores: " + (carnivores) + "\r\n"
+        //+ "meatlist[0]" + meatlist[] + "\r\n"
+        + "Meat available: [" + meatlist[0] + "] [" + meatlist[1] + "] [" + meatlist[2] + "] [" + meatlist[3] + "] [" + meatlist[4] + "]" +  "\r\n"
+        + "Vegetation available: " + (vegetation) + "\r\n";
     }
 
     void MyWindow(int WindowID)
@@ -116,11 +127,11 @@ public class mapClick : MonoBehaviour
                         selectTile.GetComponent<Renderer>().material.color = clickColor;
                     }
 
-                    
+
                     selectTile.GetComponent<Renderer>().material.color = clickColor;
 
-                    
-                   
+
+
                 }
 
             }

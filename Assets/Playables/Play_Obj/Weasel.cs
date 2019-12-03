@@ -33,7 +33,7 @@ public class Weasel : Carnivore_Script
                            species,
                            meatValue,
                            vegetationValue,
-                           foodNeeded, 
+                           foodNeeded,
                            satisfiedYears,
                            hungryYears)
     {
@@ -43,4 +43,5 @@ public class Weasel : Carnivore_Script
     {
         SetModel(inputMesh);
     }
+
 }
