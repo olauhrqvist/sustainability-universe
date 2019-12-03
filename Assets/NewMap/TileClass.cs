@@ -65,6 +65,9 @@ public class TileClass : MonoBehaviour
     //OnTileData variables
     public List<double> foodHierarchy;
     public double vegetationOnTile;
+   
+    //if we only implement the total amount of food on the tile without considiration of hierarchies.
+    public double meatOnTile;  
 
 
 
@@ -104,6 +107,9 @@ public class TileClass : MonoBehaviour
         foodHierarchy.Add(0);
         foodHierarchy.Add(0);
         foodHierarchy.Add(0);
+
+        //if we only implement the total amount of food on the tile without considiration of hierarchies.
+        meatOnTile = 0;
 
         //print("size: " + foodHierarchy.Count);
 

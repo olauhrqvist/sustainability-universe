@@ -58,7 +58,7 @@ public class Animal_Script : Base_Playable
                                                 species)
         {
             FoodHierarchy = hierarchy;
-            Population = pop;
+            Population = 1;
             SatisfiedYears = satisfiedYears;
             HungryYears = hungryYears;
             FoodNeeded = foodNeeded;
