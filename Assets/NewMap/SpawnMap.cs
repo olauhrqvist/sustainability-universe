@@ -29,6 +29,12 @@ public class SpawnMap : MonoBehaviour
     public GameObject pineObject;
     public GameObject leafObject;
 
+    public GameObject spruceObject;
+    public GameObject birchObject;
+    public GameObject beechObject;
+
+
+
     public GameObject mountain1;
     public GameObject mountain2;
     public GameObject mountain3;
@@ -76,8 +82,8 @@ public class SpawnMap : MonoBehaviour
 
         markGroundtype();
         InvokeRepeating("growth", 1.0f, 0.1f);
-        InvokeRepeating("expand", 0.1f, 1.0f);
-        InvokeRepeating("spread", 2.0f, 3.0f);
+        InvokeRepeating("expand", 0.1f, 3.0f);
+        InvokeRepeating("spread", 2.0f, 5.0f);
 
         // Building a dictionary for all tiles for fast access
         BuildDictionary();

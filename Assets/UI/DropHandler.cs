@@ -22,7 +22,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
         {
             Name = Spawnable.name;
             Type = Spawnable.GetComponent<Base_Playable>().GetBaseType();
-            Debug.Log(Name);
+            //Debug.Log(Name);
             AddObject(Name, Type);
         }
 
@@ -60,17 +60,17 @@ public class DropHandler : MonoBehaviour, IDropHandler
                 {
                     case "Spruce":
                         globalDatabase.AddSpruce(name, Spawnable);
-                        print("Tile " + name + " and SpruceList count is: " + globalDatabase.SpruceList.Count);
+                        //print("Tile " + name + " and SpruceList count is: " + globalDatabase.SpruceList.Count);
                         break;
 
                     case "Birch":
                         globalDatabase.AddBirch(name, Spawnable);
-                        print("Tile " + name + " and BirchList count is: " + globalDatabase.BirchList.Count);
+                        //print("Tile " + name + " and BirchList count is: " + globalDatabase.BirchList.Count);
                         break;
 
                     case "Beech":
                         globalDatabase.AddBeech(name, Spawnable);
-                        print("Tile " + name + " and BeechList count is: " + globalDatabase.BeechList.Count);
+                        //print("Tile " + name + " and BeechList count is: " + globalDatabase.BeechList.Count);
                         break;
 
                     default:

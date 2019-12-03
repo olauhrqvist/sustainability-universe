@@ -7,8 +7,8 @@ public class Animal_Script : Base_Playable
     int FoodHierarchy;
     //int Population;
     // Already exists in base class
-    //double MeatValue; //how much food does the animals contain
-    //double VegetationValue; //how much food the vegetation contains
+    //how much food does the animals contain
+    //public double vegetationValue; //how much food the vegetation contains
     //double FoodNeeded; //food needed per population of 1
 
     private int SatisfiedYears;
@@ -19,6 +19,9 @@ public class Animal_Script : Base_Playable
     public double foodNeeded { get { return FoodNeeded; } set { FoodNeeded = value; } }
     private int Population;
     public int population { get { return Population; } set { Population = value; } }
+
+    private double MeatValue;
+    public double meatValue { get { return MeatValue; } set { MeatValue = value; } }
 
     public double AvailableFood()
     {
@@ -58,6 +61,8 @@ public class Animal_Script : Base_Playable
             Population = pop;
             SatisfiedYears = satisfiedYears;
             HungryYears = hungryYears;
-         FoodNeeded = foodNeeded;
+            FoodNeeded = foodNeeded;
+            MeatValue = meatValue;
+            //VegetationValue = vegetationValue;
         }
 }

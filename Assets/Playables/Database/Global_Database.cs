@@ -20,7 +20,7 @@ public class Global_Database : MonoBehaviour
             TilePosition = tile,
             name = name,
             Newobject = other
-            
+
         });
         Debug.Log("toodels: " + name);
     }
@@ -88,7 +88,7 @@ public class Global_Database : MonoBehaviour
             if (c.TilePosition == tile)
                 treetype++;
         }
- 
+
         return treetype;
     }
 
@@ -152,124 +152,171 @@ public class Global_Database : MonoBehaviour
 
 
 
-    public void AddWolf(string name, GameObject other)
+    public void AddWolf(string tile, GameObject other)
     {
-        WolfList.Add(new WolfInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+
+      // Hierarchy 4
+      WolfInfo wolf = new WolfInfo();
+      wolf.TilePosition = tile;
+      wolf.Newobject = other;
+      WolfList.Add(wolf);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[wolf.GetFoodHierarchy()] += wolf.meatValue;
+      tiles.Find(x => x.name == tile).foodHierarchy[wolf.GetFoodHierarchy() - 1] -= wolf.foodNeeded;
     }
 
-    public void AddShrew(string name, GameObject other)
+    public void AddShrew(string tile, GameObject other)
     {
-        ShrewList.Add(new ShrewInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+
+      ShrewInfo shrew = new ShrewInfo();
+      shrew.TilePosition = tile;
+      shrew.Newobject = other;
+      ShrewList.Add(shrew);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[shrew.GetFoodHierarchy()] += shrew.meatValue;
+      //tiles.Find(x => x.name == tile).foodHierarchy[shrew.GetFoodHierarchy() - 1] -= shrew.foodNeeded;
     }
 
-    public void AddWeasel(string name, GameObject other)
+    public void AddWeasel(string tile, GameObject other)
     {
-        WeaselList.Add(new WeaselInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
-    }
 
-    public void AddFox(string name, GameObject other)
-    {
-        FoxList.Add(new FoxInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
-
-    }
-
-    //-----------Herbivore-----------\\
-
-    public void AddMouse(string name, GameObject other)
-    {
-        MouseList.Add(new MouseInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+      WeaselInfo weasel = new WeaselInfo();
+      weasel.TilePosition = tile;
+      weasel.Newobject = other;
+      WeaselList.Add(weasel);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[weasel.GetFoodHierarchy()] += weasel.meatValue;
+      tiles.Find(x => x.name == tile).foodHierarchy[weasel.GetFoodHierarchy() - 1] -= weasel.foodNeeded;
 
     }
 
-    public void AddHare(string name, GameObject other)
+    public void AddFox(string tile, GameObject other)
     {
-        HareList.Add(new HareInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
 
-    }
-
-    public void AddDeer(string name, GameObject other)
-    {
-        DeerList.Add(new DeerInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
-
-    }
-
-    public void AddMoose(string name, GameObject other)
-    {
-        MooseList.Add(new MooseInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+      // Hierarchy 3
+      FoxInfo fox = new FoxInfo();
+      fox.TilePosition = tile;
+      fox.Newobject = other;
+      FoxList.Add(fox);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[fox.GetFoodHierarchy()] += fox.meatValue;
+      tiles.Find(x => x.name == tile).foodHierarchy[fox.GetFoodHierarchy() - 1] -= fox.foodNeeded;
 
     }
 
     //-----------Herbivore-----------\\
 
-    public void AddSquirrel(string name, GameObject other)
+    public void AddMouse(string tile, GameObject other)
     {
-        SquirrelList.Add(new SquirrelInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+
+      // Hierarchy 1
+      MouseInfo mouse = new MouseInfo();
+      mouse.TilePosition = tile;
+      mouse.Newobject = other;
+      MouseList.Add(mouse);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[mouse.GetFoodHierarchy()] += mouse.meatValue;
+      tiles.Find(x => x.name == tile).vegetationOnTile -= mouse.foodNeeded;
+
 
     }
 
-    public void AddRat(string name, GameObject other)
+    public void AddHare(string tile, GameObject other)
     {
-        RatList.Add(new RatInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+
+      // Hierarchy 2
+      HareInfo hare = new HareInfo();
+      hare.TilePosition = tile;
+      hare.Newobject = other;
+      HareList.Add(hare);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[hare.GetFoodHierarchy()] += hare.meatValue;
+      tiles.Find(x => x.name == tile).vegetationOnTile -= hare.foodNeeded;
+    }
+
+    public void AddDeer(string tile, GameObject other)
+    {
+
+      // Hierarchy 3
+      DeerInfo deer = new DeerInfo();
+      deer.TilePosition = tile;
+      deer.Newobject = other;
+      DeerList.Add(deer);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[deer.GetFoodHierarchy()] += deer.meatValue;
+      tiles.Find(x => x.name == tile).vegetationOnTile -= deer.foodNeeded;
 
     }
 
-    public void AddBoar(string name, GameObject other)
+    public void AddMoose(string tile, GameObject other)
     {
-        BoarList.Add(new WildBoarInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+
+      // Hierarchy 4
+      MooseInfo moose = new MooseInfo();
+      moose.TilePosition = tile;
+      moose.Newobject = other;
+      MooseList.Add(moose);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[moose.GetFoodHierarchy()] += moose.meatValue;
+      tiles.Find(x => x.name == tile).vegetationOnTile -= moose.foodNeeded;
 
     }
 
-    public void AddBear(string name, GameObject other)
+    //-----------Omnivore-----------\\
+
+    public void AddSquirrel(string tile, GameObject other)
     {
-        BrownBearList.Add(new BrownBearInfo()
-        {
-            TilePosition = name,
-            Newobject = other
-        });
+
+      // Hierarchy 1
+      SquirrelInfo squirrel = new SquirrelInfo();
+      squirrel.TilePosition = tile;
+      squirrel.Newobject = other;
+      SquirrelList.Add(squirrel);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[squirrel.GetFoodHierarchy()] += squirrel.meatValue;
+    }
+
+    public void AddRat(string tile, GameObject other)
+    {
+
+      // Hierarchy 2
+      RatInfo rat = new RatInfo();
+      rat.TilePosition = tile;
+      rat.Newobject = other;
+      RatList.Add(rat);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[rat.GetFoodHierarchy()] += rat.meatValue;
+      tiles.Find(x => x.name == tile).foodHierarchy[rat.GetFoodHierarchy() - 1] -= rat.foodNeeded;
+
+
+    }
+
+    public void AddBoar(string tile, GameObject other)
+    {
+
+      // Hierarchy 3
+      WildBoarInfo boar = new WildBoarInfo();
+      boar.TilePosition = tile;
+      boar.Newobject = other;
+      BoarList.Add(boar);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[boar.GetFoodHierarchy()] += boar.meatValue;
+      tiles.Find(x => x.name == tile).foodHierarchy[boar.GetFoodHierarchy() - 1] -= boar.foodNeeded;
+
+
+    }
+
+    public void AddBear(string tile, GameObject other)
+    {
+
+      // Hierarchy 4
+      BrownBearInfo bear = new BrownBearInfo();
+      bear.TilePosition = tile;
+      bear.Newobject = other;
+      BrownBearList.Add(bear);
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      tiles.Find(x => x.name == tile).foodHierarchy[bear.GetFoodHierarchy()] += bear.meatValue;
+      tiles.Find(x => x.name == tile).foodHierarchy[bear.GetFoodHierarchy() - 1] -= bear.foodNeeded;
 
     }
 
@@ -345,7 +392,7 @@ public class Global_Database : MonoBehaviour
         {
             if (w.TilePosition == tile)
                 Tree++;
-            
+
         }
         foreach (var w in BeechList)
         {
@@ -413,8 +460,12 @@ public class Global_Database : MonoBehaviour
 
 }
 
+/*public void calculateMeat(string tile)
+{
 
+}
 
+public void calculateVeg(string tile)
+{
 
-
-
+}*/

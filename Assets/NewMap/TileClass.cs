@@ -49,6 +49,12 @@ public class TileClass : MonoBehaviour
     // Methods
     bool pineForest;
     bool leafForest;
+
+    bool spruceForest;
+    bool birchForest;
+    bool beechForest;
+
+
     public int forestID;
     public int Nutrition;
 
@@ -57,9 +63,9 @@ public class TileClass : MonoBehaviour
 
 
     //OnTileData variables
-    public double meatOnTile;
+    public List<double> foodHierarchy;
     public double vegetationOnTile;
-   
+
 
 
 
@@ -86,11 +92,23 @@ public class TileClass : MonoBehaviour
         pineForest = false;
         leafForest = false;
         forestID = -1;
-        
+
+        spruceForest = false;
+        birchForest = false;
+        beechForest = false;
+
         //OnTileData
-        meatOnTile = 0;
+        foodHierarchy = new List<double>();
+        foodHierarchy.Add(0);
+        foodHierarchy.Add(0);
+        foodHierarchy.Add(0);
+        foodHierarchy.Add(0);
+        foodHierarchy.Add(0);
+
+        //print("size: " + foodHierarchy.Count);
+
         vegetationOnTile = 0;
-   
+
 }
     public void markGroundtype()
     {
@@ -146,16 +164,21 @@ public class TileClass : MonoBehaviour
                 switch (SpawnType)
                 {
                     case "Spruce":
-                        startGrowthPine();
+                        spruceForest = true;
+                        startGrowth();
+
                         // database.AddToDataBase(database.SpruceList, sampleObject, name);
                         //Debug.Log("ADAWDAWD");
                         break;
 
                     case "Birch":
-                        startGrowthLeaf();
+                        birchForest = true;
+                        startGrowth();
                         break;
 
                     case "Beech":
+                        beechForest = true;
+                        startGrowth();
                         break;
 
                     default:
@@ -233,7 +256,7 @@ public class TileClass : MonoBehaviour
 
         }
     }
-    public void startGrowthLeaf()
+    /*public void startGrowthLeaf()
     {
         leafForest = true;
         startGrowth();
@@ -243,17 +266,29 @@ public class TileClass : MonoBehaviour
     {
         pineForest = true;
         startGrowth();
-    }
+    }*/
 
 
     public GameObject getTreeObject()
     {
 
+      if (spruceForest)
+        return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().spruceObject;
+
+      else if (birchForest)
+        return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().birchObject;
+
+      else if (beechForest)
+        return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().beechObject;
+
+      else
+        return null;
+        /*
         if (pineForest)
             return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().pineObject;
 
         else // leafForrest
-            return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().leafObject;
+            return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().leafObject;*/
     }
 
     //addTreeData() : add scripts to each tree and add each tree to the global database
@@ -261,33 +296,43 @@ public class TileClass : MonoBehaviour
     {
 
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
-        if (pineForest)
+        if (spruceForest)
         {
             treeObject.AddComponent<Spruce>();
             treeObject.GetComponent<Spruce>().SetForestID(forestID);
             globalDatabase.AddTreetype(tileGameObject.name, "Spruce", treeObject);
             globalDatabase.AddSpruce(tileGameObject.name, treeObject);
+
+            vegetationOnTile += 150;
         }
-        else if (leafForest)
+        else if (birchForest)
         {
+            BirchInfo tmp = new BirchInfo();
+            vegetationOnTile += tmp.vegetationValue;
             treeObject.AddComponent<Birch>();
             treeObject.GetComponent<Birch>().SetForestID(forestID);
             globalDatabase.AddTreetype(tileGameObject.name, "Birch", treeObject);
             globalDatabase.AddBirch(tileGameObject.name, treeObject);
+
+            vegetationOnTile += 100;
         }
         else
         {
+            BeechInfo tmp = new BeechInfo();
+            vegetationOnTile += tmp.vegetationValue;
+            Debug.Log("vegetationOnTile: " + vegetationOnTile);
             treeObject.AddComponent<Beech>();
             treeObject.GetComponent<Beech>().SetForestID(forestID);
             globalDatabase.AddTreetype(tileGameObject.name, "Beech", treeObject);
             globalDatabase.AddBeech(tileGameObject.name, treeObject);
+
+            vegetationOnTile += 200;
 
         }
     }
 
     public void startGrowth()
     {
-
         // Calculates all the positions on the tile
         calculatePositions(3);
 
@@ -317,6 +362,7 @@ public class TileClass : MonoBehaviour
         //End Tree_Script
 
         tileTrees.Add(treeObject);
+
         grow = true;
     }
 
@@ -371,7 +417,7 @@ public class TileClass : MonoBehaviour
     }
 
 
-    
+
 
     public void calculateNeighbours()
     {
@@ -408,7 +454,6 @@ public class TileClass : MonoBehaviour
 
     public void treeGrowth()
     {
-
         // If the current density is lower than cap, increase it each time function is called.
         Vector3 posVec = new Vector3();
         int index = 5;
@@ -504,15 +549,25 @@ public class TileClass : MonoBehaviour
         {
             tile.forestID = forestID;
 
+            if (spruceForest)
+            GrowObject("Spruce", "Tree");
+
+            else if (birchForest)
+            GrowObject("Birch", "Tree");
+
+            else if (beechForest)
+            GrowObject("Beech", "Tree");
+
+            /*
             if (leafForest)
                 tile.startGrowthLeaf();
 
             else
-                tile.startGrowthPine();
+                tile.startGrowthPine();*/
         }
 
 
-        
+
 
 
     }

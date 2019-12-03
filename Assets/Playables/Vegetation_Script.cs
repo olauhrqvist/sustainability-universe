@@ -9,6 +9,8 @@ public abstract class Vegetation : Base_Playable
     int NutritionalCost;
     //double MeatValue;
     //double VegetationValue;
+    private double VegetationValue;
+    public double vegetationValue { get { return VegetationValue; } set { VegetationValue = value; } }
 
     protected Vegetation(
                            string type,
@@ -23,7 +25,7 @@ public abstract class Vegetation : Base_Playable
                            string species,
                            int SunlightCost,
                            int NutritionalCost,
-                          
+
                            double VegetationValue
                            ) : base(
                                                type,
@@ -35,11 +37,12 @@ public abstract class Vegetation : Base_Playable
                                                forestid,
                                                growthtime,
                                                species
-                                              
+
                                              )
     {
         GrowthHierarchy = hierarchy;
         this.SunlightCost = SunlightCost;
         this.NutritionalCost = NutritionalCost;
+        VegetationValue = vegetationValue;
     }
 }
