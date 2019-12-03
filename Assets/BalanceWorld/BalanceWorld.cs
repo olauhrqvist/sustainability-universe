@@ -86,9 +86,14 @@ public class BalanceWorld : MonoBehaviour
 
         foreach (ShrewInfo s in Databas.ShrewList)
         {
-            update_shrew(s.TilePosition, 0.4, 0.35);
-        }
 
+          //  update_shrew(s.TilePosition, 0.4, 0.35);
+
+
+            update_shrew(s, 0.4, 0.35); // throws in the whole array element (s) into the function
+
+        }
+        /*
         foreach(WeaselInfo w in Databas.WeaselList)
         {
             update_weasel(w.TilePosition, 0.35, 0.25);
@@ -103,8 +108,8 @@ public class BalanceWorld : MonoBehaviour
            {
               update_wolf(w.TilePosition, 0.15, 0.10);
            }
-
-       }
+           */
+     }
 
     void update_mouse(string pos, double growth, double decrease)
     {
@@ -653,13 +658,14 @@ public class BalanceWorld : MonoBehaviour
                             //call a destructor for the animal
                         }
                     }
+
                 }
 
             }
         }
     }
 
-    void update_shrew(string pos, double growth, double decrease)
+   /* void update_shrew(string pos, double growth, double decrease)
         {
 
 
@@ -681,6 +687,31 @@ public class BalanceWorld : MonoBehaviour
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
                     animal.hungryYears = 0;
+                    
+
+                  }*/
+    void update_shrew(ShrewInfo Targetanimal, double growth, double decrease)
+        {
+            Shrew animal = Targetanimal;
+            string pos = Targetanimal.TilePosition;
+
+            //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
+            // take in the global vector that holds the herbivore coordinate
+            //   int h = animal.hungryYears;
+            /*foreach (TileClass t in globalTiles)
+            {*/
+            int beforeChangedPop;
+            int afterChangedPop;
+
+            if (GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict.ContainsKey(pos))//check the Tile dictionary for tile with string "pos" exist
+            {
+                TileClass t = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict[pos]; // Tile exists place in variable t
+           
+                if (t.meatOnTile >= animal.foodNeeded)
+                {
+                animal.satisfiedYears++;
+                animal.hungryYears = 0;
+
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
@@ -715,14 +746,18 @@ public class BalanceWorld : MonoBehaviour
                     }
                 }
 
-            }
-        }
+    }
+
 
         Debug.Log("Number of shrews______________________________________: " + animal.population);
-            Debug.Log("Number of satisifedYears______________________________: " + animal.satisfiedYears);
-            Debug.Log("Number of hungryYears_________________________________: " + animal.hungryYears);
-        }
 
+        Debug.Log("Number of satisifedYears______________________________: " + animal.satisfiedYears);
+        Debug.Log("Number of hungryYears_________________________________: " + animal.hungryYears);
+                }
+}
+
+        
+/*
     void update_weasel(string pos, double growth, double decrease)
     {
 
@@ -896,15 +931,14 @@ public class BalanceWorld : MonoBehaviour
                         {
                             //call a destructor for the animal
                         }
-                    }
-                }
+                    }*/
+               
 
-            }
-        }
-    }
+            
+           
 
 
-}
+
 
 
 
