@@ -74,11 +74,26 @@ public class BalanceWorld : MonoBehaviour
             update_brownBear(b, 0.15, 0.10);
         }
 
-
+        int index = 0;
         //finally go through the carnivores
-        foreach (ShrewInfo s in Databas.ShrewList)
+     /*   foreach (ShrewInfo s in Databas.ShrewList)
         {
-            update_shrew(s, 0.4, 0.35); // throws in the whole array element (s) into the function
+            bool check = update_shrew(s, 04, 0.35);
+            if (!check)
+            {
+                Databas.ShrewList.RemoveAt(index);
+            }// throws in the whole array element (s) into the function
+            index++;
+        }*/
+        for(int i = 0; i < Databas.ShrewList.Count; i++)
+        {
+            ShrewInfo s = Databas.ShrewList[i];
+            bool check = update_shrew(s, 0.4, 0.35);
+            if (check == false)
+            {
+                Debug.Log("eeeeeeeeeeeeeeee");
+                Databas.ShrewList.RemoveAt(i);
+            }// throws in the whole array element (s) into the function
         }
         foreach (WeaselInfo w in Databas.WeaselList)
         {
@@ -148,7 +163,7 @@ public class BalanceWorld : MonoBehaviour
 
                         if (animal.population <= 0)
                         {
-                            //call a destructor for the animal
+                            Destroy(this);
                         }
                     }
                 }
@@ -214,7 +229,7 @@ public class BalanceWorld : MonoBehaviour
                         Debug.Log("Hares, vegetationOnTile from the hares______________________________________: " + globalTiles.Find(x => x.name == pos).vegetationOnTile);
                         if (animal.population <= 0)
                         {
-                            //call a destructor for the animal
+                            Destroy(this);
                         }
                     }
                 }
@@ -692,7 +707,7 @@ public class BalanceWorld : MonoBehaviour
         }
     }
 
-    void update_shrew(ShrewInfo Targetanimal, double growth, double decrease)
+    bool update_shrew(ShrewInfo Targetanimal, double growth, double decrease)
     {
         Shrew animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
@@ -740,20 +755,23 @@ public class BalanceWorld : MonoBehaviour
                     globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.meatValue);
                     //setting new meatOnTile if population rises (releasing the food they ate)
                     globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
-
+               
                     if (animal.population <= 0)
                     {
-                        //call a destructor for the animal
+                        // DestroyImmediate(this, true);
+
+                        return false;
                     }
                 }
             }
-
+          
         }
 
-
+        
         Debug.Log("Number of shrews______________________________________: " + animal.population);
         Debug.Log("Number of satisifedYears______________________________: " + animal.satisfiedYears);
         Debug.Log("Number of hungryYears_________________________________: " + animal.hungryYears);
+        return true;
     }
     void update_weasel(WeaselInfo Targetanimal, double growth, double decrease)
     {
@@ -865,7 +883,7 @@ public class BalanceWorld : MonoBehaviour
 
                     if (animal.population <= 0)
                     {
-                        //call a destructor for the animal
+                        Destroy(this);
                     }
                 }
             }
