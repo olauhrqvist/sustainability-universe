@@ -13,7 +13,7 @@ public class YearCounter : MonoBehaviour
     //variable
 
     private int Year = 0;
-    private float Counter = 2f;
+    private float Counter = 10f;
 
     public GameObject text;
 
