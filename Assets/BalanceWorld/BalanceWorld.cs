@@ -40,7 +40,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.MouseList.Count; i++)
         {
             MouseInfo m = Databas.MouseList[i];
-            if (update_mouse(m, 0.4, 0.35) == false)
+            if (!update_mouse(m, 0.4, 0.35))
             {
                 Databas.MouseList.RemoveAt(i);
             }// throws in the whole array element (s) into the function
@@ -48,7 +48,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.HareList.Count; i++)
         {
             HareInfo h = Databas.HareList[i];
-            if (update_hare(h, 0.35, 0.25) == false)
+            if (!update_hare(h, 0.35, 0.25))
             {
                 Databas.HareList.RemoveAt(i);
             }
@@ -56,7 +56,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.DeerList.Count; i++)
         {
             DeerInfo d = Databas.DeerList[i];
-            if (update_deer(d, 0.25, 0.15) == false)
+            if (!update_deer(d, 0.25, 0.15))
             {
                 Databas.DeerList.RemoveAt(i);
             }
@@ -64,7 +64,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.MooseList.Count; i++)
         {
             MooseInfo m = Databas.MooseList[i];
-            if (update_moose(m, 0.15, 0.10) == false)
+            if (!update_moose(m, 0.15, 0.10))
             {
                 Databas.MooseList.RemoveAt(i);
             }
@@ -74,7 +74,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.SquirrelList.Count; i++)
         {
             SquirrelInfo s = Databas.SquirrelList[i];
-            if (update_squirell(s, 0.4, 0.35) == false)
+            if (!update_squirell(s, 0.4, 0.35))
             {
                 Databas.SquirrelList.RemoveAt(i);
             }
@@ -82,7 +82,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.RatList.Count; i++)
         {
             RatInfo r = Databas.RatList[i];
-            if (update_rat(r, 0.35, 0.25) == false)
+            if (!update_rat(r, 0.35, 0.25))
             {
                 Databas.RatList.RemoveAt(i);
             }
@@ -90,7 +90,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.BoarList.Count; i++)
         {
             WildBoarInfo b = Databas.BoarList[i];
-            if (update_boar(b, 0.25, 0.15) == false)
+            if (!update_boar(b, 0.25, 0.15))
             {
                 Databas.BoarList.RemoveAt(i);
             }
@@ -98,7 +98,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.BrownBearList.Count; i++)
         {
             BrownBearInfo b = Databas.BrownBearList[i];
-            if (update_brownBear(b, 0.15, 0.10) == false)
+            if (!update_brownBear(b, 0.15, 0.10))
             {
                 Databas.BrownBearList.RemoveAt(i);
             }
@@ -110,7 +110,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.ShrewList.Count; i++)
         {
             ShrewInfo s = Databas.ShrewList[i];
-            if (update_shrew(s, 0.4, 0.35) == false)
+            if (!update_shrew(s, 0.4, 0.35))
             {
                 Databas.ShrewList.RemoveAt(i);
             }// throws in the whole array element (s) into the function
@@ -118,7 +118,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.WeaselList.Count; i++)
         {
             WeaselInfo w = Databas.WeaselList[i];
-            if (update_weasel(w, 0.35, 0.25) == false)
+            if (!update_weasel(w, 0.35, 0.25))
             {
                 Databas.WeaselList.RemoveAt(i);
             }// throws in the whole array element (s) into the function
@@ -126,7 +126,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.FoxList.Count; i++)
         {
             FoxInfo f = Databas.FoxList[i];
-            if (update_fox(f, 0.25, 0.15) == false)
+            if (!update_fox(f, 0.25, 0.15))
             {
 
                 Databas.FoxList.RemoveAt(i);
@@ -135,7 +135,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.WolfList.Count; i++)
         {
             WolfInfo w = Databas.WolfList[i];
-            if (update_wolf(w, 0.15, 0.10) == false)
+            if (!update_wolf(w, 0.15, 0.10))
             {
                 Databas.WolfList.RemoveAt(i);
             }
