@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class YearCounter : MonoBehaviour
 {
+
   //script
   public RewardSystem other;
   public Global_Database Database;
@@ -25,21 +26,22 @@ public class YearCounter : MonoBehaviour
     text.GetComponent<Text>().text = other.currency + " KR";
     //rewardsystem = GameObject.Find("SpawnMap").GetComponent<RewardSystem>();
   }
-  public void Update()
-  {
-
-    if (Time.time >= Counter)
+    public void Update()
     {
-      Year = Year + 1;
-      Counter += adder;
-      print(Counter);
 
-      bw.YearUpdate();//this is causing a nullreference error.
-      other.Calculate(bw.Happiness);
+        if (Time.time >= Counter)
+        {
+            Year = Year + 1;
+            Counter += adder;
+            print(Counter);
+            other.Calculate();
 
-      text.GetComponent<Text>().text = other.currency + " KR";
+            bw.YearUpdate();
+
+            text.GetComponent<Text>().text = other.currency + " KR";
+
+        }
+
+        //------------------------------------------------------------------------------\\
     }
-
-
-  }
 }

@@ -128,7 +128,7 @@ public class BalanceWorld : MonoBehaviour
             FoxInfo f = Databas.FoxList[i];
             if (update_fox(f, 0.25, 0.15) == false)
             {
-   
+
                 Databas.FoxList.RemoveAt(i);
             }// throws in the whole array element (s) into the function
         }
@@ -137,10 +137,10 @@ public class BalanceWorld : MonoBehaviour
             WolfInfo w = Databas.WolfList[i];
             if (update_wolf(w, 0.15, 0.10) == false)
             {
-                 Databas.WolfList.RemoveAt(i);
+                Databas.WolfList.RemoveAt(i);
             }
         }
-      
+
     }
 
     bool update_mouse(MouseInfo Targetanimal, double growth, double decrease)
@@ -817,9 +817,9 @@ public class BalanceWorld : MonoBehaviour
         return true;
     }
 
-  
-  bool update_weasel(WeaselInfo Targetanimal, double growth, double decrease)
-  {
+
+    bool update_weasel(WeaselInfo Targetanimal, double growth, double decrease)
+    {
 
         Weasel animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
@@ -885,8 +885,8 @@ public class BalanceWorld : MonoBehaviour
         }
         return true;
     }
-  bool update_fox(FoxInfo Targetanimal, double growth, double decrease)
-  {
+    bool update_fox(FoxInfo Targetanimal, double growth, double decrease)
+    {
         Fox animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
 
@@ -949,10 +949,10 @@ public class BalanceWorld : MonoBehaviour
                 }
             }
         }
-        return true; 
-  }
-  bool update_wolf(WolfInfo Targetanimal, double growth, double decrease)
-  {
+        return true;
+    }
+    bool update_wolf(WolfInfo Targetanimal, double growth, double decrease)
+    {
         Wolf animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
 
