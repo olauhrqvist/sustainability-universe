@@ -54,8 +54,8 @@ public class Global_Database : MonoBehaviour
             name = name,
             Newobject = other
         });
-        print("add tree type, the tile is " + tile);
-        print("list count: " + TreeTypeList.Count);
+        //print("add tree type, the tile is " + tile);
+        //print("list count: " + TreeTypeList.Count);
     }
 
     public int calCarnivores(string tile)

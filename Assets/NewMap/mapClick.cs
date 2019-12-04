@@ -56,13 +56,14 @@ public class mapClick : MonoBehaviour
         int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
         int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
         int carnivores = globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name);
-        int treenumber = globalDatabase.calculateTreetype(selectTile.GetComponent<Collider>().name);
 
 
         List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
         //double meat = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).meatOnTile;
         List<double> meatlist = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).foodHierarchy;
         double vegetation = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).vegetationOnTile;
+        int treenumber = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).tileTrees.Count;
+
         //Debug.Log("Tile:" + selectTile.GetComponent<Collider>().name + " " + meat);
 
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"

@@ -65,9 +65,9 @@ public class TileClass : MonoBehaviour
     //OnTileData variables
     public List<double> foodHierarchy;
     public double vegetationOnTile;
-   
+
     //if we only implement the total amount of food on the tile without considiration of hierarchies.
-    public double meatOnTile;  
+    public double meatOnTile;
 
 
 
@@ -172,9 +172,8 @@ public class TileClass : MonoBehaviour
                     case "Spruce":
                         spruceForest = true;
                         startGrowth();
-
                         // database.AddToDataBase(database.SpruceList, sampleObject, name);
-                        //Debug.Log("ADAWDAWD");
+                       //Debug.Log("Should grow neighbour");
                         break;
 
                     case "Birch":
@@ -188,7 +187,7 @@ public class TileClass : MonoBehaviour
                         break;
 
                     default:
-                        Debug.Log("Tree not found : " + SpawnType);
+                       //Debug.Log("Tree not found : " + SpawnType);
                         break;
                 }
                 break;
@@ -209,7 +208,7 @@ public class TileClass : MonoBehaviour
                         break;
 
                     default:
-                        Debug.Log("Carnivore not found : " + SpawnType);
+                       //Debug.Log("Carnivore not found : " + SpawnType);
                         break;
                 }
                 break;
@@ -230,7 +229,7 @@ public class TileClass : MonoBehaviour
                         break;
 
                     default:
-                        Debug.Log("Herbivore not found : " + SpawnType);
+                       //Debug.Log("Herbivore not found : " + SpawnType);
                         break;
                 }
                 break;
@@ -251,13 +250,13 @@ public class TileClass : MonoBehaviour
                         break;
 
                     default:
-                        Debug.Log("Omnivore not found : " + SpawnType);
+                       //Debug.Log("Omnivore not found : " + SpawnType);
                         break;
                 }
                 break;
 
             default:
-                Debug.Log("Type not found : " + type);
+               //Debug.Log("Type not found : " + type);
                 break;
 
         }
@@ -329,7 +328,7 @@ public class TileClass : MonoBehaviour
         {
             BeechInfo tmp = new BeechInfo();
             vegetationOnTile += tmp.vegetationValue;
-            Debug.Log("vegetationOnTile: " + vegetationOnTile);
+           //Debug.Log("vegetationOnTile: " + vegetationOnTile);
             treeObject.AddComponent<Tree_Script>();
             treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
             treeObject.GetComponent<Tree_Script>().SetScale(s);
@@ -350,7 +349,8 @@ public class TileClass : MonoBehaviour
             forestID = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forestID++;
         //Debug.Log("Tree part of forrest " + forrestID);
         //GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forrestID;
-
+        if (grow == false)
+        {
         GameObject treeObject = getTreeObject();
 
         // Grows a tree in the middle of the tile, starting the expansion process.
@@ -360,7 +360,7 @@ public class TileClass : MonoBehaviour
         Vector3 posVec = tilePositions[5].pos;
         tilePositions[5].filled = true;
 
-        
+       //Debug.Log("Starting growth on tile " + treeObject.transform.position);
         //treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         treeObject.transform.localScale = new Vector3(0, 0, 0);
 
@@ -375,6 +375,7 @@ public class TileClass : MonoBehaviour
         tileTrees.Add(treeObject);
 
         grow = true;
+      }
     }
 
     public void destroyTrees()
@@ -382,14 +383,14 @@ public class TileClass : MonoBehaviour
         foreach (var tree in tileTrees)
         {
             //Destroy(tree);
-            //  Debug.Log("Destroying trees on tile.");
+            // //Debug.Log("Destroying trees on tile.");
             UnityEngine.Object.Destroy(tree);
         }
 
 
         tileTrees.Clear();
         //if (tileTrees.Count == 0)
-        //  Debug.Log("No trees left in array.");
+        // //Debug.Log("No trees left in array.");
     }
 
 
@@ -407,21 +408,21 @@ public class TileClass : MonoBehaviour
 
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
+        //Debug.Log("Keep growing on tile " + treeObject.transform.position);
+
+
+        // Change the color of the tree to an RGB value. Can be randomized.
+        //Color treeColor = new Color(Random.Range(50, 100), Random.Range(150, 255), 0, 0.5f);
+        //Debug.Log("color: " + treeColor);
+        //treeObject.GetComponent<Renderer>().material.color = treeColor;
+
+        //}
         //Tree_script
         addTreeData(treeObject);
         //End Tree_Script
 
         //treeObject.name = "pineTree";
         tileTrees.Add(treeObject);
-
-        // Change the color of the tree to an RGB value. Can be randomized.
-        /*Color treeColor = new Color(
- Random.Range(0f, 0f),
- Random.Range(0f, 1f),
- Random.Range(0f, 0f));
-        pineGameObject.GetComponent<Renderer>().material.color = treeColor;*/
-
-        //}
 
         //assest scale back to default
         //treeObject.transform.localScale = new Vector3(1, 1, 1);
@@ -472,7 +473,7 @@ public class TileClass : MonoBehaviour
         foreach (var tree in tileTrees)
         {
             expand = true;
-            
+
 
             if (tree.transform.localScale.y < 0.5f)
             {
@@ -481,7 +482,7 @@ public class TileClass : MonoBehaviour
 
             if (tree.transform.localScale.y < tree.GetComponent<Tree_Script>().GetScale())
             {
-                
+
                 float s = 0.01f;
                 tree.transform.localScale += new Vector3(s, s, s);
             }
@@ -491,7 +492,7 @@ public class TileClass : MonoBehaviour
 
         }
 
-        if (expand == true && tilePositions.Count != 1)
+        if (expand == true && tilePositions.Count != 1 && tileTrees.Count < 9)
         {
 
             List<Pair> tmp = new List<Pair>();
@@ -510,7 +511,7 @@ public class TileClass : MonoBehaviour
         }
         else if (tileTrees.Count == 9 && spread == true && neighbours.Count != 1)
         {
-            //Debug.Log("Spreading...");
+            //Debug.Log("Spreading. tileTrees:Count:" + tileTrees.Count);
             spread = false;
             spreadTrees();
         }
@@ -521,7 +522,7 @@ public class TileClass : MonoBehaviour
         {
           //Debug.Log("Increasing scale by 10%");
           if(tree.transform.localScale.y < 2f)
-          Debug.Log("");
+         //Debug.Log("");
           //tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
 
           else
@@ -561,13 +562,22 @@ public class TileClass : MonoBehaviour
             tile.forestID = forestID;
 
             if (spruceForest)
-            GrowObject("Spruce", "Tree");
+            {
+              //Debug.Log("Grow neighbour spruce.");
+              tile.GrowObject("Spruce", "Tree");
+            }
 
             else if (birchForest)
-            GrowObject("Birch", "Tree");
+            {
+              //Debug.Log("Grow neighbour birch.");
+              tile.GrowObject("Birch", "Tree");
+            }
 
             else if (beechForest)
-            GrowObject("Beech", "Tree");
+            {
+              //Debug.Log("Grow neighbour beech.");
+              tile.GrowObject("Beech", "Tree");
+            }
 
             /*
             if (leafForest)
