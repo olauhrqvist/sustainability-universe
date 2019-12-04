@@ -63,16 +63,38 @@ public class TileClass : MonoBehaviour
 
 
     //OnTileData variables
-    public List<double> foodHierarchy;
+    public List<double> foodHierarchy; //meatlist
     public double vegetationOnTile;
 
     //if we only implement the total amount of food on the tile without considiration of hierarchies.
-    public double meatOnTile;
+    public double meatOnTile; // use function caculateMeatOnTile() or caculateMeatOnTile(int index) instead.
 
 
 
 
+    public double caculateMeatOnTile() // caculate the total meat on tile.
+    {
+        //Total meat on tile (ignore hierarchy)
+        double value =0 ;
+        foreach (double var in foodHierarchy)
+        {
+            value += var;
+        }
 
+        return value;
+    }
+
+    public double caculateMeatOnTile(int index) // caculate the total meat on tile based on the Hierarchy
+    {
+        // caculate the total meat which is lower than the hierarchy level
+        double value = 0;
+        for (int i =0; i< index; i++)
+        {
+            value += foodHierarchy[i];
+        }
+
+        return value;
+    }
     // Constructor
     public TileClass()
     {
