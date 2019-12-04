@@ -31,7 +31,27 @@ public class HideUI : MonoBehaviour
             Show.SetActive(false);
         }
     }
-    public void ToggleUIElements()
+    public void ToggleTextNotification()
+    {
+        if (Hidden)
+        {
+            Hidden = false;
+            Hide.SetActive(true);
+            Show.SetActive(false);
+
+            Vector3 temp = new Vector3(-Movement, 0, 0);
+            foreach(GameObject i in UIElements)
+            {
+                i.SetActive(Hidden);
+            }
+            foreach (GameObject j in Buttons)
+            {
+                j.transform.localPosition += temp;
+            }
+            UIElements[UIElements.Length - 1].SetActive(true);
+        }
+    }
+        public void ToggleUIElements()
     {
         if (!Hidden)
         {

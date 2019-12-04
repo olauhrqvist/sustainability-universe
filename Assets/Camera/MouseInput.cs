@@ -16,6 +16,7 @@ public class MouseInput : InputValue
     public GameObject Omnivores;
     public GameObject Saprovores;
     public GameObject EcoSystemStats;
+    public GameObject Notifications;
 
     // Events
     public static event MoveInputHandler OnMoveInput;
@@ -44,7 +45,7 @@ public class MouseInput : InputValue
         }
         else if (mousepos.x > screen.x * 0.95f) // very right
         {
-            if ((mousepos.y > screen.y * 0.53f || mousepos.y < screen.y * 0.47f) && !(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf))
+            if ((mousepos.y > screen.y * 0.53f || mousepos.y < screen.y * 0.47f) && !(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf))
             {
                 OnMoveInput?.Invoke(Vector3.forward);
             }
@@ -53,11 +54,11 @@ public class MouseInput : InputValue
 
         if (mousepos.y < screen.y * .05f) //Very Bottom
         {
-            if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf) && mousepos.x < screen.x * 0.85)
+            if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf) && mousepos.x < screen.x * 0.85)
             {
                 OnMoveInput?.Invoke(Vector3.right);
             }
-            else if(!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf))
+            else if(!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf))
             {
                 OnMoveInput?.Invoke(Vector3.right);
             }
@@ -65,11 +66,11 @@ public class MouseInput : InputValue
         }
         else if (mousepos.y > screen.y * .95f) //very Top
         {
-            if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf) && mousepos.x < screen.x * 0.85)
+            if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf) && mousepos.x < screen.x * 0.85)
             {
                 OnMoveInput?.Invoke(-Vector3.right);
             }
-            else if (!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf))
+            else if (!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf))
             {
                 OnMoveInput?.Invoke(-Vector3.right);
             }
@@ -98,7 +99,7 @@ public class MouseInput : InputValue
 
 
         // Zoom
-        if(!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf))
+        if(!(shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf))
         {
             if (Input.mouseScrollDelta.y > 0)
             {
@@ -109,7 +110,7 @@ public class MouseInput : InputValue
                 OnZoomInput?.Invoke(9f);
             }
         }
-        else if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf) && (mousepos.x < (screen.x * 0.87f)))
+        else if ((shoppen.activeSelf || Tree.activeSelf || Carnivores.activeSelf || Herbivores.activeSelf || plants.activeSelf || Fungus.activeSelf || Omnivores.activeSelf || Saprovores.activeSelf || EcoSystemStats.activeSelf || Notifications.activeSelf) && (mousepos.x < (screen.x * 0.87f)))
         {
             
             if (Input.mouseScrollDelta.y > 0)
