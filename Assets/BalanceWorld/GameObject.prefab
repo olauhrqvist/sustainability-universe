@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9200240817997800668}
-  - component: {fileID: 6523644493133138599}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -31,32 +30,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6523644493133138599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5449265263195714343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1035826f8aee6d6459edcff39f4de542, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TileList: []
-  WolfList: []
-  ShrewList: []
-  WeaselList: []
-  FoxList: []
-  MouseList: []
-  HareList: []
-  DeerList: []
-  MooseList: []
-  SquirrelList: []
-  RatList: []
-  BoarList: []
-  BrownBearList: []
-  BeechList: []
-  BirchList: []
-  SpruceList: []
-  globalTiles: []

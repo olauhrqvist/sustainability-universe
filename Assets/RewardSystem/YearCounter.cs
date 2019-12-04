@@ -5,39 +5,43 @@ using UnityEngine.UI;
 
 public class YearCounter : MonoBehaviour
 {
-   //script
-    public RewardSystem other;
-    public Global_Database Database;
-    public BalanceWorld bw;
 
-    //variable
+  //script
+  public RewardSystem other;
+  public Global_Database Database;
+  public BalanceWorld bw;
 
-    private int Year = 0;
-    private float Counter = 10f;
-    private float YearsCounter = 10f;
+  //variable
 
-    public GameObject text;
+  private int Year = 0;
+  private float Counter = 2f;
+  private float adder = 2f;
 
-    //------------------------------------------------------------------------------\\
-   public void Start()
-    {
-        other.currency = 100;
-        text.GetComponent<Text>().text = other.currency + " KR";
-        //rewardsystem = GameObject.Find("SpawnMap").GetComponent<RewardSystem>();
-    }
+  public GameObject text;
+
+  //------------------------------------------------------------------------------\\
+  public void Start()
+  {
+    other.currency = 100;
+    text.GetComponent<Text>().text = other.currency + " KR";
+    //rewardsystem = GameObject.Find("SpawnMap").GetComponent<RewardSystem>();
+  }
     public void Update()
     {
-       
+
         if (Time.time >= Counter)
         {
             Year = Year + 1;
-            Counter += YearsCounter;          
+            Counter += adder;
+            print(Counter);
             other.Calculate();
 
             bw.YearUpdate();
 
             text.GetComponent<Text>().text = other.currency + " KR";
+
         }
 
+        //------------------------------------------------------------------------------\\
     }
 }
