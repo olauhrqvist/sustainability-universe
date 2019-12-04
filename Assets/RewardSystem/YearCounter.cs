@@ -14,6 +14,7 @@ public class YearCounter : MonoBehaviour
 
     private int Year = 0;
     private float Counter = 10f;
+    private float YearsCounter = 10f;
 
     public GameObject text;
 
@@ -26,14 +27,14 @@ public class YearCounter : MonoBehaviour
     }
     public void Update()
     {
-
+       
         if (Time.time >= Counter)
         {
             Year = Year + 1;
-            Counter += Counter;          
+            Counter += YearsCounter;          
             other.Calculate();
 
-            bw.YearUpdate();//this is causing a nullreference error.
+            bw.YearUpdate();
 
             text.GetComponent<Text>().text = other.currency + " KR";
         }
