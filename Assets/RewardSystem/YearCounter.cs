@@ -14,34 +14,33 @@ public class YearCounter : MonoBehaviour
   //variable
 
   private int Year = 0;
-  private float Counter = 2f;
-  private float adder = 2f;
+  private float Counter = 10f;
+  private float adder = 10f;
 
   public GameObject text;
 
   //------------------------------------------------------------------------------\\
   public void Start()
   {
-    other.currency = 100;
+    other.currency = 1000;
     text.GetComponent<Text>().text = other.currency + " KR";
     //rewardsystem = GameObject.Find("SpawnMap").GetComponent<RewardSystem>();
   }
-    public void Update()
+  public void Update()
+  {
+
+    if (Time.time >= Counter)
     {
+      Year = Year + 1;
+      Counter += adder; ;
+      other.Calculate(bw.Happiness);
 
-        if (Time.time >= Counter)
-        {
-            Year = Year + 1;
-            Counter += adder;
-            print(Counter);
-            other.Calculate();
+      bw.YearUpdate();
 
-            bw.YearUpdate();
+      text.GetComponent<Text>().text = other.currency + " KR";
 
-            text.GetComponent<Text>().text = other.currency + " KR";
-
-        }
-
-        //------------------------------------------------------------------------------\\
     }
+
+    //------------------------------------------------------------------------------\\
+  }
 }
