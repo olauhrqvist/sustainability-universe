@@ -37,7 +37,6 @@ public class NotificationScript : MonoBehaviour
         createImage.GetComponent<Image>().color = color;
         if (!panel.activeInHierarchy)
         {
-            Debug.Log("ayo what");
             newmessage = true;
         }
         UpdateNotification();

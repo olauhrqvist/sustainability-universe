@@ -106,8 +106,16 @@ public class EcoStatHandler : MonoBehaviour
                 foreach (var a in AnimalTypeDict[Animal]) // add all position to a list
                 {
                     Marks.Add(a.TilePosition);
+                    if (Animal != "Spruce" && Animal != "Birch" && Animal != "Beech")
+                    {
+                        sum += a.population;
+                    }
+                    else
+                    {
+                        sum++;
+                    }
                 }
-                sum = MarkMap(Marks);
+                MarkMap(Marks);
                 textbox.SetActive(true);
                 text.GetComponent<Text>().text = sum + " " + Animal;
 
@@ -134,17 +142,15 @@ public class EcoStatHandler : MonoBehaviour
     // Let another function change color of all marked objects
     public GameObject textbox;
     public GameObject text;
-    private int MarkMap(List<string> Marks)
+    private void MarkMap(List<string> Marks)
     {
-        int sum = 0;
         foreach (var M in Marks)
         {
             if (GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict.ContainsKey(M))
             {
                 TileDict[M].tileGameObject.GetComponent<Renderer>().material.color = MarkColor;
-                sum++;
             }
         }
-        return sum;
+        return;
     }
 }

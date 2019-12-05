@@ -40,17 +40,24 @@ public class HideUI : MonoBehaviour
             Show.SetActive(false);
 
             Vector3 temp = new Vector3(-Movement, 0, 0);
-            foreach(GameObject i in UIElements)
-            {
-                i.SetActive(Hidden);
-            }
+
             foreach (GameObject j in Buttons)
             {
                 j.transform.localPosition += temp;
             }
             UIElements[UIElements.Length - 1].SetActive(true);
         }
+        if (!Hidden)
+        {
+            foreach (GameObject i in UIElements)
+            {
+                i.SetActive(false);
+            }
+            UIElements[UIElements.Length - 1].SetActive(true);
+
+        }
     }
+
         public void ToggleUIElements()
     {
         if (!Hidden)
