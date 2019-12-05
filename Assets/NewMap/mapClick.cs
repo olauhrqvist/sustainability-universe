@@ -11,12 +11,13 @@ public class mapClick : MonoBehaviour
     private Color planeColor;
     private Color orginColor;
     private int i = 1;
+    private string animalInfo;
     private string tileInfo;
     private bool WindowShow = false;
     private float windowX = 0;
     private float windowY = 0;
-    private float windowWidth = 250;//200
-    private float windowHight = 200;//175
+    private float windowWidth = 220;//200
+    private float windowHight = 195;//175
     private GameObject closeButton;
     private Global_Database globalDatabase;// = new Global_Database();
 
@@ -51,29 +52,59 @@ public class mapClick : MonoBehaviour
 
     void updateTileInfo()
     {
-      // Fetch Database
-        globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+        // Fetch Database
+        animalInfo = "";
+          globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
         int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
         int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
         int carnivores = globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name);
+        int wolf = globalDatabase.calculateWolf(selectTile.GetComponent<Collider>().name);
+        int shrew = globalDatabase.calculateShrew(selectTile.GetComponent<Collider>().name);
+        int fox = globalDatabase.calculateFox(selectTile.GetComponent<Collider>().name);
+        int weasel = globalDatabase.calculateWeasel(selectTile.GetComponent<Collider>().name);
+        int squirrel = globalDatabase.calculateSquirrel(selectTile.GetComponent<Collider>().name);
+        int boar = globalDatabase.calculateBoar(selectTile.GetComponent<Collider>().name);
+        int rat = globalDatabase.calculateRat(selectTile.GetComponent<Collider>().name);
+        int brownBear = globalDatabase.calculateBrownBear(selectTile.GetComponent<Collider>().name);
+        int mouse = globalDatabase.calculateMouse(selectTile.GetComponent<Collider>().name);
+        int hare = globalDatabase.calculateHare(selectTile.GetComponent<Collider>().name);
+        int moose = globalDatabase.calculateMoose(selectTile.GetComponent<Collider>().name);
+        int deer = globalDatabase.calculateDeer(selectTile.GetComponent<Collider>().name);
 
+        if (wolf != 0)
+            animalInfo += "[Wolf: " + wolf + "]  ";
+        if (shrew != 0)
+            animalInfo += "[shrew: " + shrew + "]  ";
+        if (fox != 0)
+            animalInfo += "[fox: " + fox + "]  ";
+        if (weasel != 0)
+            animalInfo += "[weasel: " + weasel + "]  ";
+        if (squirrel != 0)
+            animalInfo += "[squirrel: " + squirrel + "]  ";
+        if (boar != 0)
+            animalInfo += "[boar: " + boar + "]  ";
+        if (rat != 0)
+            animalInfo += "[rat: " + rat + "]  ";
+        if (brownBear != 0)
+            animalInfo += "[Brown Bear: " + brownBear + "]  ";
+        if (mouse != 0)
+            animalInfo += "[mouse: " + mouse + "]  ";
+        if (hare != 0)
+            animalInfo += "[hare: " + hare + "]  ";
+        if (moose != 0)
+            animalInfo += "[moose: " + moose + "]  ";
+        if (deer != 0)
+            animalInfo += "[deer: " + deer + "]  ";
 
         List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
         //double meat = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).meatOnTile;
         List<double> meatlist = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).foodHierarchy;
         double vegetation = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).vegetationOnTile;
         int treenumber = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).tileTrees.Count;
-
-        //Debug.Log("Tile:" + selectTile.GetComponent<Collider>().name + " " + meat);
-
+     
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
         + "Tree:     " + (treenumber) + "\r\n"
-        + "Herbivores: " + (herbivores) + "\r\n"
-        + "Omnivores: " + (omnivores) + "\r\n"
-        + "Carnivores: " + (carnivores) + "\r\n"
-        //+ "meatlist[0]" + meatlist[] + "\r\n"
-        + "Meat available: [" + meatlist[0] + "] [" + meatlist[1] + "] [" + meatlist[2] + "] [" + meatlist[3] + "] [" + meatlist[4] + "]" +  "\r\n"
-        + "Vegetation available: " + (vegetation) + "\r\n";
+        + animalInfo + "\r\n";
     }
 
     void MyWindow(int WindowID)
@@ -85,10 +116,10 @@ public class mapClick : MonoBehaviour
             windowX = windowX - windowWidth;
 
 
-        GUI.Label(new Rect(10, 20, windowWidth-10, windowHight - offset), tileInfo);
+        GUI.Label(new Rect(10, 20, windowWidth-15, windowHight - offset), tileInfo);
 
         ////// Invisible(tranparent) ui button behind the gui button so the ray light can not go through the gui close button.
-        closeButton.SetActive(true);
+       // closeButton.SetActive(true);
         Vector3 pos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         closeButton.GetComponent<RectTransform>().sizeDelta = new Vector2(windowWidth / 3, 20);
         closeButton.transform.position = pos;
