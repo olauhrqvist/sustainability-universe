@@ -353,7 +353,130 @@ public class Global_Database : MonoBehaviour
 
     }
 
+    public int calculateWolf(string tile)
+    {
+        int number = 0;
+        foreach (var w in WolfList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateShrew(string tile)
+    {
+        int number = 0;
+        foreach (var w in ShrewList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateFox(string tile)
+    {
+        int number = 0;
+        foreach (var w in FoxList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
 
+    public int calculateWeasel(string tile)
+    {
+        int number = 0;
+        foreach (var w in WeaselList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+
+    public int calculateSquirrel(string tile)
+    {
+        int number = 0;
+        foreach (var w in SquirrelList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+
+    public int calculateBoar(string tile)
+    {
+        int number = 0;
+        foreach (var w in BoarList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+
+    public int calculateRat(string tile)
+    {
+        int number = 0;
+        foreach (var w in RatList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateBrownBear(string tile)
+    {
+        int number = 0;
+        foreach (var w in BrownBearList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateMouse(string tile)
+    {
+        int number = 0;
+        foreach (var w in MouseList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateHare(string tile)
+    {
+        int number = 0;
+        foreach (var w in HareList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateMoose(string tile)
+    {
+        int number = 0;
+        foreach (var w in MooseList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
+    public int calculateDeer(string tile)
+    {
+        int number = 0;
+        foreach (var w in DeerList)
+        {
+            if (w.TilePosition == tile)
+                number++;
+        }
+        return number;
+    }
     public int calculateCarnivores(string tile)
     {
         int carnivores = 0;
