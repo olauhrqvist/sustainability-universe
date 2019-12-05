@@ -19,12 +19,7 @@ public class BalanceWorld : MonoBehaviour
     }
 
 
-
-
     //we are hoping that tiles is what we want it to be.
-
-
-
 
     // Update is called once per year
     public void YearUpdate()
@@ -34,7 +29,6 @@ public class BalanceWorld : MonoBehaviour
         globalTiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().Getlist();
 
         //gå igenom vectorn med djur och sätt ett meat värde på de tiles där djur finns.
-
 
         //start with herbivores
         for (int i = 0; i < Databas.MouseList.Count; i++)
@@ -154,7 +148,6 @@ public class BalanceWorld : MonoBehaviour
 
         int beforeChangedPop;
         int afterChangedPop;
-
 
         if (GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict.ContainsKey(pos))//check the Tile dictionary for tile with string "pos" exist
         {
@@ -328,6 +321,8 @@ public class BalanceWorld : MonoBehaviour
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
+
+
                         if (animal.population <= 0)
                         {
                             return false;
@@ -407,7 +402,7 @@ public class BalanceWorld : MonoBehaviour
     {
         Squirrel animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
-
+        bool meat = false;
 
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
         // take in the global vector that holds the herbivore coordinate
@@ -468,13 +463,27 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
-                        beforeChangedPop = animal.population;
-                        animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
-                        afterChangedPop = animal.population;
-                        //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
-                        //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        if (meat)
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
+                        else //release the vegetation
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+
+                        }
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
                     }
@@ -493,6 +502,7 @@ public class BalanceWorld : MonoBehaviour
     {
         Rat animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
+        bool meat = false;
 
 
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
@@ -554,14 +564,27 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
-                        beforeChangedPop = animal.population;
-                        animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
-                        afterChangedPop = animal.population;
-                        //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
-                        //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        if (meat)
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
+                        else //release the vegetation
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
+                        }
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
                     }
                     if (animal.population <= 0)
@@ -580,7 +603,7 @@ public class BalanceWorld : MonoBehaviour
 
         Boar animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
-
+        bool meat = false;
 
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
         // take in the global vector that holds the herbivore coordinate
@@ -641,14 +664,27 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
-                        beforeChangedPop = animal.population;
-                        animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
-                        afterChangedPop = animal.population;
-                        //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
-                        //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        if (meat)
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
+                        else //release the vegetation
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
+                        }
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
                     }
                     if (animal.population <= 0)
@@ -666,7 +702,7 @@ public class BalanceWorld : MonoBehaviour
     {
         BrownBear animal = Targetanimal;
         string pos = Targetanimal.TilePosition;
-
+        bool meat = false;
 
         //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
         // take in the global vector that holds the herbivore coordinate
@@ -718,6 +754,7 @@ public class BalanceWorld : MonoBehaviour
 
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        meat = true;
                     }
                     Happiness++;
                 }
@@ -727,14 +764,27 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
-                        beforeChangedPop = animal.population;
-                        animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
-                        afterChangedPop = animal.population;
-                        //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
-                        //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        if (meat)
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
+                        else //release the vegetation
+                        {
+                            beforeChangedPop = animal.population;
+                            animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                            afterChangedPop = animal.population;
+                            //setting new meatOnTile level if population rises
+                            globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                            //setting new vegetationOnTile if population rises
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
+                        }
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
                     }
                     if (animal.population <= 0)
@@ -799,9 +849,9 @@ public class BalanceWorld : MonoBehaviour
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
                         //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.meatValue);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -868,9 +918,9 @@ public class BalanceWorld : MonoBehaviour
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
                         //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.meatValue);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -934,9 +984,9 @@ public class BalanceWorld : MonoBehaviour
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
                         //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.meatValue);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -971,7 +1021,7 @@ public class BalanceWorld : MonoBehaviour
                 //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
                 //så måste vi uppdatera available food på den tilen * range
 
-                if (t.vegetationOnTile >= animal.foodNeeded)
+                if (t.meatOnTile >= animal.foodNeeded)
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
@@ -986,7 +1036,7 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
 
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
                     }
                     Happiness++;
                 }
@@ -1000,9 +1050,9 @@ public class BalanceWorld : MonoBehaviour
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
                         //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.meatValue);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile += ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
 
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
