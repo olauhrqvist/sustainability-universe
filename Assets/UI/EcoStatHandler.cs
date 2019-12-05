@@ -146,7 +146,6 @@ public class EcoStatHandler : MonoBehaviour
     {
         foreach (var M in Marks)
         {
-            Debug.Log(M);
             if (GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict.ContainsKey(M))
             {
                 TileDict[M].tileGameObject.GetComponent<Renderer>().material.color = MarkColor;
