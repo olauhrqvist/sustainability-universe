@@ -15,8 +15,8 @@ public class mapClick : MonoBehaviour
     private bool WindowShow = false;
     private float windowX = 0;
     private float windowY = 0;
-    private float windowWidth = 200;
-    private float windowHight = 175;
+    private float windowWidth = 250;//200
+    private float windowHight = 200;//175
     private GameObject closeButton;
     private Global_Database globalDatabase;// = new Global_Database();
 
@@ -84,6 +84,7 @@ public class mapClick : MonoBehaviour
         if (windowWidth + windowX > Screen.width)
             windowX = windowX - windowWidth;
 
+
         GUI.Label(new Rect(10, 20, windowWidth-10, windowHight - offset), tileInfo);
 
         ////// Invisible(tranparent) ui button behind the gui button so the ray light can not go through the gui close button.
@@ -106,7 +107,7 @@ public class mapClick : MonoBehaviour
     }
     void OnGUI()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && WindowShow == false)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
