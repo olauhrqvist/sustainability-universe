@@ -18,9 +18,9 @@ public class YearCounter : MonoBehaviour
   private float adder = 2f;
 
   public GameObject text;
-
-  //------------------------------------------------------------------------------\\
-  public void Start()
+  public GameObject yeartext;
+    //------------------------------------------------------------------------------\\
+    public void Start()
   {
     other.currency = 100;
     text.GetComponent<Text>().text = other.currency + " KR";
@@ -37,7 +37,7 @@ public class YearCounter : MonoBehaviour
             other.Calculate();
 
             bw.YearUpdate();
-
+            yeartext.GetComponent<Text>().text = "Year: " + Year;
             text.GetComponent<Text>().text = other.currency + " KR";
 
         }
