@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
 public class BalanceWorld : MonoBehaviour
 {
 
@@ -1258,7 +1258,7 @@ public class BalanceWorld : MonoBehaviour
 
 
 
-
+    */
 
 
 
