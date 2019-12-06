@@ -53,7 +53,7 @@ public class mapClick : MonoBehaviour
     void updateTileInfo()
     {
         // Fetch Database
-        animalInfo = "";
+        string animalInfo = "";
           globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
         int herbivores = globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name);
         int omnivores = globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name);
@@ -67,12 +67,23 @@ public class mapClick : MonoBehaviour
         int rat = globalDatabase.calculateRat(selectTile.GetComponent<Collider>().name);
         int brownBear = globalDatabase.calculateBrownBear(selectTile.GetComponent<Collider>().name);
         int mouse = globalDatabase.calculateMouse(selectTile.GetComponent<Collider>().name);
+
+
+        /*var mouseTest = globalDatabase.MouseList.Find(x => x.TilePosition == selectTile.GetComponent<Collider>().name);
+        if (mouseTest != null)
+        {
+          animalInfo += "Mice: " + mouseTest.population + "\r\n";
+        }*/
+
+
         int hare = globalDatabase.calculateHare(selectTile.GetComponent<Collider>().name);
         int moose = globalDatabase.calculateMoose(selectTile.GetComponent<Collider>().name);
         int deer = globalDatabase.calculateDeer(selectTile.GetComponent<Collider>().name);
 
         // Herbivores
-        if (mouse != 0)
+        if (globalDatabase.calculateHerbivores(selectTile.GetComponent<Collider>().name) > 0)
+          animalInfo += "Herbivores" + "\r\n";
+        if (mouse > 0)
             animalInfo += "Mice: " + mouse + "\r\n";
         if (hare != 0)
             animalInfo += "Hares: " + hare + "\r\n";
@@ -82,6 +93,8 @@ public class mapClick : MonoBehaviour
             animalInfo += "Moose " + moose + "\r\n";
 
         // Omnivores
+        if (globalDatabase.calculateOmnivores(selectTile.GetComponent<Collider>().name) > 0)
+          animalInfo += "\r\n" + "Omnivores" + "\r\n";
         if (squirrel != 0)
             animalInfo += "Squirrels: " + squirrel + "\r\n";
         if (rat != 0)
@@ -92,6 +105,8 @@ public class mapClick : MonoBehaviour
             animalInfo += "Brown Bears: " + brownBear +  "\r\n";
 
         // Carnivores
+        if (globalDatabase.calculateCarnivores(selectTile.GetComponent<Collider>().name) > 0)
+          animalInfo += "\r\n" + "Carnivores" + "\r\n";
         if (shrew != 0)
             animalInfo += "Shrews: " + shrew + "\r\n";
         if (fox != 0)
@@ -110,7 +125,9 @@ public class mapClick : MonoBehaviour
 
 
         string vegetationStatus;
-        if (vegetation < 300)
+        if (vegetation < 0)
+          vegetationStatus = "Not enough food";
+        else if (vegetation < 300)
           vegetationStatus = "Low";
         else if (vegetation < 800)
           vegetationStatus = "Medium";

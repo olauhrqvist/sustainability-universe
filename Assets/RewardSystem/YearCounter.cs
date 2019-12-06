@@ -53,8 +53,10 @@ public class YearCounter : MonoBehaviour
             foreach (var tile in tiles)
             {
                 if (tile.grow)
-                    tile.expand = true;
-                tile.spreadTrees();
+                {
+                  tile.expand = true;
+                  tile.spreadTrees();
+                }
             }
 
             if (Bw.Happiness >= 10 && !HasTriggered)

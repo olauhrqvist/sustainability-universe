@@ -359,7 +359,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in WolfList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -369,7 +369,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in ShrewList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -379,7 +379,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in FoxList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -390,7 +390,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in WeaselList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -401,7 +401,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in SquirrelList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -412,7 +412,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in BoarList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -423,7 +423,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in RatList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -433,7 +433,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in BrownBearList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -443,7 +443,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in MouseList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -453,7 +453,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in HareList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -463,7 +463,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in MooseList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
@@ -473,7 +473,7 @@ public class Global_Database : MonoBehaviour
         foreach (var w in DeerList)
         {
             if (w.TilePosition == tile)
-                number++;
+                number = w.population;
         }
         return number;
     }
