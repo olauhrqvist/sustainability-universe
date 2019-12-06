@@ -44,7 +44,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.HareList.Count; i++)
         {
             HareInfo h = Databas.HareList[i];
-            if (!update_hare(h, 0.35, 0.25))
+            if (!update_hare(h, 0.27, 0.22))
             {
                 Databas.HareList.RemoveAt(i);
                 if (Databas.HareList.Count == 0)
@@ -54,7 +54,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.DeerList.Count; i++)
         {
             DeerInfo d = Databas.DeerList[i];
-            if (!update_deer(d, 0.25, 0.15))
+            if (!update_deer(d, 0.20, 0.15))
             {
                 Databas.DeerList.RemoveAt(i);
                 if (Databas.DeerList.Count == 0)
@@ -64,7 +64,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.MooseList.Count; i++)
         {
             MooseInfo m = Databas.MooseList[i];
-            if (!update_moose(m, 0.15, 0.10))
+            if (!update_moose(m, 0.10, 0.1))
             {
                 Databas.MooseList.RemoveAt(i);
                 if (Databas.MooseList.Count == 0)
@@ -86,7 +86,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.RatList.Count; i++)
         {
             RatInfo r = Databas.RatList[i];
-            if (!update_rat(r, 0.35, 0.25))
+            if (!update_rat(r, 0.25, 0.20))
             {
                 Databas.RatList.RemoveAt(i);
                 if (Databas.RatList.Count == 0)
@@ -96,7 +96,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.BoarList.Count; i++)
         {
             WildBoarInfo b = Databas.BoarList[i];
-            if (!update_boar(b, 0.25, 0.15))
+            if (!update_boar(b, 0.15, 0.10))
             {
                 Databas.BoarList.RemoveAt(i);
                 if (Databas.BoarList.Count == 0)
@@ -106,7 +106,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.BrownBearList.Count; i++)
         {
             BrownBearInfo b = Databas.BrownBearList[i];
-            if (!update_brownBear(b, 0.15, 0.10))
+            if (!update_brownBear(b, 0.10, 0.05))
             {
                 Databas.BrownBearList.RemoveAt(i);
                 if (Databas.BrownBearList.Count == 0)
@@ -130,7 +130,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.WeaselList.Count; i++)
         {
             WeaselInfo w = Databas.WeaselList[i];
-            if (!update_weasel(w, 0.35, 0.25))
+            if (!update_weasel(w, 0.25, 0.20))
             {
                 Databas.WeaselList.RemoveAt(i);
                 if (Databas.WeaselList.Count == 0)
@@ -140,7 +140,7 @@ public class BalanceWorld : MonoBehaviour
         for (int i = 0; i < Databas.FoxList.Count; i++)
         {
             FoxInfo f = Databas.FoxList[i];
-            if (!update_fox(f, 0.25, 0.15))
+            if (!update_fox(f, 0.20, 0.15))
             {
                 Databas.FoxList.RemoveAt(i);
                 if (Databas.FoxList.Count == 0)
@@ -160,15 +160,18 @@ public class BalanceWorld : MonoBehaviour
 
     }
 
+
+    // Comments for herbivores are in update_mouse
     bool update_mouse(MouseInfo Targetanimal, double growth, double decrease)
     {
-        Mouse animal = Targetanimal;
-        string pos = Targetanimal.TilePosition;
 
-        //we will let the animals eat in their hierarchical order from smallest to the biggest. If the food is gone when the moose wants to eat, tough luck for the moose...
+        Mouse animal = Targetanimal;
+        string pos = Targetanimal.TilePosition; //the tile that the animal occupies.
+
+      
         // take in the global vector that holds the herbivore coordinate
 
-
+        //local variables to get a delta population
         int beforeChangedPop;
         int afterChangedPop;
 
@@ -185,13 +188,20 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth/2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
                         afterChangedPop = animal.population;
-
+                        animal.hungryYears = 0;
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
 
@@ -215,14 +225,21 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                         ns.AnimalHungry( "Mouse" , pos);
 
+                        if (animal.hasEaten)
+                        {
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
                         if (animal.population <= 0)
                         {
+                          
                             return false;
                         }
                     }
                 }
             }
         }
+        Debug.Log("Number of mice: " + ": " + Targetanimal.population);
+       
         return true;
     }
 
@@ -252,11 +269,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                         if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -281,6 +306,11 @@ public class BalanceWorld : MonoBehaviour
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                         ns.AnimalHungry("Hare", pos);
+       
+                        if (animal.hasEaten)
+                        {
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
 
                         if (animal.population <= 0)
                         {
@@ -290,6 +320,7 @@ public class BalanceWorld : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Number of hares : "+ ": " + Targetanimal.population);
         return true;
     }
 
@@ -317,11 +348,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -346,6 +385,11 @@ public class BalanceWorld : MonoBehaviour
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                         ns.AnimalHungry("Roe Deer", pos);
+       
+                        if (animal.hasEaten)
+                        {
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
 
                         if (animal.population <= 0)
                         {
@@ -355,6 +399,7 @@ public class BalanceWorld : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Number of deers : " + ": " + Targetanimal.population);
         return true;
     }
     bool update_moose(MooseInfo Targetanimal, double growth, double decrease)
@@ -381,11 +426,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -408,8 +461,14 @@ public class BalanceWorld : MonoBehaviour
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
+         
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                         ns.AnimalHungry("Moose", pos);
+     
+                        if (animal.hasEaten)
+                        {
+                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
 
                         if (animal.population <= 0)
                         {
@@ -419,6 +478,7 @@ public class BalanceWorld : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Number of mooses : " + ": " + Targetanimal.population);
         return true;
     }
 
@@ -448,11 +508,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -467,11 +535,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -498,7 +574,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
                         }
                         else //release the vegetation
                         {
@@ -508,7 +587,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
 
                         }
 
@@ -523,6 +605,7 @@ public class BalanceWorld : MonoBehaviour
 
             }
         }
+        Debug.Log("Number of squirells: " + ": " + Targetanimal.population);
         return true;
     }
     bool update_rat(RatInfo Targetanimal, double growth, double decrease)
@@ -551,11 +634,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -570,11 +661,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -601,7 +700,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
                         }
                         else //release the vegetation
                         {
@@ -611,7 +713,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
 
                         }
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -625,6 +730,7 @@ public class BalanceWorld : MonoBehaviour
 
             }
         }
+        Debug.Log("Number of rats : " + ": " + Targetanimal.population);
         return true;
     }
     bool update_boar(WildBoarInfo Targetanimal, double growth, double decrease)
@@ -653,11 +759,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -672,11 +786,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -703,7 +825,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
                         }
                         else //release the vegetation
                         {
@@ -713,7 +838,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
 
                         }
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -727,6 +855,7 @@ public class BalanceWorld : MonoBehaviour
 
             }
         }
+        Debug.Log("Number of wild boars : " + ": " + Targetanimal.population);
         return true;
     }
     bool update_brownBear(BrownBearInfo Targetanimal, double growth, double decrease)
@@ -754,11 +883,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -773,11 +910,19 @@ public class BalanceWorld : MonoBehaviour
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
@@ -805,7 +950,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
                         }
                         else //release the vegetation
                         {
@@ -815,7 +963,10 @@ public class BalanceWorld : MonoBehaviour
                             //setting new meatOnTile level if population rises
                             globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                             //setting new vegetationOnTile if population rises
-                            globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            if (animal.hasEaten)
+                            {
+                                globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                            }
 
                         }
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -829,6 +980,7 @@ public class BalanceWorld : MonoBehaviour
 
             }
         }
+        Debug.Log("Number of brownBears : " + ": " + Targetanimal.population);
         return true;
 
     }
@@ -853,22 +1005,30 @@ public class BalanceWorld : MonoBehaviour
                 //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
                 //så måste vi uppdatera available food på den tilen * range
 
-                if (t.vegetationOnTile >= animal.foodNeeded)
+                if (t.meatOnTile >= animal.foodNeeded)
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
 
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
                     }
                     Happiness++;
                 }
@@ -886,7 +1046,10 @@ public class BalanceWorld : MonoBehaviour
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        if (animal.hasEaten)
+                        {
+                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
 
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -899,6 +1062,8 @@ public class BalanceWorld : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Number of shrews : " + ": " + Targetanimal.population);
+        return true;
         return true;
     }
 
@@ -924,22 +1089,30 @@ public class BalanceWorld : MonoBehaviour
                 //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
                 //så måste vi uppdatera available food på den tilen * range
 
-                if (t.vegetationOnTile >= animal.foodNeeded)
+                if (t.meatOnTile >= animal.foodNeeded)
                 {
                     //vi sätter familjens/artens satisfiedyears counter
                     animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
+                    animal.hasEaten = true;
                     if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                     {
                         beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
+                        if (animal.hungryYears > 1)
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
+                        }
+                        else
+                        {
+                            animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                        }
+                        animal.hungryYears = 0;
                         afterChangedPop = animal.population;
 
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
 
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
                     }
                     Happiness++;
                 }
@@ -957,7 +1130,10 @@ public class BalanceWorld : MonoBehaviour
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        if (animal.hasEaten)
+                        {
+                            globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        }
 
 
                         //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
@@ -970,6 +1146,7 @@ public class BalanceWorld : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Number of weasels : " + ": " + Targetanimal.population);
         return true;
     }
     bool update_fox(FoxInfo Targetanimal, double growth, double decrease)
@@ -987,35 +1164,46 @@ public class BalanceWorld : MonoBehaviour
         {
             TileClass t = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict[pos]; // Tile exists place in variable t
 
-            if (t.name == pos)
+            if (t.meatOnTile >= animal.foodNeeded)
             {
-                //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
-                //så måste vi uppdatera available food på den tilen * range
-
-                if (t.vegetationOnTile >= animal.foodNeeded)
+                //vi sätter familjens/artens satisfiedyears counter
+                animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
+                animal.hasEaten = true;
+                if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                 {
-                    //vi sätter familjens/artens satisfiedyears counter
-                    animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
-                    if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
+                    beforeChangedPop = animal.population;
+                    if (animal.hungryYears > 1)
                     {
-                        beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
-                        afterChangedPop = animal.population;
-
-                        //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
-
-                        //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).vegetationOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
                     }
-                    Happiness++;
+                    else
+                    {
+                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                    }
+                    animal.hungryYears = 0;
+                    afterChangedPop = animal.population;
+
+                    //setting new meatOnTile level if population rises
+                    globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
+
+                    //setting new vegetationOnTile if population rises
+                    globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
                 }
-                else
+                Happiness++;
+            }
+            else
+            {
+                animal.satisfiedYears = 0;
+                animal.hungryYears++;
+                if (animal.hungryYears >= 2)
                 {
-                    animal.satisfiedYears = 0;
-                    animal.hungryYears++;
-                    if (animal.hungryYears >= 2)
+                    beforeChangedPop = animal.population;
+                    animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                    afterChangedPop = animal.population;
+                    //setting new meatOnTile level if population rises
+                    globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                    //setting new vegetationOnTile if population rises
+                    if (animal.hasEaten)
                     {
                         ns.AnimalHungry("Fox", pos);
 
@@ -1026,18 +1214,20 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                    }
 
 
-                        //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
+                    //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
 
-                        if (animal.population <= 0)
-                        {
-                            return false;
-                        }
+                    if (animal.population <= 0)
+                    {
+                        return false;
                     }
                 }
             }
         }
+    
+        Debug.Log("Number of foxes : " + ": " + Targetanimal.population);
         return true;
     }
     bool update_wolf(WolfInfo Targetanimal, double growth, double decrease)
@@ -1055,35 +1245,46 @@ public class BalanceWorld : MonoBehaviour
         {
             TileClass t = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict[pos]; // Tile exists place in variable t
 
-            if (t.name == pos)
+            if (t.meatOnTile >= animal.foodNeeded)
             {
-                //vi måste ta in objekten från listan, kolla vilken Tile*range familjen är på, antal av arten * foodNeeded variabeln för den familjen. Sen när det är klart
-                //så måste vi uppdatera available food på den tilen * range
-
-                if (t.meatOnTile >= animal.foodNeeded)
+                //vi sätter familjens/artens satisfiedyears counter
+                animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
+                animal.hasEaten = true;
+                if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
                 {
-                    //vi sätter familjens/artens satisfiedyears counter
-                    animal.satisfiedYears++; //if they are unsatisfied one year this value will be set to zero.
-                    animal.hungryYears = 0;
-                    if (animal.satisfiedYears % 2 == 0 && animal.satisfiedYears > 0) //if the animals have been satisfied for two years in a row then they will increase the population
+                    beforeChangedPop = animal.population;
+                    if (animal.hungryYears > 1)
                     {
-                        beforeChangedPop = animal.population;
-                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth);
-                        afterChangedPop = animal.population;
-
-                        //setting new meatOnTile level if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
-
-                        //setting new vegetationOnTile if population rises
-                        globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
+                        animal.population += (int)Math.Ceiling(beforeChangedPop * (growth / 2)); //increasing the population.
                     }
-                    Happiness++;
+                    else
+                    {
+                        animal.population += (int)Math.Ceiling(beforeChangedPop * growth); //increasing the population.
+                    }
+                    animal.hungryYears = 0;
+                    afterChangedPop = animal.population;
+
+                    //setting new meatOnTile level if population rises
+                    globalTiles.Find(x => x.name == pos).meatOnTile += ((afterChangedPop - beforeChangedPop) * animal.meatValue);
+
+                    //setting new vegetationOnTile if population rises
+                    globalTiles.Find(x => x.name == pos).meatOnTile -= ((afterChangedPop - beforeChangedPop) * animal.foodNeeded);
                 }
-                else
+                Happiness++;
+            }
+            else
+            {
+                animal.satisfiedYears = 0;
+                animal.hungryYears++;
+                if (animal.hungryYears >= 2)
                 {
-                    animal.satisfiedYears = 0;
-                    animal.hungryYears++;
-                    if (animal.hungryYears >= 2)
+                    beforeChangedPop = animal.population;
+                    animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
+                    afterChangedPop = animal.population;
+                    //setting new meatOnTile level if population rises
+                    globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
+                    //setting new vegetationOnTile if population rises
+                    if (animal.hasEaten)
                     {
                         ns.AnimalHungry("Wolf", pos);
 
@@ -1093,31 +1294,23 @@ public class BalanceWorld : MonoBehaviour
                         //setting new meatOnTile level if population rises
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
+       
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                    }
 
+                    //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
 
-                        //maybe we should release the amount of meatOnTile as well? Complex question since if they only ate vegetation, releasing MeatOnTile will rocket. The same if it is the other way around...
-
-                        if (animal.population <= 0)
-                        {
-                            return false;
-                        }
+                    if (animal.population <= 0)
+                    {
+                        return false;
                     }
                 }
             }
         }
+    
+        Debug.Log("Number of weasels : " + ": " + Targetanimal.population);
         return true;
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
