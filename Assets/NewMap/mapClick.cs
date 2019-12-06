@@ -71,40 +71,57 @@ public class mapClick : MonoBehaviour
         int moose = globalDatabase.calculateMoose(selectTile.GetComponent<Collider>().name);
         int deer = globalDatabase.calculateDeer(selectTile.GetComponent<Collider>().name);
 
-        if (wolf != 0)
-            animalInfo += "[Wolf: " + wolf + "]  ";
-        if (shrew != 0)
-            animalInfo += "[shrew: " + shrew + "]  ";
-        if (fox != 0)
-            animalInfo += "[fox: " + fox + "]  ";
-        if (weasel != 0)
-            animalInfo += "[weasel: " + weasel + "]  ";
-        if (squirrel != 0)
-            animalInfo += "[squirrel: " + squirrel + "]  ";
-        if (boar != 0)
-            animalInfo += "[boar: " + boar + "]  ";
-        if (rat != 0)
-            animalInfo += "[rat: " + rat + "]  ";
-        if (brownBear != 0)
-            animalInfo += "[Brown Bear: " + brownBear + "]  ";
+        // Herbivores
         if (mouse != 0)
-            animalInfo += "[mouse: " + mouse + "]  ";
+            animalInfo += "Mice: " + mouse + "\r\n";
         if (hare != 0)
-            animalInfo += "[hare: " + hare + "]  ";
-        if (moose != 0)
-            animalInfo += "[moose: " + moose + "]  ";
+            animalInfo += "Hares: " + hare + "\r\n";
         if (deer != 0)
-            animalInfo += "[deer: " + deer + "]  ";
+            animalInfo += "Deer: " + deer + "\r\n";
+        if (moose != 0)
+            animalInfo += "Moose " + moose + "\r\n";
+
+        // Omnivores
+        if (squirrel != 0)
+            animalInfo += "Squirrels: " + squirrel + "\r\n";
+        if (rat != 0)
+            animalInfo += "Rats: " + rat +  "\r\n";
+        if (boar != 0)
+            animalInfo += "Boar: " + boar +  "\r\n";
+        if (brownBear != 0)
+            animalInfo += "Brown Bears: " + brownBear +  "\r\n";
+
+        // Carnivores
+        if (shrew != 0)
+            animalInfo += "Shrews: " + shrew + "\r\n";
+        if (fox != 0)
+            animalInfo += "Foxes: " + fox + "\r\n";
+        if (weasel != 0)
+            animalInfo += "Weasels: " + weasel + "\r\n";
+        if (wolf != 0)
+            animalInfo += "Wolves: " + wolf + "\r\n";
+
 
         List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
         //double meat = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).meatOnTile;
         List<double> meatlist = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).foodHierarchy;
         double vegetation = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).vegetationOnTile;
         int treenumber = tiles.Find(x => x.name == selectTile.GetComponent<Collider>().name).tileTrees.Count;
-     
+
+
+        string vegetationStatus;
+        if (vegetation < 300)
+          vegetationStatus = "Low";
+        else if (vegetation < 800)
+          vegetationStatus = "Medium";
+        else
+          vegetationStatus = "High";
+
         tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "\r\n"
-        + "Tree:     " + (treenumber) + "\r\n"
+        + "Trees:     " + (treenumber) + "\r\n"
+        + "Vegetation: " + vegetationStatus + " (" + vegetation + ")" + "\r\n"
         + animalInfo + "\r\n";
+        //+ "Total food: " + "\r\n";
     }
 
     void MyWindow(int WindowID)

@@ -82,8 +82,8 @@ public class SpawnMap : MonoBehaviour
 
         markGroundtype();
         InvokeRepeating("growth", 1.0f, 0.01f);
-        InvokeRepeating("expand", 0.1f, 0.5f);
-        InvokeRepeating("spread", 2.0f, 0.5f);
+        //InvokeRepeating("expand", 0.1f, 0.5f);
+        //InvokeRepeating("spread", 2.0f, 0.5f);
 
         // Building a dictionary for all tiles for fast access
         BuildDictionary();

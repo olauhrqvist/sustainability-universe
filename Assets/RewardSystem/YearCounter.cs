@@ -57,9 +57,9 @@ public class YearCounter : MonoBehaviour
                 tile.spreadTrees();
             }
 
-            if (Bw.Happiness >= 100 && !HasTriggered)
+            if (Bw.Happiness >= 10 && !HasTriggered)
             {
-                ns.OverallHappiness(100);
+                ns.OverallHappiness(10);
                 HasTriggered = true;
             }
             if (Year%10==0)

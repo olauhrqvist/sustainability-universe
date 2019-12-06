@@ -26,7 +26,7 @@ public class RewardSystem : MonoBehaviour
   {
 
     currency += 10f * (float)Reward;
-    print((float)Reward + "     " + currency);
+   // print((float)Reward + "     " + currency);
   }
 
 

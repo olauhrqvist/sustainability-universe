@@ -472,10 +472,10 @@ public class TileClass : MonoBehaviour
 
         foreach (var tree in tileTrees)
         {
-            expand = true;
+            //expand = true;
 
 
-            if (tree.transform.localScale.y < 0.5f)
+            if (tree.transform.localScale.y < 0.9f)
             {
                 expand = false;
             }
@@ -509,12 +509,12 @@ public class TileClass : MonoBehaviour
             tilePositions[index].filled = true;
             expand = false;
         }
-        else if (tileTrees.Count == 9 && spread == true && neighbours.Count != 1)
+        /*else if (tileTrees.Count == 9 && spread == true && neighbours.Count != 1)
         {
             //Debug.Log("Spreading. tileTrees:Count:" + tileTrees.Count);
             spread = false;
             spreadTrees();
-        }
+        }*/
 
         // Increase scale
         /*if (growthDone == false)
@@ -533,10 +533,13 @@ public class TileClass : MonoBehaviour
 
     }
 
-    private void spreadTrees()
+    public void spreadTrees()
     {
         // Randomize a neighbour and start growing there
         //Debug.Log("neighbours before:" + neighbours.Count);
+
+        if (tileTrees.Count < 9)
+          return;
 
         List<string> tmp = new List<string>();
         foreach (var n in neighbours)
@@ -549,12 +552,17 @@ public class TileClass : MonoBehaviour
 
 
         //System.Random random = new System.Random();
-        int index = random.Next(0, neighbours.Count);
+        int index;
+        if (neighbours.Count > 1)
+          index = random.Next(0, neighbours.Count);
+        else
+          index = 1;
 
         //Debug.Log("neighbours:" + neighbours.Count + " index: " + index);
 
         List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
         TileClass tile = tiles.Find(x => x.name == neighbours[index]);
+
         neighbours[index] = "";
 
         if (tile.grow == false)
