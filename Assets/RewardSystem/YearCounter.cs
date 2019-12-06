@@ -15,8 +15,8 @@ public class YearCounter : MonoBehaviour
   //variable
 
   private int Year, test = 0;
-  private float Counter = 10f;
-  private float adder = 10f;
+  private float Counter = 1f;
+  private float adder = 1f;
   private float Timer = 0;
   public bool isPaused;
 
@@ -47,7 +47,7 @@ public class YearCounter : MonoBehaviour
 
 
       Year += 1;
-      Counter += adder; ;
+      Counter += adder;
       other.Calculate(Bw.Happiness);
       Bw.YearUpdate();
       text.GetComponent<Text>().text = other.currency + " KR";
