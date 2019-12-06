@@ -174,7 +174,7 @@ public class Global_Database : MonoBehaviour
       ShrewList.Add(shrew);
       List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
       tiles.Find(x => x.name == tile).foodHierarchy[shrew.GetFoodHierarchy()] += shrew.meatValue;
-  
+
         //tiles.Find(x => x.name == tile).foodHierarchy[shrew.GetFoodHierarchy() - 1] -= shrew.foodNeeded;
     }
 

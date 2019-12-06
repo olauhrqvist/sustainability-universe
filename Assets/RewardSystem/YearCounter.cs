@@ -53,6 +53,16 @@ public class YearCounter : MonoBehaviour
       text.GetComponent<Text>().text = other.currency + " KR";
       yeartext.GetComponent<Text>().text = "Year: " + Year;
 
+
+      List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
+      // add another tree on the tiles
+      foreach (var tile in tiles)
+      {
+          if (tile.grow)
+              tile.expand = true;
+              tile.spreadTrees();
+      }
+
     }
   }
 }
