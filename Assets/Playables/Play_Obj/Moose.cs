@@ -18,7 +18,7 @@ public class Moose : Herbivore_Script
                     string species = "Moose",
                     double meatValue = 800,
                     double vegetationValue = 0,
-                    double foodNeeded = 1100,
+                    double foodNeeded = 900,
                     int satisfiedYears = 0,
                     int hungryYears = 0
                     ) : base(hierarchy,

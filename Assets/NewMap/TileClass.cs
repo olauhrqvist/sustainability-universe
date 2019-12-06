@@ -65,6 +65,9 @@ public class TileClass : MonoBehaviour
     //OnTileData variables
     public List<double> foodHierarchy;
     public double vegetationOnTile;
+    
+    public double staticVegetationOnTile; //do not change this value!
+
 
     //if we only implement the total amount of food on the tile without considiration of hierarchies.
     public double meatOnTile;
@@ -114,7 +117,7 @@ public class TileClass : MonoBehaviour
         //print("size: " + foodHierarchy.Count);
 
         vegetationOnTile = 0;
-
+        staticVegetationOnTile = vegetationOnTile;
 }
     public void markGroundtype()
     {
@@ -311,11 +314,13 @@ public class TileClass : MonoBehaviour
             globalDatabase.AddSpruce(tileGameObject.name, treeObject);
 
             vegetationOnTile += 150;
+            staticVegetationOnTile = vegetationOnTile;
         }
         else if (birchForest)
         {
             BirchInfo tmp = new BirchInfo();
             vegetationOnTile += tmp.vegetationValue;
+            
             treeObject.AddComponent<Tree_Script>();
             treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
             treeObject.GetComponent<Tree_Script>().SetScale(s);
@@ -323,6 +328,7 @@ public class TileClass : MonoBehaviour
             globalDatabase.AddBirch(tileGameObject.name, treeObject);
 
             vegetationOnTile += 100;
+            staticVegetationOnTile = vegetationOnTile;
         }
         else
         {
@@ -336,6 +342,7 @@ public class TileClass : MonoBehaviour
             globalDatabase.AddBeech(tileGameObject.name, treeObject);
 
             vegetationOnTile += 200;
+            staticVegetationOnTile = vegetationOnTile;
 
         }
     }

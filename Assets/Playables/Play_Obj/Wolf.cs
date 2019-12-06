@@ -18,7 +18,7 @@ public class Wolf : Carnivore_Script
                     string species = "Wolf",
                     double meatValue = 50,
                     double vegetationValue = 0,
-                    double foodNeeded = 6000,
+                    double foodNeeded = 800,
                     int satisfiedYears = 0,
                     int hungryYears = 0
                     ) : base(hierarchy,

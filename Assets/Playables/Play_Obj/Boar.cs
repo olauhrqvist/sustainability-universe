@@ -18,7 +18,7 @@ public class Boar : Omnivore_Script
                     string species = "Boar",
                     double meatValue = 100,
                     double vegetationValue = 0,
-                    double foodNeeded = 500, //not set in stone!
+                    double foodNeeded = 350, //not set in stone!
                     int satisfiedYears = 0,
                     int hungryYears= 0  
                     ) : base(hierarchy,

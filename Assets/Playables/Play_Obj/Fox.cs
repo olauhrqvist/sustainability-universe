@@ -19,7 +19,7 @@ public class Fox : Carnivore_Script
                     string species = "Fox",
                     double meatValue = 8,
                     double vegetationValue = 0,
-                    double foodNeeded = 80,
+                    double foodNeeded = 70,
                     int satisfiedYears = 0,
                     int hungryYears = 0
                     ) : base(hierarchy,

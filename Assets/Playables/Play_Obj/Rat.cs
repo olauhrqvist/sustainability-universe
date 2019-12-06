@@ -18,7 +18,7 @@ public class Rat : Omnivore_Script
                     string species = "Rat",
                     double meatValue = 2,
                     double vegetationValue = 0,
-                    double foodNeeded = 20,
+                    double foodNeeded = 15,
                     int satisfiedYears = 0,
                     int hungryYears = 0
                     ) : base(hierarchy,

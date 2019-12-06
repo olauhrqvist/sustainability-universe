@@ -18,7 +18,7 @@ public class Squirrel : Omnivore_Script
                     string species = "Squirrel",
                     double meatValue = 0.5,
                     double vegetationValue = 0,
-                    double foodNeeded = 10,
+                    double foodNeeded = 5,
                     int satisfiedYears = 0,
                     int hungryYears = 0
                     ) : base(hierarchy,

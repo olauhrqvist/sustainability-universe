@@ -18,7 +18,7 @@ public class BrownBear : Omnivore_Script
                     string species = "BrownBear",
                      double meatValue = 400,
                     double vegetationValue = 0,
-                    double foodNeeded = 1400,
+                    double foodNeeded = 900,
                     int satisfiedYears = 0,
                     int hungryYears = 0
                     ) : base(hierarchy,

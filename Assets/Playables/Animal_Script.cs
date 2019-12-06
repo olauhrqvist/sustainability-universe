@@ -23,8 +23,11 @@ public class Animal_Script : Base_Playable
     private double MeatValue;
     public double meatValue { get { return MeatValue; } set { MeatValue = value; } }
 
-    private bool HasEaten;
-    public bool hasEaten { get { return HasEaten; } set { HasEaten = value; } }
+    private bool HasEatenVeg;
+    public bool hasEatenVeg { get { return HasEatenVeg; } set { HasEatenVeg = value; } }
+
+    private bool HasEatenMeat;
+    public bool hasEatenMeat { get { return HasEatenMeat; } set { HasEatenMeat = value; } }
 
     public double AvailableFood()
     {
@@ -66,7 +69,8 @@ public class Animal_Script : Base_Playable
             HungryYears = hungryYears;
             FoodNeeded = foodNeeded;
             MeatValue = meatValue;
-            HasEaten = false;
+            HasEatenVeg = false;
+            HasEatenMeat = false;
             //VegetationValue = vegetationValue;
         }
 }
