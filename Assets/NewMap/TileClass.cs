@@ -552,22 +552,25 @@ public class TileClass : MonoBehaviour
 
 
         //System.Random random = new System.Random();
-        int index;
-        if (neighbours.Count > 1)
-          index = random.Next(0, neighbours.Count);
-        else
-          index = 1;
-
-        //Debug.Log("neighbours:" + neighbours.Count + " index: " + index);
-
         List<TileClass> tiles = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tiles;
-        TileClass tile = tiles.Find(x => x.name == neighbours[index]);
+        TileClass tile;
+        int index = 0;
+        if (neighbours.Count > 1)
+          {
+            index = random.Next(0, neighbours.Count);
+            tile = tiles.Find(x => x.name == neighbours[index]);
+            neighbours[index] = "";
+          }
+        else
+          {
+            tile = tiles.Find(x => x.name == neighbours[0]);
+            //neighbours[0] = "";
+          }
 
-        neighbours[index] = "";
 
         if (tile.grow == false)
         {
-            tile.forestID = forestID;
+            //tile.forestID = forestID;
 
             if (spruceForest)
             {
