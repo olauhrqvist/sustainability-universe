@@ -5,6 +5,8 @@ using UnityEngine;
 public class Carnivore_Script : Animal_Script
 {
     //species hierarchy pop id mesh range space enviroment forestid growthtime
+
+ 
     public Carnivore_Script(
                             int hierarchy,
                             int pop,
