@@ -11,7 +11,7 @@ public class BalanceWorld : MonoBehaviour
     public static TileClass tile { get; set; }
     private Global_Database Databas;
     public int Happiness;
-
+    public NotificationScript ns;
 
     public BalanceWorld()
     {
@@ -37,6 +37,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_mouse(m, 0.4, 0.35))
             {
                 Databas.MouseList.RemoveAt(i);
+                if (Databas.MouseList.Count == 0)
+                    ns.Extinct("Mouse");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.HareList.Count; i++)
@@ -45,6 +47,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_hare(h, 0.35, 0.25))
             {
                 Databas.HareList.RemoveAt(i);
+                if (Databas.HareList.Count == 0)
+                    ns.Extinct("Hare");
             }
         }
         for (int i = 0; i < Databas.DeerList.Count; i++)
@@ -53,6 +57,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_deer(d, 0.25, 0.15))
             {
                 Databas.DeerList.RemoveAt(i);
+                if (Databas.DeerList.Count == 0)
+                    ns.Extinct("Roe Deer");
             }
         }
         for (int i = 0; i < Databas.MooseList.Count; i++)
@@ -61,6 +67,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_moose(m, 0.15, 0.10))
             {
                 Databas.MooseList.RemoveAt(i);
+                if (Databas.MooseList.Count == 0)
+                    ns.Extinct("Moose");
             }
         }
 
@@ -71,6 +79,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_squirell(s, 0.4, 0.35))
             {
                 Databas.SquirrelList.RemoveAt(i);
+                if (Databas.SquirrelList.Count == 0)
+                    ns.Extinct("Squirrel");
             }
         }
         for (int i = 0; i < Databas.RatList.Count; i++)
@@ -79,6 +89,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_rat(r, 0.35, 0.25))
             {
                 Databas.RatList.RemoveAt(i);
+                if (Databas.RatList.Count == 0)
+                    ns.Extinct("Rat");
             }
         }
         for (int i = 0; i < Databas.BoarList.Count; i++)
@@ -87,6 +99,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_boar(b, 0.25, 0.15))
             {
                 Databas.BoarList.RemoveAt(i);
+                if (Databas.BoarList.Count == 0)
+                    ns.Extinct("Boar");
             }
         }
         for (int i = 0; i < Databas.BrownBearList.Count; i++)
@@ -95,6 +109,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_brownBear(b, 0.15, 0.10))
             {
                 Databas.BrownBearList.RemoveAt(i);
+                if (Databas.BrownBearList.Count == 0)
+                    ns.Extinct("Brown Bear");
             }
         }
 
@@ -107,6 +123,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_shrew(s, 0.4, 0.35))
             {
                 Databas.ShrewList.RemoveAt(i);
+                if (Databas.ShrewList.Count == 0)
+                    ns.Extinct("Shrew");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.WeaselList.Count; i++)
@@ -115,6 +133,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_weasel(w, 0.35, 0.25))
             {
                 Databas.WeaselList.RemoveAt(i);
+                if (Databas.WeaselList.Count == 0)
+                    ns.Extinct("Weasel");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.FoxList.Count; i++)
@@ -122,8 +142,9 @@ public class BalanceWorld : MonoBehaviour
             FoxInfo f = Databas.FoxList[i];
             if (!update_fox(f, 0.25, 0.15))
             {
-
                 Databas.FoxList.RemoveAt(i);
+                if (Databas.FoxList.Count == 0)
+                    ns.Extinct("Fox");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.WolfList.Count; i++)
@@ -132,6 +153,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_wolf(w, 0.15, 0.10))
             {
                 Databas.WolfList.RemoveAt(i);
+                if (Databas.WolfList.Count == 0)
+                    ns.Extinct("Wolf");
             }
         }
 
@@ -190,6 +213,7 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        ns.AnimalHungry( "Mouse" , pos);
 
                         if (animal.population <= 0)
                         {
@@ -256,6 +280,7 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        ns.AnimalHungry("Hare", pos);
 
                         if (animal.population <= 0)
                         {
@@ -320,8 +345,7 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
-
-
+                        ns.AnimalHungry("Roe Deer", pos);
 
                         if (animal.population <= 0)
                         {
@@ -385,6 +409,7 @@ public class BalanceWorld : MonoBehaviour
                         globalTiles.Find(x => x.name == pos).meatOnTile -= ((beforeChangedPop - afterChangedPop) * animal.meatValue);
                         //setting new vegetationOnTile if population rises
                         globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
+                        ns.AnimalHungry("Moose", pos);
 
                         if (animal.population <= 0)
                         {
@@ -463,6 +488,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Squirrel", pos);
+
                         if (meat)
                         {
                             beforeChangedPop = animal.population;
@@ -564,6 +591,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Rat", pos);
+
                         if (meat)
                         {
                             beforeChangedPop = animal.population;
@@ -664,6 +693,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Boar", pos);
+
                         if (meat)
                         {
                             beforeChangedPop = animal.population;
@@ -764,6 +795,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Brown Bear", pos);
+
                         if (meat)
                         {
                             beforeChangedPop = animal.population;
@@ -845,6 +878,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Shrew", pos);
+
                         beforeChangedPop = animal.population;
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
@@ -914,6 +949,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Weasel", pos);
+
                         beforeChangedPop = animal.population;
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
@@ -980,6 +1017,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Fox", pos);
+
                         beforeChangedPop = animal.population;
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;
@@ -1046,6 +1085,8 @@ public class BalanceWorld : MonoBehaviour
                     animal.hungryYears++;
                     if (animal.hungryYears >= 2)
                     {
+                        ns.AnimalHungry("Wolf", pos);
+
                         beforeChangedPop = animal.population;
                         animal.population -= (int)Math.Ceiling(beforeChangedPop * decrease);
                         afterChangedPop = animal.population;

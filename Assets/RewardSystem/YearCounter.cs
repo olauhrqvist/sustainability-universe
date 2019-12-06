@@ -7,52 +7,57 @@ using UnityEditor;
 public class YearCounter : MonoBehaviour
 {
 
-  //script
-  public RewardSystem other;
-  public Global_Database Database;
-  public BalanceWorld Bw;
+    //script
+    public RewardSystem other;
+    public Global_Database Database;
+    public BalanceWorld Bw;
+    public NotificationScript ns;
+    //variable
 
-  //variable
+    private int Year = 0;
+    private float Counter = 10f;
+    private float adder = 10f;
+    private float Timer = 0;
+    public bool isPaused;
+    private bool HasTriggered = false;
 
-  private int Year, test = 0;
-  private float Counter = 10f;
-  private float adder = 10f;
-  private float Timer = 0;
-  public bool isPaused;
+    public GameObject text;
+    public GameObject yeartext;
 
-  public GameObject text;
-  public GameObject yeartext;
+    //public BalanceWorld Bw { get => bw; set => bw = value; }
 
-  //public BalanceWorld Bw { get => bw; set => bw = value; }
-
-  public void Start()
-  {
-
-    other.currency = 1000;
-    text.GetComponent<Text>().text = other.currency + " KR";
-    yeartext.GetComponent<Text>().text = "Year: " + Year;
-
-  }
-  public void Update()
-  {
-
-
-    if (Application.isPlaying)
-    {
-      Timer += Time.deltaTime;
-    }
-
-    if (Timer >= Counter)
+    public void Start()
     {
 
-
-      Year += 1;
-      Counter += adder; ;
-      other.Calculate(Bw.Happiness);
-      Bw.YearUpdate();
-      text.GetComponent<Text>().text = other.currency + " KR";
-      yeartext.GetComponent<Text>().text = "Year: " + Year;
+        other.currency = 1000;
+        text.GetComponent<Text>().text = other.currency + " KR";
+        yeartext.GetComponent<Text>().text = "Year: " + Year;
 
     }
-  }
+    public void Update()
+    {
+        if (Application.isPlaying)
+        {
+            Timer += Time.deltaTime;
+        }
+
+        if (Timer >= Counter)
+        {
+            Year += 1;
+            Counter += adder;
+            other.Calculate(Bw.Happiness);
+            Bw.YearUpdate();
+            text.GetComponent<Text>().text = other.currency + " KR";
+            yeartext.GetComponent<Text>().text = "Year: " + Year;
+            if(Bw.Happiness >= 100 || !HasTriggered)
+            {
+                ns.OverallHappiness(100);
+                HasTriggered = true;
+            }
+            if (Year%10==0)
+            {
+                ns.TimePassed(Year);
+            }
+        }
+    }
 }

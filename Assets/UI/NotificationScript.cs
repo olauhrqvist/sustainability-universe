@@ -57,9 +57,17 @@ public class NotificationScript : MonoBehaviour
     {
         AddToStack(type + " is almost extinct!", 2);
     }
+    public void AnimalHungry(string type, string tile)
+    {
+        AddToStack(type + " on tile: " + tile + " is starving", 2);
+    }
     public void SeedUnlocked(string type)
     {
         AddToStack(type + " has been unlocked in the shop", 3);
+    }
+    public void OverallHappiness(int Input)
+    {
+        AddToStack("Your overall happiness has reached "+ Input +", good job!", 3);
     }
     public void TimePassed(int year)
     {
