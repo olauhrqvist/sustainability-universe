@@ -137,7 +137,6 @@ public class BalanceWorld : MonoBehaviour
 
     }
 
-
     // Comments for herbivores are in update_mouse
     bool update_mouse(MouseInfo Targetanimal, double growth, double decrease)
     {
