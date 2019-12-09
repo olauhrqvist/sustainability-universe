@@ -102,7 +102,7 @@ public class mapClick : MonoBehaviour
         else
           vegetationStatus = "High";
         // The whole text of tile info:
-        tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "  "
+        tileInfo = "Tile: " + selectTile.GetComponent<Collider>().name + "    "
         + "Trees:     " + (treenumber) + "\r\n"
         + "Vegetation: " + vegetationStatus + " (" + vegetation + ")" + "\r\n"
         + animalInfo ;
