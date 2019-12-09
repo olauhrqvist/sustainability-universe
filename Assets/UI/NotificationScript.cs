@@ -57,6 +57,10 @@ public class NotificationScript : MonoBehaviour
     {
         AddToStack(type + " is almost extinct!", 2);
     }
+    public void Sickness(string type, string tile)
+    {
+        AddToStack(type + " population was struck by a sickness on tile: " + tile, 2);
+    }
     public void AnimalHungry(string type, string tile)
     {
         AddToStack(type + " on tile: " + tile + " is starving", 2);
@@ -71,9 +75,9 @@ public class NotificationScript : MonoBehaviour
     }
     public void TimePassed(int year)
     {
-        if(year%10 == 0)
+        if(year%100 == 0)
         {
-            AddToStack("a decade" + " has passed", 4);
+            AddToStack("a century" + " has passed", 4);
 
         }
         else

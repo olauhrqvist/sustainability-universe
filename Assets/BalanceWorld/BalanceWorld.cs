@@ -11,7 +11,7 @@ public class BalanceWorld : MonoBehaviour
     public static TileClass tile { get; set; }
     private Global_Database Databas;
     public int Happiness;
-
+    public NotificationScript ns;
 
     public BalanceWorld()
     {
@@ -37,6 +37,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_mouse(m, 0.4, 0.35))
             {
                 Databas.MouseList.RemoveAt(i);
+                if (Databas.MouseList.Count == 0)
+                    ns.Extinct("Mouse");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.HareList.Count; i++)
@@ -45,6 +47,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_hare(h, 0.27, 0.22))
             {
                 Databas.HareList.RemoveAt(i);
+                if (Databas.HareList.Count == 0)
+                    ns.Extinct("Hare");
             }
         }
         for (int i = 0; i < Databas.DeerList.Count; i++)
@@ -53,6 +57,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_deer(d, 0.20, 0.15))
             {
                 Databas.DeerList.RemoveAt(i);
+                if (Databas.DeerList.Count == 0)
+                    ns.Extinct("Roe Deer");
             }
         }
         for (int i = 0; i < Databas.MooseList.Count; i++)
@@ -61,6 +67,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_moose(m, 0.10, 0.1))
             {
                 Databas.MooseList.RemoveAt(i);
+                if (Databas.MooseList.Count == 0)
+                    ns.Extinct("Moose");
             }
         }
 
@@ -71,6 +79,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_squirell(s, 0.4, 0.35))
             {
                 Databas.SquirrelList.RemoveAt(i);
+                if (Databas.SquirrelList.Count == 0)
+                    ns.Extinct("Squirrel");
             }
         }
         for (int i = 0; i < Databas.RatList.Count; i++)
@@ -79,6 +89,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_rat(r, 0.25, 0.20))
             {
                 Databas.RatList.RemoveAt(i);
+                if (Databas.RatList.Count == 0)
+                    ns.Extinct("Rat");
             }
         }
         for (int i = 0; i < Databas.BoarList.Count; i++)
@@ -87,6 +99,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_boar(b, 0.15, 0.10))
             {
                 Databas.BoarList.RemoveAt(i);
+                if (Databas.BoarList.Count == 0)
+                    ns.Extinct("Boar");
             }
         }
         for (int i = 0; i < Databas.BrownBearList.Count; i++)
@@ -95,6 +109,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_brownBear(b, 0.10, 0.05))
             {
                 Databas.BrownBearList.RemoveAt(i);
+                if (Databas.BrownBearList.Count == 0)
+                    ns.Extinct("Brown Bear");
             }
         }
 
@@ -107,6 +123,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_shrew(s, 0.4, 0.35))
             {
                 Databas.ShrewList.RemoveAt(i);
+                if (Databas.ShrewList.Count == 0)
+                    ns.Extinct("Shrew");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.WeaselList.Count; i++)
@@ -115,6 +133,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_weasel(w, 0.25, 0.20))
             {
                 Databas.WeaselList.RemoveAt(i);
+                if (Databas.WeaselList.Count == 0)
+                    ns.Extinct("Weasel");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.FoxList.Count; i++)
@@ -122,8 +142,9 @@ public class BalanceWorld : MonoBehaviour
             FoxInfo f = Databas.FoxList[i];
             if (!update_fox(f, 0.20, 0.15))
             {
-
                 Databas.FoxList.RemoveAt(i);
+                if (Databas.FoxList.Count == 0)
+                    ns.Extinct("Fox");
             }// throws in the whole array element (s) into the function
         }
         for (int i = 0; i < Databas.WolfList.Count; i++)
@@ -132,6 +153,8 @@ public class BalanceWorld : MonoBehaviour
             if (!update_wolf(w, 0.15, 0.10))
             {
                 Databas.WolfList.RemoveAt(i);
+                if (Databas.WolfList.Count == 0)
+                    ns.Extinct("Wolf");
             }
         }
 
@@ -207,6 +230,7 @@ public class BalanceWorld : MonoBehaviour
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                             return false;
                         }
+                        ns.AnimalHungry("Mouse", pos);
                     }
                 }
                 else//they are satisfied
@@ -218,6 +242,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 7)
                         {
+                            ns.Sickness("Mouse", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -305,6 +330,7 @@ public class BalanceWorld : MonoBehaviour
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                             return false;
                         }
+                        ns.AnimalHungry("Hare", pos);
                     }
                 }
                 else//they are satisfied
@@ -316,6 +342,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 5)
                         {
+                            ns.Sickness("Hare", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -401,6 +428,7 @@ public class BalanceWorld : MonoBehaviour
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                             return false;
                         }
+                        ns.AnimalHungry("Roe Deer", pos);
                     }
                 }
                 else//they are satisfied
@@ -412,7 +440,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 3)
                         {
-
+                            ns.Sickness("Roe Deer", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.70);
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -504,6 +532,7 @@ public class BalanceWorld : MonoBehaviour
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((beforeChangedPop - afterChangedPop) * animal.foodNeeded);
                             return false;
                         }
+                        ns.AnimalHungry("Moose", pos);
                     }
                 }
                 else//they are satisfied
@@ -515,6 +544,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 11)
                         {
+                            ns.Sickness("Moose", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             globalTiles.Find(x => x.name == pos).vegetationOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -663,6 +693,7 @@ public class BalanceWorld : MonoBehaviour
                     {
                         return false;
                     }
+                    ns.AnimalHungry("Squirrel", pos);
 
                 }
                 else//they are satisfied
@@ -674,6 +705,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 13)
                         {
+                            ns.Sickness("Squirrel", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             if (animal.hasEatenMeat)
@@ -830,6 +862,7 @@ public class BalanceWorld : MonoBehaviour
                     {
                         return false;
                     }
+                    ns.AnimalHungry("Rat", pos);
 
                 }
                 else//they are satisfied
@@ -841,6 +874,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 17)
                         {
+                            ns.Sickness("Rat", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             if (animal.hasEatenMeat)
@@ -995,6 +1029,7 @@ public class BalanceWorld : MonoBehaviour
                     {
                         return false;
                     }
+                    ns.AnimalHungry("Boar", pos);
 
                 }
                 else//they are satisfied
@@ -1006,6 +1041,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 13)
                         {
+                            ns.Sickness("Boar", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             if (animal.hasEatenMeat)
@@ -1173,6 +1209,7 @@ public class BalanceWorld : MonoBehaviour
                     {
                         return false;
                     }
+                    ns.AnimalHungry("Brown Bear", pos);
 
                 }
                 else//they are satisfied
@@ -1184,6 +1221,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 13)
                         {
+                            ns.Sickness("Brown Bear", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             if(animal.hasEatenMeat)
@@ -1280,6 +1318,7 @@ public class BalanceWorld : MonoBehaviour
                         {
                             return false;
                         }
+                        ns.AnimalHungry("Shrew", pos);
                     }
                 }
                 else
@@ -1291,6 +1330,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 7)
                         {
+                            ns.Sickness("Shrew", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             globalTiles.Find(x => x.name == pos).meatOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -1381,6 +1421,7 @@ public class BalanceWorld : MonoBehaviour
                         {
                             return false;
                         }
+                        ns.AnimalHungry("Weasel", pos);
                     }
                 }
                 else
@@ -1392,6 +1433,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 7)
                         {
+                            ns.Sickness("Weasel", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             globalTiles.Find(x => x.name == pos).meatOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -1478,9 +1520,9 @@ public class BalanceWorld : MonoBehaviour
 
                         if (animal.population <= 0)
                         {
-
                             return false;
                         }
+                        ns.AnimalHungry("Fox", pos);
                     }
                 }
                 else
@@ -1492,6 +1534,7 @@ public class BalanceWorld : MonoBehaviour
                         //Random sickness, to change the population sometimes
                         if (stable == 19)
                         {
+                            ns.Sickness("Fox", pos);
                             double tempPop = animal.population;
                             animal.population = (int)Math.Ceiling(animal.population * 0.50);
                             globalTiles.Find(x => x.name == pos).meatOnTile += ((tempPop - animal.population) * animal.foodNeeded);
@@ -1583,6 +1626,7 @@ public class BalanceWorld : MonoBehaviour
                     {
                         return false;
                     }
+                    ns.AnimalHungry("Wolf", pos);
                 }
             }
             else//they are satisfied
@@ -1594,6 +1638,7 @@ public class BalanceWorld : MonoBehaviour
                     //Random sickness, to change the population sometimes
                     if (stable == 11)
                     {
+                        ns.Sickness("Wolf", pos);
                         double tempPop = animal.population;
                         animal.population = (int)Math.Ceiling(animal.population * 0.50);
                         globalTiles.Find(x => x.name == pos).meatOnTile += ((tempPop - animal.population) * animal.foodNeeded);

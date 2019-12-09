@@ -375,6 +375,7 @@ public class TileClass : MonoBehaviour
 
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
+        treeObject.layer = 10;
         //Tree_Script
         addTreeData(treeObject);
         //End Tree_Script
@@ -415,6 +416,7 @@ public class TileClass : MonoBehaviour
 
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
+        treeObject.layer = 10;
         //Debug.Log("Keep growing on tile " + treeObject.transform.position);
 
 
