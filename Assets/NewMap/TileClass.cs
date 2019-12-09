@@ -5,9 +5,6 @@ using UnityEngine;
 public class TileClass : MonoBehaviour
 {
     //Main Database
-
-
-
     // public Global_Database Database;
     public Global_Database globalDatabase;
     // Start is called before the first frame update
@@ -17,8 +14,6 @@ public class TileClass : MonoBehaviour
     public float TreeHappiness;
     public float TileHappiness;
     // Variables
-
-
     // Tile ID
     public string name;
     // Coordinate
@@ -70,11 +65,7 @@ public class TileClass : MonoBehaviour
 
 
     //if we only implement the total amount of food on the tile without considiration of hierarchies.
-    public double meatOnTile;
-
-
-
-
+    public double meatOnTile; // not used
 
     // Constructor
     public TileClass()

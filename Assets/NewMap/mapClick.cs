@@ -17,27 +17,10 @@ public class mapClick : MonoBehaviour
     private float windowY = 0; //tile info window position Y
     private float windowWidth = 230;//tile info window width
     private float windowHight = 200;//tile info window Hight
-    private GameObject closeButton;
+    
     private Global_Database globalDatabase;// = new Global_Database();
 
-    private void Awake()
-    {
-        // ui button
-        closeButton = GameObject.Find("TileInfoClose");
-        closeButton.GetComponent<Image>().color = Color.clear;
-        closeButton.GetComponentInChildren<Text>().text = "";
-        closeButton.SetActive(false);
-    }
-
-
-    private void Start()
-    {
-        // ui button
-        closeButton = GameObject.Find("TileInfoClose");
-        closeButton.GetComponent<Image>().color = Color.clear;
-        closeButton.GetComponentInChildren<Text>().text = "";
-        closeButton.SetActive(false);
-    }
+   
     private void Update()
     {
         if (WindowShow)

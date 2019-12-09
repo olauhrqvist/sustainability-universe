@@ -16,25 +16,22 @@ public class Pair
 
 public class SpawnMap : MonoBehaviour
 {
-    private float x;
-    private float z;
+    private float x; //tile position x
+    private float z;//tile position y
     private GameObject tile;
     private GameObject tree;
 
-    public float tileSize = 10;
-    public int N = 8;
-    public Color planeColor;
+    public float tileSize = 10; // size of each tile
+    public int N = 8; // default size of the map is 8*8, but this value can be set in the inspector of unity.
+    public Color planeColor; // color of the tile
 
+    //Public game object list, which you need to drag the prefab or object to the relavant place in inspector. 
     public GameObject planeTile;
     public GameObject pineObject;
     public GameObject leafObject;
-
     public GameObject spruceObject;
     public GameObject birchObject;
     public GameObject beechObject;
-
-
-
     public GameObject mountain1;
     public GameObject mountain2;
     public GameObject mountain3;
@@ -43,10 +40,11 @@ public class SpawnMap : MonoBehaviour
     public GameObject grass2;
     public GameObject rock;
     public GameObject flower;
-    public int natureDensity;
-    public List<GameObject> tileMap;
-    public List<Vector3> smallLocation;
-    //public List<GameObject> tileMap;
+    // End of the public game object list.
+
+    public int natureDensity; // density of trees, plants, ect. 
+    public List<GameObject> tileMap; // list of tiles
+    public List<Vector3> smallLocation; //available locations for small things such as rock, grass,flower. 
 
     public bool finished = false;
     public List<TileClass> tiles = new List<TileClass>();
@@ -64,22 +62,8 @@ public class SpawnMap : MonoBehaviour
     {
         globalDatabase = new Global_Database();
         natureDensity = 5;
-        drawMap();
-        drawGraphic();
-        //finished = true;
-        /*TileClass tile = tiles.Find(x => x.name == "14");
-        tile.startGrowthPine();
-
-
-        tile = tiles.Find(x => x.name == "28");
-         tile.startGrowthLeaf();
-
-         tile = tiles.Find(x => x.name == "41");
-         tile.startGrowthLeaf();
-
-         tile = tiles.Find(x => x.name == "79");
-         tile.startGrowthPine();*/
-
+        drawMap(); // spwan map
+        drawGraphic(); // create nature around the map, mountains, clouds, flowers,ect. 
         markGroundtype();
         InvokeRepeating("growth", 1.0f, 0.1f);
         //InvokeRepeating("expand", 0.1f, 0.5f);
@@ -188,7 +172,7 @@ public class SpawnMap : MonoBehaviour
         }
     }
 
-    void drawMap()
+    void drawMap()  // create the map which consists of planes. 
     {
         x = (-(tileSize / 2) * ((float)N - 1));
         z = (-(tileSize / 2) * ((float)N - 1));
@@ -294,7 +278,7 @@ public class SpawnMap : MonoBehaviour
 
     }
 
-    public void spwanBorder()
+    public void spwanBorder() // mountains around
     {
         if (N < 4)
             return;
@@ -341,7 +325,7 @@ public class SpawnMap : MonoBehaviour
     }
 
 
-    void findSmallLocations(float xSmall, float zSmall, float stepS)
+    void findSmallLocations(float xSmall, float zSmall, float stepS) // find locations for small nature objects: flowers, rocks, ect. 
     {
         for (int k = 0; k < 5; k++)
         {
