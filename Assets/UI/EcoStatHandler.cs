@@ -17,10 +17,12 @@ public class EcoStatHandler : MonoBehaviour
     // Color tiles based on ground type
     void Awake()
     {
-        // creates a dictionary of animals in the scene
+        // retrieve database
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
+        // retrieve DefaultColor
         DefaultColor = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().planeColor;
 
+        // creates a dictionary of animals in the scene
         AnimalTypeDict["Wolf"] = globalDatabase.WolfList;
         AnimalTypeDict["Shrew"] = globalDatabase.ShrewList;
         AnimalTypeDict["Weasel"] = globalDatabase.WeaselList;
@@ -40,6 +42,7 @@ public class EcoStatHandler : MonoBehaviour
         AnimalTypeDict["Birch"] = globalDatabase.BirchList;
         AnimalTypeDict["Spruce"] = globalDatabase.SpruceList;
 
+        // retrieve tile dictionary
         TileDict = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().TileDict; 
     }
     public void DisplaypH(bool active)
