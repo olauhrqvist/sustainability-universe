@@ -1,6 +1,3 @@
 # Ekosystemlabbet
-Grymt snyggt
-Var glada
 
-
-Eeeeeyyyyyyyyyyyy
+A "serious games" project made for a university course in agile methodology.
