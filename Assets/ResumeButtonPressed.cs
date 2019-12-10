@@ -5,8 +5,6 @@ using UnityEngine;
 public class ResumeButtonPressed : GameState
 {
 
-
-
     public void resumeButtonPressed()
     {
         Time.timeScale = 1;
