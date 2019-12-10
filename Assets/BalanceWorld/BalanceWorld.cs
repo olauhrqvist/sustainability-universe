@@ -160,7 +160,6 @@ public class BalanceWorld : MonoBehaviour
 
     }
 
-
     // Comments for herbivores are in update_mouse
     bool update_mouse(MouseInfo Targetanimal, double growth, double decrease)
     {
@@ -238,7 +237,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 7)
                         {
@@ -338,7 +337,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 5)
                         {
@@ -436,7 +435,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 3)
                         {
@@ -540,7 +539,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 11)
                         {
@@ -701,7 +700,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 13)
                         {
@@ -870,7 +869,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 17)
                         {
@@ -1037,7 +1036,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 13)
                         {
@@ -1217,7 +1216,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 13)
                         {
@@ -1326,7 +1325,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 7)
                         {
@@ -1429,7 +1428,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 7)
                         {
@@ -1530,7 +1529,7 @@ public class BalanceWorld : MonoBehaviour
                     if (animal.satisfiedYears > 15)
                     {
                         System.Random rnd = new System.Random();
-                        int stable = rnd.Next(1, 20);
+                        int stable = rnd.Next(1, 40);
                         //Random sickness, to change the population sometimes
                         if (stable == 19)
                         {
@@ -1634,7 +1633,7 @@ public class BalanceWorld : MonoBehaviour
                 if (animal.satisfiedYears > 15)
                 {
                     System.Random rnd = new System.Random();
-                    int stable = rnd.Next(1, 20);
+                    int stable = rnd.Next(1, 40);
                     //Random sickness, to change the population sometimes
                     if (stable == 11)
                     {
