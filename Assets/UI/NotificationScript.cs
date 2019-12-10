@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class NotificationScript : MonoBehaviour
 {
-    public GameObject prefab;
-    public GameObject parent;
-    public GameObject button;
-    public GameObject panel;
+    public GameObject prefab; // messagebox to create
+    public GameObject parent; // Contentbox for notifications
+    public GameObject button; // Notification button
+    public GameObject panel; // Notification panel
 
     bool newmessage = false;
     public void AddToStack(string input, int urgency)
     {
         Color color = Color.cyan;
+        // urgency from (highest)1-3(lowest) with cyan as default
         switch (urgency)
         {
             case 1:
@@ -41,6 +42,8 @@ public class NotificationScript : MonoBehaviour
         }
         UpdateNotification();
     }
+
+    // For notification button
     public void UpdateNotification()
     {
         if (newmessage)

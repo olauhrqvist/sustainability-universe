@@ -9,11 +9,16 @@ public class HideUI : MonoBehaviour
     public GameObject[] Buttons;
     bool Hidden = false;
     public int Movement;
+
     public Sprite ShowSprite;
     public Sprite HideSprite;
+
     public Button ButtonSprite;
+
     public GameObject Hide;
     public GameObject Show;
+    
+    // Toggles what text object is showing in the scene
     public void ToggleText()
     {
         if (!Hidden)
@@ -31,6 +36,7 @@ public class HideUI : MonoBehaviour
             Show.SetActive(false);
         }
     }
+    // Same as regular hide function except it is for unhiding when clicking notifications
     public void ToggleTextNotification()
     {
         if (Hidden)
@@ -57,7 +63,7 @@ public class HideUI : MonoBehaviour
 
         }
     }
-
+    // Function for changin the sprite on hidemenu button. Unused for now
         public void ToggleUIElements()
     {
         if (!Hidden)
@@ -74,6 +80,7 @@ public class HideUI : MonoBehaviour
         }
     }
 
+    // Hides/Unhides all UIElements depending on the current state
     private void ToggleAll()
     {
         if (Hidden)
