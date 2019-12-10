@@ -353,6 +353,8 @@ public class Global_Database : MonoBehaviour
 
     }
 
+
+    //From here, caculate the popolation of each species
     public int calculateWolf(string tile)
     {
         int number = 0;
@@ -477,6 +479,10 @@ public class Global_Database : MonoBehaviour
         }
         return number;
     }
+    //Caculate the popolation of each species, end here.
+
+
+
     public int calculateCarnivores(string tile)
     {
         int carnivores = 0;

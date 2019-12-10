@@ -64,7 +64,7 @@ public class YearCounter : MonoBehaviour
                 ns.OverallHappiness(10);
                 HasTriggered = true;
             }
-            if (Year%10==0)
+            if (Year%100==0 && Year != 0)
             {
                 ns.TimePassed(Year);
             }
