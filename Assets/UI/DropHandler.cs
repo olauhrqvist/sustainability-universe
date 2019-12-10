@@ -24,6 +24,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
     {
         RectTransform invPanel = transform as RectTransform;
 
+        // if object has been dragged outside shop -> addobject
         if (!RectTransformUtility.RectangleContainsScreenPoint(invPanel, Input.mousePosition))
         {
             Name = Spawnable.name;
@@ -41,6 +42,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
         RaycastHit hit = new RaycastHit();
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+        // raycast with mask to only hit the ground
         if (Physics.Raycast(ray, out hit, 200f, LayerMask.GetMask("MapGround")))
         {
             GameObject TargetTile = hit.collider.gameObject;
@@ -56,7 +58,6 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
     public void AddtoDatabase(string sampleObject, string type, string name)
     {
-        //globalDatabase = new Global_Database();
         globalDatabase = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().globalDatabase;
 
         switch (type)
@@ -67,7 +68,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Spruce":
                         if (rewardsystem.currency < 10)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 10f;
@@ -78,7 +79,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Birch":
                         if (rewardsystem.currency < 15)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 15f;
@@ -89,7 +90,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Beech":
                         if (rewardsystem.currency < 20)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 20f;
@@ -98,7 +99,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                         break;
 
                     default:
-                        //Debug.Log("Tree not found : " + SpawnType);
+                        Debug.Log("Tree not found : " + sampleObject);
                         break;
                 }
                 break;
@@ -109,7 +110,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Shrew":
                         if (rewardsystem.currency < 10)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 10f;
@@ -120,7 +121,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Weasel":
                         if (rewardsystem.currency < 20)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 20f;
@@ -131,7 +132,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Fox":
                         if (rewardsystem.currency < 40)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 40f;
@@ -142,7 +143,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Wolf":
                         if (rewardsystem.currency < 80)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 80f;
@@ -151,7 +152,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                         break;
 
                     default:
-                        //  Debug.Log("Carnivore not found : " + SpawnType);
+                        Debug.Log("Carnivore not found : " + sampleObject);
                         break;
                 }
                 break;
@@ -162,7 +163,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Mouse":
                         if (rewardsystem.currency < 10)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 10f;
@@ -173,7 +174,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Hare":
                         if (rewardsystem.currency < 20)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 20f;
@@ -184,7 +185,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "RoeDeer":
                         if (rewardsystem.currency < 40)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 40f;
@@ -195,7 +196,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Moose":
                         if (rewardsystem.currency < 80)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 80f;
@@ -204,7 +205,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                         break;
 
                     default:
-                        //   Debug.Log("Herbivore not found : " + SpawnType);
+                        Debug.Log("Herbivore not found : " + sampleObject);
                         break;
                 }
                 break;
@@ -215,7 +216,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Squirrel":
                         if (rewardsystem.currency < 10)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 10f;
@@ -226,7 +227,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Rat":
                         if (rewardsystem.currency < 15)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 15f;
@@ -237,7 +238,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "Boar":
                         if (rewardsystem.currency < 40)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 40f;
@@ -248,7 +249,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                     case "BrownBear":
                         if (rewardsystem.currency < 95)
                         {
-                            Debug.Log("Unsufficient funds!"); //change to break when ready
+                            Debug.Log("Insufficient funds!");
                             break;
                         }
                         rewardsystem.currency -= 95f;
@@ -257,7 +258,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
                         break;
 
                     default:
-                        //  Debug.Log("Omnivore not found : " + SpawnType);
+                        Debug.Log("Omnivore not found : " + sampleObject);
                         break;
                 }
                 break;
