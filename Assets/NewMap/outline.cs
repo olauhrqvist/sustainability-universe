@@ -9,7 +9,7 @@ public class outline : MonoBehaviour
     private float tileSize ;
     private int N ;
     public GameObject outlinePlane;
-    // Start is called before the first frame update
+
     void Start()
     {
         tileSize = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().tileSize;
@@ -17,12 +17,6 @@ public class outline : MonoBehaviour
         if (N <= 10)
             N = 10;
         drawMap();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void drawMap()
