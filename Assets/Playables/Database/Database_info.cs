@@ -122,3 +122,10 @@ public class SpruceInfo : Spruce
   public GameObject Newobject;
 
 }
+
+public class TreeTypeInfo
+{
+  public string TilePosition;
+  public string name;
+  public GameObject Newobject;
+}

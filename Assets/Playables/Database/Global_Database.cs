@@ -30,10 +30,14 @@ public class Global_Database : MonoBehaviour
   public List<BirchInfo> BirchList = new List<BirchInfo>();
   public List<SpruceInfo> SpruceList = new List<SpruceInfo>();
 
+  public List<TreeTypeInfo> TreeTypeList = new List<TreeTypeInfo>();
+
 
   //***********************************************
 
   //Scrips for adding all the diffrent type of animals and trees to the tile
+
+
 
   public void AddWolf(string tile, GameObject other)
   {
@@ -203,6 +207,18 @@ public class Global_Database : MonoBehaviour
     tiles.Find(x => x.name == tile).foodHierarchy[bear.GetFoodHierarchy() - 1] -= bear.foodNeeded;
 
   }
+  public void AddTreetype(string tile, string name, GameObject other)
+  {
+    TreeTypeList.Add(new TreeTypeInfo()
+    {
+      TilePosition = tile,
+      name = name,
+      Newobject = other
+    });
+    //print("add tree type, the tile is " + tile);
+    //print("list count: " + TreeTypeList.Count);
+  }
+
 
   //-----------Tree-type-----------\\
 
