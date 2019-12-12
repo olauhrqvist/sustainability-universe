@@ -625,3 +625,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4a0c405a443e9488f50029ddd2be68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseObjects: []
+  game_paused: 0

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Menu.unity
     guid: 3c34898608140524093f6522fee25147
   - enabled: 1
-    path: Assets/Test1.unity
+    path: Assets/TheGame.unity
     guid: a0038c9d12e88ae44a0f2d6d3d6c56ce
   - enabled: 0
     path: Assets/PauseMenu.unity
