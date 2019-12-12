@@ -25,7 +25,7 @@ public class SpawnMap : MonoBehaviour
     public int N = 8; // default size of the map is 8*8, but this value can be set in the inspector of unity.
     public Color planeColor; // color of the tile
 
-    //Public game object list, which you need to drag the prefab or object to the relavant place in inspector. 
+    //Public game object list, which you need to drag the prefab or object to the relavant place in inspector.
     public GameObject planeTile;
     public GameObject pineObject;
     public GameObject leafObject;
@@ -42,9 +42,9 @@ public class SpawnMap : MonoBehaviour
     public GameObject flower;
     // End of the public game object list.
 
-    public int natureDensity; // density of trees, plants, ect. 
+    public int natureDensity; // density of trees, plants, ect.
     public List<GameObject> tileMap; // list of tiles
-    public List<Vector3> smallLocation; //available locations for small things such as rock, grass,flower. 
+    public List<Vector3> smallLocation; //available locations for small things such as rock, grass,flower.
 
     public bool finished = false;
     public List<TileClass> tiles = new List<TileClass>();
@@ -62,12 +62,10 @@ public class SpawnMap : MonoBehaviour
     {
         globalDatabase = new Global_Database();
         natureDensity = 5;
-        drawMap(); // spwan map
-        drawGraphic(); // create nature around the map, mountains, clouds, flowers,ect. 
+        drawMap(); // spawn map
+        drawGraphic(); // create nature around the map, mountains, clouds, flowers,ect.
         markGroundtype();
         InvokeRepeating("growth", 1.0f, 0.1f);
-        //InvokeRepeating("expand", 0.1f, 0.5f);
-        //InvokeRepeating("spread", 2.0f, 0.5f);
 
         // Building a dictionary for all tiles for fast access
         BuildDictionary();
@@ -84,6 +82,8 @@ public class SpawnMap : MonoBehaviour
             temp = "";
         }
     }
+
+    // Marks every tile as either brownearth or podzol.
     void markGroundtype()
     {
       // Place two kinds of types on the map and have them spread
@@ -93,13 +93,11 @@ public class SpawnMap : MonoBehaviour
       {
         int index = random.Next(0, tiles.Count);
         tiles[index].Groundtype = "podzol";
-        //Debug.Log("Tile " + tiles[index].name + " is " + tiles[index].Groundtype);
       }
       for (int i  = 0; i < 10; i++)
       {
         int index = random.Next(0, tiles.Count);
         tiles[index].Groundtype = "brownearth";
-        //Debug.Log("Tile " + tiles[index].name + " is " + tiles[index].Groundtype);
 
       }
 
@@ -120,19 +118,6 @@ public class SpawnMap : MonoBehaviour
 
       foreach (var tile in tiles)
       {
-
-
-        /*if(tile.Groundtype == "brownearth")
-        {
-          Color color = new Color(51, 102, 0);
-          tile.tileGameObject.GetComponent<Renderer>().material.color = color;
-        }
-
-        else if(tile.Groundtype == "podzol")
-        {
-          Color color = new Color(0, 102, 0);
-          tile.tileGameObject.GetComponent<Renderer>().material.color = color;
-        }*/
 
         tile.calculateNeighbours();
 
@@ -172,11 +157,13 @@ public class SpawnMap : MonoBehaviour
         }
     }
 
-    void drawMap()  // create the map which consists of planes. 
+    void drawMap()  // create the map which consists of planes.
     {
         x = (-(tileSize / 2) * ((float)N - 1));
         z = (-(tileSize / 2) * ((float)N - 1));
 
+
+        // Draws a two-dimensional field with planes.
         for (int i = 0; i < N; i++) // x
         {
             for (int j = 0; j < N; j++) //y
@@ -187,7 +174,6 @@ public class SpawnMap : MonoBehaviour
                 tile.name = i.ToString() + j.ToString();
 
                 tile.Nutrition = random.Next(75, 125);
-                //Debug.Log("Nutrition for tile " + tile.name + " is " + tile.Nutrition);
                 tile.x = i;
                 tile.y = j;
 
@@ -196,7 +182,6 @@ public class SpawnMap : MonoBehaviour
                 tile.natureDensity = natureDensity;
 
                 tile.calculatePositions(natureDensity);
-                //tile.calculateNeighbours();
                 tiles.Add(tile);
 
                 // Added find small location functions, so the smallLocation vector has data inside
@@ -325,7 +310,7 @@ public class SpawnMap : MonoBehaviour
     }
 
 
-    void findSmallLocations(float xSmall, float zSmall, float stepS) // find locations for small nature objects: flowers, rocks, ect. 
+    void findSmallLocations(float xSmall, float zSmall, float stepS) // find locations for small nature objects: flowers, rocks, ect.
     {
         for (int k = 0; k < 5; k++)
         {

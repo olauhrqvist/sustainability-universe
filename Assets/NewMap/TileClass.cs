@@ -60,7 +60,7 @@ public class TileClass : MonoBehaviour
     //OnTileData variables
     public List<double> foodHierarchy;
     public double vegetationOnTile;
-    
+
     public double staticVegetationOnTile; //do not change this value!
 
 
@@ -105,11 +105,11 @@ public class TileClass : MonoBehaviour
         //if we only implement the total amount of food on the tile without considiration of hierarchies.
         meatOnTile = 0;
 
-        //print("size: " + foodHierarchy.Count);
-
         vegetationOnTile = 0;
         staticVegetationOnTile = vegetationOnTile;
 }
+    // Called on by SpawnMap. Sets all neighbours soil as the same type as original tile. Done this way
+    // because we want larger chunks of the same soil type.
     public void markGroundtype()
     {
 
@@ -150,12 +150,12 @@ public class TileClass : MonoBehaviour
 
             }
             x = tileGameObject.transform.position.x - stepSize * (currentDensity - 0.5f);
-            //x = x - stepSize * (natureDensity - 1);
             z += stepSize * 3;
         }
 
-        //Debug.Log("density = " + currentDensity + " number of positions" + tilePositions.Count);
     }
+
+    // Called on from the UI scripts
     public void GrowObject(string SpawnType, string type)
     {
         switch (type)
@@ -255,19 +255,10 @@ public class TileClass : MonoBehaviour
 
         }
     }
-    /*public void startGrowthLeaf()
-    {
-        leafForest = true;
-        startGrowth();
-    }
-
-    public void startGrowthPine()
-    {
-        pineForest = true;
-        startGrowth();
-    }*/
 
 
+
+    // Get for tree model
     public GameObject getTreeObject()
     {
 
@@ -282,12 +273,7 @@ public class TileClass : MonoBehaviour
 
       else
         return null;
-        /*
-        if (pineForest)
-            return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().pineObject;
 
-        else // leafForrest
-            return GameObject.Find("SpawnMap").GetComponent<SpawnMap>().leafObject;*/
     }
 
     //addTreeData() : add scripts to each tree and add each tree to the global database
@@ -311,7 +297,7 @@ public class TileClass : MonoBehaviour
         {
             BirchInfo tmp = new BirchInfo();
             vegetationOnTile += tmp.vegetationValue;
-            
+
             treeObject.AddComponent<Tree_Script>();
             treeObject.GetComponent<Tree_Script>().SetForestID(forestID);
             treeObject.GetComponent<Tree_Script>().SetScale(s);
@@ -338,6 +324,7 @@ public class TileClass : MonoBehaviour
         }
     }
 
+    // This function starts the growth of trees on a tile
     public void startGrowth()
     {
         // Calculates all the positions on the tile
@@ -345,8 +332,6 @@ public class TileClass : MonoBehaviour
 
         if (forestID == -1)
             forestID = GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forestID++;
-        //Debug.Log("Tree part of forrest " + forrestID);
-        //GameObject.Find("SpawnMap").GetComponent<SpawnMap>().forrestID;
         if (grow == false)
         {
         GameObject treeObject = getTreeObject();
@@ -354,15 +339,10 @@ public class TileClass : MonoBehaviour
         // Grows a tree in the middle of the tile, starting the expansion process.
         float x = tileGameObject.transform.position.x;
         float z = tileGameObject.transform.position.z;
-        //Debug.Log("tilePositions.Count at start: " + tilePositions.Count);
         Vector3 posVec = tilePositions[5].pos;
         tilePositions[5].filled = true;
 
-       //Debug.Log("Starting growth on tile " + treeObject.transform.position);
-        //treeObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         treeObject.transform.localScale = new Vector3(0, 0, 0);
-
-        //treeObject.name = "Pine";
 
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
@@ -377,60 +357,27 @@ public class TileClass : MonoBehaviour
       }
     }
 
-    public void destroyTrees()
-    {
-        foreach (var tree in tileTrees)
-        {
-            //Destroy(tree);
-            // //Debug.Log("Destroying trees on tile.");
-            UnityEngine.Object.Destroy(tree);
-        }
 
 
-        tileTrees.Clear();
-        //if (tileTrees.Count == 0)
-        // //Debug.Log("No trees left in array.");
-    }
-
-
+    // Places treeObjets on each available slot on the tile
     public void placeTrees(Vector3 posVec)
     {
-        // Places treeObjets on each available slot on the tile
         GameObject treeObject = getTreeObject();
 
-        //foreach (var pos in tilePositions)
-        //{
-        //System.Random random = new System.Random();
-        //float y = Random.Range(0.5f, 1.0f);
-        //treeObject.transform.localScale = new Vector3(0.2f, y, 0.2f);
         treeObject.transform.localScale = new Vector3(0, 0, 0);
 
         treeObject = GameObject.Instantiate(treeObject, posVec, Quaternion.identity) as GameObject;
         treeObject.transform.parent = tileGameObject.transform;
         treeObject.layer = 10;
-        //Debug.Log("Keep growing on tile " + treeObject.transform.position);
 
-
-        // Change the color of the tree to an RGB value. Can be randomized.
-        //Color treeColor = new Color(Random.Range(50, 100), Random.Range(150, 255), 0, 0.5f);
-        //Debug.Log("color: " + treeColor);
-        //treeObject.GetComponent<Renderer>().material.color = treeColor;
-
-        //}
-        //Tree_script
         addTreeData(treeObject);
-        //End Tree_Script
-
-        //treeObject.name = "pineTree";
         tileTrees.Add(treeObject);
 
-        //assest scale back to default
-        //treeObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
 
-
+    // Calculates all the possible neighbours and adds them to a list "neighbours".
     public void calculateNeighbours()
     {
         // Add all surrounding tiles to neighbour list
@@ -464,6 +411,7 @@ public class TileClass : MonoBehaviour
 
     }
 
+    // Called repeatedly each year to grow the trees. If they are fully grown spreading will start.
     public void treeGrowth()
     {
         // If the current density is lower than cap, increase it each time function is called.
@@ -487,11 +435,9 @@ public class TileClass : MonoBehaviour
                 tree.transform.localScale += new Vector3(s, s, s);
             }
 
-
-
-
         }
 
+        // When they are ready to expand...
         if (expand == true && tilePositions.Count != 1 && tileTrees.Count < 9)
         {
 
@@ -502,42 +448,19 @@ public class TileClass : MonoBehaviour
                     tmp.Add(t);
             }
             tilePositions = tmp;
-            //System.Random random = new System.Random();
             index = random.Next(0, tilePositions.Count);
             posVec = tilePositions[index].pos;
             placeTrees(posVec);
             tilePositions[index].filled = true;
             expand = false;
         }
-        /*else if (tileTrees.Count == 9 && spread == true && neighbours.Count != 1)
-        {
-            //Debug.Log("Spreading. tileTrees:Count:" + tileTrees.Count);
-            spread = false;
-            spreadTrees();
-        }*/
-
-        // Increase scale
-        /*if (growthDone == false)
-        foreach (var tree in tileTrees)
-        {
-          //Debug.Log("Increasing scale by 10%");
-          if(tree.transform.localScale.y < 2f)
-         //Debug.Log("");
-          //tree.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
-
-          else
-            {
-              growthDone = true;
-            }
-        }*/
 
     }
 
+    // Spread trees to a random neighbour that is not currently populated
     public void spreadTrees()
     {
         // Randomize a neighbour and start growing there
-        //Debug.Log("neighbours before:" + neighbours.Count);
-
         if (tileTrees.Count < 9)
           return;
 
@@ -590,12 +513,6 @@ public class TileClass : MonoBehaviour
               tile.GrowObject("Beech", "Tree");
             }
 
-            /*
-            if (leafForest)
-                tile.startGrowthLeaf();
-
-            else
-                tile.startGrowthPine();*/
         }
 
 
