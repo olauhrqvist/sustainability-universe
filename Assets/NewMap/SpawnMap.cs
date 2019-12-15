@@ -65,7 +65,7 @@ public class SpawnMap : MonoBehaviour
         drawMap(); // spawn map
         drawGraphic(); // create nature around the map, mountains, clouds, flowers,ect.
         markGroundtype();
-        InvokeRepeating("growth", 1.0f, 0.1f);
+        InvokeRepeating("growth", 1.0f, 0.01f);
 
         // Building a dictionary for all tiles for fast access
         BuildDictionary();
