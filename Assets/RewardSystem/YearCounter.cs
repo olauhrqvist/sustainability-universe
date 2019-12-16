@@ -18,8 +18,8 @@ public class YearCounter : MonoBehaviour
 
   //variable
   private int Year = 0;
-  private float Counter = 1f;
-  private float adder = 1f;
+  private float Counter = 10f;
+  private float adder = 10f;
   private float Timer = 0;
 
   private bool HasTriggered = false;
